@@ -1,0 +1,33 @@
+<!-- ENTRADA PARA CÓDIGO POSTAL (5 NÚMEROS) -->
+<div class="form-group">
+  <label>Código Postal de Dirección Fiscal*</label>
+  <div class="input-group">
+    <span class="input-group-addon"><i class="fa fa-map"></i></span>
+    <input type="text" class="form-control input-lg" name="CP" id="CP" data-inputmask="'mask':'99999'" data-mask
+      required placeholder="Ingresa el código postal">
+  </div>
+</div>
+
+<!-- ENTRADA PARA LA DIRECCIÓN FISCAL -->
+<div class="form-group">
+  <label>Dirección Fiscal*</label>
+  <div class="input-group">
+    <span class="input-group-addon"><i class="fa fa-home"></i></span>
+    <input type="text" class="form-control input-lg" name="Dir_Fiscal" id="Dir_Fiscal" required
+      placeholder="Ingresa la dirección fiscal">
+    <input type="hidden" id="Dir_Fiscalant">
+  </div>
+</div>
+
+<!-- ENTRADA PARA DOMICILIO ADICIONAL-->
+<div class="form-group">
+  <label>Domicilio Adicional</label>
+  <div class="input-group">
+    <span class="input-group-addon"><i class="fa fa-home"></i></span>
+    <input type="text" class="form-control input-lg domicilio" name="Domicilios[]" placeholder="Ingresa el domicilio">
+    <!--<input type="hidden" class="domicilioant">-->
+    <span class="input-group-addon" style="padding: 0px 0px"><button type="button"
+        class="btn btn-info" id="btnAgregarNuevoDomicilio" style="height: 45px; width: 45px">
+        <i class="fa fa-plus"></i></button></span>
+  </div>
+</div>

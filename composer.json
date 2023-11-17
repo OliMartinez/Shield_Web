@@ -1,0 +1,6 @@
+{
+    "require": {
+        "smalot/pdfparser": "v2.4.0",
+        "spatie/pdf-to-image": "^2.2"
+    }
+}

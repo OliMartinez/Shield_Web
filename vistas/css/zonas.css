@@ -1,0 +1,48 @@
+.cuadro h2 {
+    margin: 5px;
+}
+
+.cuadro {
+    border: 1px solid rgb(139, 139, 139);
+    padding: 0;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    border-radius: 0.25rem;
+    /* Hacer el recuadro principal más pequeño */
+}
+
+.subcuadros {
+    display: flex;
+    /*justify-content: space-between;*/
+    width: 100%;
+    /* Hace que los subcuadros llenen todo el ancho */
+}
+
+.subcuadro {
+    border: 1px solid rgb(139, 139, 139);
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    /* Ancho ajustado para 3 subcuadros */
+    height: 300px;
+    /*overflow: auto;*/
+}
+
+.subcuadro h3 {
+    margin: 0;
+    padding: 10px;
+    border-bottom: 1px solid grey;
+    /* Línea separadora */
+}
+
+.municipios {
+    height: 84%;
+    overflow: auto;
+}
+
+.municipios ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}

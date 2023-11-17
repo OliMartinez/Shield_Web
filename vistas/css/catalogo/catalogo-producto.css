@@ -1,0 +1,26 @@
+.btnchange {
+    background-color: #222d32;
+    color: white;
+    border-radius: 30px;
+    padding: 10px 20px;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    /* Agregar transiciones suaves */
+}
+
+.btnchange i {
+    margin-right: 10px;
+}
+
+/* Cambio al poner el cursor sobre el botón */
+.btnchange:hover {
+    background-color: #23272b;
+    color: white;
+}
+
+/* Cambio al ser presionado */
+.btnchange:active {
+    background-color: #1d2124;
+    color: white;
+}

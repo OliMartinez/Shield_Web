@@ -1,0 +1,249 @@
+<?php
+
+session_start();
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>SHIELD</title>
+
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+  <link rel="icon" href="vistas/img/plantilla/icon.png">
+
+   <!--=====================================
+  PLUGINS DE CSS
+  ======================================-->
+
+  <!--<link rel="stylesheet" type="text/css" href="vistas/css/progressbar/main.css">-->
+
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" type="text/css" href="vistas/bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+<!--Incluir más bootstrap-->
+<!--<link rel="stylesheet" type="text/css" href="vistas/bower_components/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="vistas/bower_components/bootstrap/css/bootstrap.css.map">
+<link rel="stylesheet" type="text/css" href="vistas/bower_components/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="vistas/bower_components/bootstrap/css/bootstrap.min.css.map">-->
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" type="text/css" href="vistas/bower_components/font-awesome/css/font-awesome.min.css">
+
+  <!-- Ionicons -->
+  <link rel="stylesheet" type="text/css" href="vistas/bower_components/Ionicons/css/ionicons.min.css">
+
+  <!-- Theme style -->
+  <link rel="stylesheet" type="text/css" href="vistas/dist/css/AdminLTE.css">
+  
+  <!-- AdminLTE Skins -->
+  <link rel="stylesheet" type="text/css" href="vistas/dist/css/skins/_all-skins.min.css">
+
+<!--Incluir más adminlte-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+   <!-- DataTables -->
+  <link rel="stylesheet" type="text/css" href="vistas/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="vistas/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
+
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" type="text/css" href="vistas/plugins/iCheck/all.css">
+
+   <!-- Daterange picker -->
+  <link rel="stylesheet" type="text/css" href="vistas/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+
+  <!-- Morris chart -->
+  <link rel="stylesheet" type="text/css" href="vistas/bower_components/morris.js/morris.css">
+
+  <!--=====================================
+  PLUGINS DE JAVASCRIPT
+  ======================================-->
+
+  <!-- jQuery 3 -->
+  <script src="vistas/bower_components/jquery/dist/jquery.min.js"></script>
+  
+  <!-- Bootstrap 3.3.7 -->
+  <script src="vistas/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <!-- FastClick -->
+  <script src="vistas/bower_components/fastclick/lib/fastclick.js"></script>
+  
+  <!-- AdminLTE App -->
+  <script src="vistas/dist/js/adminlte.min.js"></script>
+
+  <!-- DataTables -->
+  <script src="vistas/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="vistas/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+  <script src="vistas/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
+  <script src="vistas/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
+
+  <!-- SweetAlert 2 -->
+  <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
+   <!-- By default SweetAlert2 doesn't support IE. To enable IE 11 support, include Promise polyfill:-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+  <!-- iCheck 1.0.1 -->
+  <script src="vistas/plugins/iCheck/icheck.min.js"></script>
+
+  <!-- InputMask -->
+  <script src="vistas/plugins/input-mask/jquery.inputmask.js"></script>
+  <script src="vistas/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+  <script src="vistas/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+
+  <!-- jQuery Number -->
+  <script src="vistas/plugins/jqueryNumber/jquerynumber.min.js"></script>
+
+  <!-- daterangepicker http://www.daterangepicker.com/-->
+  <script src="vistas/bower_components/moment/min/moment.min.js"></script>
+  <script src="vistas/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+  <!-- Morris.js charts http://morrisjs.github.io/morris.js/-->
+  <script src="vistas/bower_components/raphael/raphael.min.js"></script>
+  <script src="vistas/bower_components/morris.js/morris.min.js"></script>
+
+  <!-- ChartJS http://www.chartjs.org/-->
+  <script src="vistas/bower_components/Chart.js/Chart.js"></script>
+
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+
+  <!-- DataTables Buttons -->
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.0/css/buttons.bootstrap.min.css" />
+<script src="https://cdn.datatables.net/buttons/2.2.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.0/js/buttons.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.0/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.0/js/buttons.flash.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.0/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.0/js/buttons.print.min.js"></script>
+
+  <!-- JSZip -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+<!-- pdfmake -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+
+</head>
+
+<!--=====================================
+CUERPO DOCUMENTO
+======================================-->
+
+<body class="hold-transition skin-blue sidebar-collapse sidebar-mini login-page">
+ 
+  <?php
+
+  if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){
+
+   echo '<div class="wrapper">';
+
+    /*=============================================
+    CABEZOTE
+    =============================================*/
+
+    include "modulos/cabezote.php";
+
+    /*=============================================
+    MENU
+    =============================================*/
+
+    include "modulos/menu.php";
+
+    /*=============================================
+    CONTENIDO
+    =============================================*/
+
+    if(isset($_GET["ruta"])){
+
+      if(($_GET["ruta"] == "inicio" and $_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Fabricante" || $_SESSION["tipo"] == "Mayorista")||
+         $_GET["ruta"] == "correo-recuperar-contrasena" ||
+         $_GET["ruta"] == "recuperar-contrasena" ||
+         ($_GET["ruta"] == "AdminsYFabs" and $_SESSION["tipo"] == "Administrador")||
+         ($_GET["ruta"] == "mayoristas" and $_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Fabricante")||
+         ($_GET["ruta"] == "agentes" and $_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Fabricante" || $_SESSION["tipo"] == "Mayorista")||
+         ($_GET["ruta"] == "dists" and $_SESSION["tipo"] != "Distribuiddor" and  $_SESSION["tipo"] != "Solicitante")||
+         ($_GET["ruta"] == "solicitantes" and $_SESSION["tipo"] != "Distribuiddor" and  $_SESSION["tipo"] != "Solicitante") ||
+         ($_GET["ruta"] == "productos-fabs" and $_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Fabricante")||
+         ($_GET["ruta"] == "productos-mayoristas" and $_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Mayorista")||
+         ($_GET["ruta"] == "categorias" and $_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Fabricante" || $_SESSION["tipo"] == "Mayorista")||
+         ($_GET["ruta"] == "colecciones" and $_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Fabricante" || $_SESSION["tipo"] == "Mayorista")||
+         ($_GET["ruta"] == "carrito" and $_SESSION["tipo"] == "Mayorista" || $_SESSION["tipo"] == "Distribuidor")||         
+         ($_GET["ruta"] == "pedidos-mayoristas" and $_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Fabricante" || $_SESSION["tipo"] == "Mayorista")||
+         ($_GET["ruta"] == "pedidos-dists" and  $_SESSION["tipo"] != "Solicitante")||
+         ($_GET["ruta"] == "catalogo" and $_SESSION["tipo"] == "Mayorista" || $_SESSION["tipo"] == "Distribuidor")||
+         ($_GET["ruta"] == "catalogo-busqueda" and $_SESSION["tipo"] == "Mayorista" || $_SESSION["tipo"] == "Distribuidor")||
+         ($_GET["ruta"] == "catalogo-producto" and $_SESSION["tipo"] == "Mayorista" || $_SESSION["tipo"] == "Distribuidor")||
+         $_GET["ruta"] == "info-cuenta" ||
+         ($_GET["ruta"] == "cuenta-deposito" and $_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Fabricante" || $_SESSION["tipo"] == "Mayorista")||
+         ($_GET["ruta"] == "credito" and $_SESSION["tipo"] != "Agente" || $_SESSION["tipo"] != "Solicitante")||
+         ($_GET["ruta"] == "zonas" and $_SESSION["tipo"] == "Mayorista")||
+         ($_GET["ruta"] == "crear-editar-zona" and $_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Mayorista")||
+         $_GET["ruta"] == "salir"){
+
+        include "modulos/".$_GET["ruta"].".php";
+
+      }else{
+
+        include "modulos/404.php";
+
+      }
+
+    }else if($_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Fabricante" || $_SESSION["tipo"] == "Mayorista"){
+
+      include "modulos/inicio.php";
+
+    }
+    else if($_SESSION["tipo"] == "Solicitante"){
+      include "modulos/info-cuenta.php";
+    }
+    else if($_SESSION["tipo"] == "Agente"){
+      include "modulos/solicitantes.php";
+    }else if($_SESSION["tipo"] == "Distribuidor"){
+      include "modulos/catalogo.php";
+    }
+    
+    /*=============================================
+    FOOTER
+    =============================================*/
+
+    include "modulos/footer.php";
+
+    echo '</div>';
+
+  }
+  else{
+    if(isset($_GET["ruta"]) && $_GET["ruta"] == "formulario-solicitantes"){
+      include "modulos/formulario-solicitantes.php";
+    }
+    else if(isset($_GET["ruta"]) && $_GET["ruta"] == "correo-recuperar-contrasena"){
+      include "modulos/correo-recuperar-contrasena.php";
+    }
+    else if(isset($_GET["ruta"]) && $_GET["ruta"] == "recuperar-contrasena"){
+      include "modulos/recuperar-contrasena.php";
+    }
+    else{
+      include "modulos/login.php";
+    }
+
+  }
+
+  ?>
+
+<script src="vistas/js/plantilla.js"></script>
+<script src="vistas/js/usuarios.js"></script>
+<script src="vistas/js/catalogo.js"></script>
+<script src="vistas/js/reportes.js"></script>
+<script src="vistas/js/productos.js"></script>
+<script src="vistas/js/pedidos.js"></script>
+</body>
+</html>
