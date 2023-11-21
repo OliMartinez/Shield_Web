@@ -66,27 +66,35 @@
                             </td>
                             <td>';
                                     echo '
-                                <div class="card cuadro">
-                                    <h2 class="card-header">' . $value["ID"] . '</h2>
-                                    <div class="card-body subcuadros">';
+                                <div class="cuadro">
+                                    <div class="div-nombre-zona">
+                                        <h2 class="nombre-zona">' . $value["ID"] . '<h2>
+                                    </div>
+                                    <div class="cuerpo">
+                                        <div>';
                                         $estados = explode(',', $value['estados']);
                                         $muncipios_por_estado = explode(',', $value['ciudades']);
                                         foreach ($estados as $key_estado => $estado) {
                                             echo 
-                                        '<div class="subcuadro">
-                                            <h3>' . $estado .'</h3>
-                                            <div class="municipios">
-                                                <ul>';
-                                            $municipios = explode('-', $muncipios_por_estado[$key_estado]);
-                                            foreach ($municipios as $key_munc => $munc) {
-                                                echo '<li><h4>' . $munc . '</h4></li>';
-                                            };
-                                            echo'</ul>
-                                            </div>
-                                        </div>';
+                                            '<div class="subcuadro">
+                                                <div class="estado">
+                                                    <h3>' . $estado .'</h3>
+                                                </div>
+                                                <div class="card-body municipios">';
+                                                $municipios = explode('-', $muncipios_por_estado[$key_estado]);
+                                                foreach ($municipios as $key_munc => $munc) {
+                                                    echo '
+                                                    <div>
+                                                        <h4>' . $munc . '</h4>
+                                                    </div>';
+                                                };
+                                                echo'
+                                                </div>
+                                            </div>';
                                         }
                                         echo 
-                                    '</div>
+                                        '</div>
+                                    </div>
                                 </div>
                             </td>
                         </tr>';

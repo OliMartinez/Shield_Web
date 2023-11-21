@@ -30,7 +30,6 @@ session_start();
 <!--Incluir más bootstrap-->
 <!--<link rel="stylesheet" type="text/css" href="vistas/bower_components/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="vistas/bower_components/bootstrap/css/bootstrap.css.map">
-<link rel="stylesheet" type="text/css" href="vistas/bower_components/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="vistas/bower_components/bootstrap/css/bootstrap.min.css.map">-->
 
   <!-- Font Awesome -->

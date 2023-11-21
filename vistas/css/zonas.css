@@ -1,48 +1,51 @@
-.cuadro h2 {
-    margin: 5px;
-}
-
 .cuadro {
-    border: 1px solid rgb(139, 139, 139);
-    padding: 0;
-    margin: auto;
     text-align: center;
-    width: 100%;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
     border-radius: 0.25rem;
-    /* Hacer el recuadro principal más pequeño */
 }
 
-.subcuadros {
-    display: flex;
-    /*justify-content: space-between;*/
-    width: 100%;
-    /* Hace que los subcuadros llenen todo el ancho */
+.cuerpo{
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    border-radius: 0.25rem;
+}
+
+.div-nombre-zona{
+    background-color: #007bff;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.25rem;
+}
+
+.nombre-zona{
+    color: #fff;
+    margin-bottom: 0.75rem;
 }
 
 .subcuadro {
-    border: 1px solid rgb(139, 139, 139);
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    /* Ancho ajustado para 3 subcuadros */
     height: 300px;
-    /*overflow: auto;*/
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: 0.25rem;
+    margin-bottom: 20px;
 }
 
-.subcuadro h3 {
-    margin: 0;
-    padding: 10px;
-    border-bottom: 1px solid grey;
-    /* Línea separadora */
+.estado {
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+    border-radius: 0.25rem;
 }
 
 .municipios {
     height: 84%;
     overflow: auto;
-}
+    flex: 1 1 auto;
+    padding: 1.25rem;
 
-.municipios ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
 }
