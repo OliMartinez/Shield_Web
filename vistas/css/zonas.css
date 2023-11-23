@@ -1,21 +1,12 @@
 .cuadro {
     text-align: center;
     position: relative;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
     flex-direction: column;
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, .125);
-    border-radius: 0.25rem;
-}
-
-.cuerpo{
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    padding: 1.25rem;
     border-radius: 0.25rem;
 }
 
@@ -30,11 +21,21 @@
     margin-bottom: 0.75rem;
 }
 
+.cuerpo{
+    padding: 1.25rem;
+    border-radius: 0.25rem;
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+}
+
 .subcuadro {
     height: 300px;
     border: 1px solid rgba(0, 0, 0, .125);
     border-radius: 0.25rem;
     margin-bottom: 20px;
+    min-width: 20%;
+    width: 100%;
 }
 
 .estado {
@@ -45,7 +46,6 @@
 .municipios {
     height: 84%;
     overflow: auto;
-    flex: 1 1 auto;
     padding: 1.25rem;
 
 }
