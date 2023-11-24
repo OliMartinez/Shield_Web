@@ -43,7 +43,7 @@ class ControladorCatalogo
 					}).then(function(result) {
 							if (result.value) {
 	
-								window.location ="catalogo";
+								window.location ="' . $_SERVER["REQUEST_URI"] . '";
 	
 							}
 						})
@@ -60,7 +60,7 @@ class ControladorCatalogo
 					}).then(function(result) {
 							if (result.value) {
 	
-								window.location ="catalogo";
+								window.location ="' . $_SERVER["REQUEST_URI"] . '";
 	
 							}
 						})

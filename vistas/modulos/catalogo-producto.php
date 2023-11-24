@@ -32,13 +32,15 @@
               <div class="col-12 col-sm-6">
                 <h3 class="d-inline-block d-sm-none"><b><?php echo $producto["nombre"] ?></b></h3>
                 <div class="col-12">
-                  <img src="<?php echo explode('<br>',$producto["imagenes"])[0] ?>" class="product-image" alt="Product Image" style="width:100%">
+                  <img src="<?php echo explode('<br>', $producto["imagenes"])[0] ?>" class="product-image" alt="Product Image" style="width:100%">
                 </div>
-                <!--<div class="col-12 product-image-thumbs">
-                  <div class="product-image-thumb active"><img src="
-                  <?php //echo $producto["imagenes"]
-                  ?>" alt="Product Image"></div>
-                </div>-->
+                <div class="col-12 product-image-thumbs">
+                  <?php foreach (explode('<br>', $producto["imagenes"]) as $key => $value) {
+                    echo '<div class="product-image-thumb"><img src="' . $value . '
+                  ?>" alt="Product Image"></div>';
+                  }
+                  ?>
+                </div>
               </div>
               <div class="col-12 col-sm-6">
 
@@ -51,27 +53,27 @@
 
                   <div style="margin-top: 20px;"><span class="my-3" style="font-size: 23px; margin-right: 5px;"><b>Categoría: </b></span>
                     <select name="categoria" style="border: 2px solid gray;border-radius: 15px;cursor: pointer;width: 20%;height: 30px; font-size: 18px;">
-                      <?php 
+                      <?php
                       $item = "ID";
                       $valor = $producto["ID"];
                       $selectitem = "categorias";
-                      $Categorias = ControladorGeneral::ctrMostrarItems($item,$valor,$tabla,$selectitem);
+                      $Categorias = ControladorGeneral::ctrMostrarItems($item, $valor, $tabla, $selectitem);
                       $Categorias1 = explode("<br>", $Categorias);
                       for ($i = 0; $i < count($Categorias1); $i++) {
                         $valor = $Categorias1[$i];
                         echo "<option value='$valor'>$valor</option>";
-                    }
-                    ?>
+                      }
+                      ?>
                     </select>
                   </div>
 
                   <h3 class="my-3"><b>Precio: </b><span>
-                      $ <span id="precio">
+                        <span id="precio">
                         <?php
                         if ($tabla == "productos_fab") {
-                          echo $producto["precio_mayorista"];
+                          echo '$'.$producto["precio_mayorista"];
                         } else {
-                          echo $producto["precio_dist"];
+                          echo '$'.$producto["precio_dist"];
                         }
                         ?>
                       </span>
@@ -79,16 +81,16 @@
                   </h3>
 
                   <div style="margin-top: 20px"><span class="my-3" style="font-size: 23px; margin-right: 5px;"><b>Cantidad: </b></span>
-                    <input type="number" style="width: 12%;height: 30px;border-radius: 15px;border: 2px solid gray; font-size: 18px; text-align: center;" name="cantidad" id="cantidad" value="<?php echo $producto["cantidad_min"];?>" min="<?php echo $producto["cantidad_min"];?>">
+                    <input type="number" style="width: 12%;height: 30px;border-radius: 15px;border: 2px solid gray; font-size: 18px; text-align: center;" name="cantidad" id="cantidad" value="<?php echo $producto["cantidad_min"]; ?>" min="<?php echo $producto["cantidad_min"]; ?>">
                   </div>
 
                   <h3 class="my-3"><b>Precio x Cantidad: </b><span>
-                      $ <span id="precioxcantidad">
+                      <span id="precioxcantidad">
                         <?php
                         if ($tabla == "productos_fab") {
-                          echo $producto["precio_mayorista"]*$producto["cantidad_min"];
+                          echo '$'.$producto["precio_mayorista"] * $producto["cantidad_min"];
                         } else {
-                          echo $producto["precio_dist"]*$producto["cantidad_min"];
+                          echo '$'.$producto["precio_dist"] * $producto["cantidad_min"];
                         }
                         ?>
                       </span>
@@ -97,28 +99,28 @@
                   <input type="hidden" name="precioxcantidad" value="
                   <?php
                   if ($tabla == "productos_fab") {
-                    echo $producto["precio_mayorista"]*$producto["cantidad_min"];
+                    echo $producto["precio_mayorista"] * $producto["cantidad_min"];
                   } else {
-                    echo $producto["precio_dist"]*$producto["cantidad_min"];
+                    echo $producto["precio_dist"] * $producto["cantidad_min"];
                   }
                   ?>
                         ">
 
-                  <!--<h3 class="my-3"><b>Envío: </b>$ <span name = "envio">100</span></h3>-->
+                  <!--<h3 class="my-3"><b>Envío: </b>$ <span name = "envio"> </span></h3>-->
 
                   <!--<h3 class="my-3"><b>Total: </b>
-                    <span id="total">$ <span id="total" name="total">300</span></span>
+                    <span id="total">$ <span id="total" name="total"> </span></span>
                   </h3>-->
 
                   <br>
 
                   <div class="mt-4">
-                    <button name="submit" class="btn btn-lg btnchange">
+                    <button name="submit" class="btn btn-lg btncarrito">
                       <i class="fa fa-cart-plus fa-lg mr-2"></i>
                       Agregar al carrito
                     </button>
 
-                    <div class="btn btn-lg btnchange">
+                    <div class="btn btn-lg btncomprar">
                       <i class="fa fa-money fa-lg mr-2"></i>
                       Comprar ahora
                     </div>

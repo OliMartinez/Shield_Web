@@ -69,6 +69,7 @@
               <th>Precio</th>
               <th>Cantidad</th>
               <th>Precio x Cantidad</th>
+              <!--<th>Envío</th>-->
               <!--<th>Total</th>-->
 
             </tr>
@@ -126,7 +127,8 @@
 
         </tr>';
 
-              //<td>$' . $value["total"] . '</td>
+              /*<td>$' . $value["envio"] . '</td>
+              <td>$' . $value["total"] . '</td>*/
 
             }
 

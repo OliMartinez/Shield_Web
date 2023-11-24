@@ -12,17 +12,17 @@
 
 .div-nombre-zona{
     background-color: #007bff;
-    padding: 0.75rem 1.25rem;
     border-radius: 0.25rem;
 }
 
 .nombre-zona{
     color: #fff;
-    margin-bottom: 0.75rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .cuerpo{
-    padding: 1.25rem;
+    padding: 0.75rem;
     border-radius: 0.25rem;
     overflow: auto;
     display: flex;
@@ -33,7 +33,6 @@
     height: 300px;
     border: 1px solid rgba(0, 0, 0, .125);
     border-radius: 0.25rem;
-    margin-bottom: 20px;
     min-width: 20%;
     width: 100%;
 }
@@ -43,9 +42,17 @@
     border-radius: 0.25rem;
 }
 
+.estado h4{
+    font-size: 21px;
+}
+
 .municipios {
     height: 84%;
     overflow: auto;
-    padding: 1.25rem;
+    padding: 0.75rem;
 
+}
+
+.mun {
+    font-size: 18px;
 }
