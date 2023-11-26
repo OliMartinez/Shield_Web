@@ -52,7 +52,7 @@
                   <h3 class="my-3"><b>Colección: </b><?php echo $producto["coleccion"] ?></h3>
 
                   <div style="margin-top: 20px;"><span class="my-3" style="font-size: 23px; margin-right: 5px;"><b>Categoría: </b></span>
-                    <select name="categoria" style="border: 2px solid gray;border-radius: 15px;cursor: pointer;width: 20%;height: 30px; font-size: 18px; text-align: center;">
+                    <select name="categoria" style="border: 2px solid gray;border-radius: 15px;cursor: pointer;width: 20%;height: 30px; font-size: 18px;">
                       <?php
                       $item = "ID";
                       $valor = $producto["ID"];
