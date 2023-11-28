@@ -186,7 +186,7 @@ CUERPO DOCUMENTO
          ($_GET["ruta"] == "cuenta-deposito" and $_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Fabricante" || $_SESSION["tipo"] == "Mayorista")||
          ($_GET["ruta"] == "credito" and $_SESSION["tipo"] != "Agente" || $_SESSION["tipo"] != "Solicitante")||
          ($_GET["ruta"] == "zonas" and $_SESSION["tipo"] == "Mayorista")||
-         ($_GET["ruta"] == "crear-editar-zona" and $_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Mayorista")||
+         ($_GET["ruta"] == "zona" and $_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Mayorista")||
          $_GET["ruta"] == "salir"){
 
         include "modulos/".$_GET["ruta"].".php";

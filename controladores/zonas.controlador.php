@@ -42,9 +42,9 @@ class ControladorZonas
 	=============================================*/
 	public static function ctrEliminarZona()
 	{
-		if (isset($_GET["idZona"])) {
+		if (isset($_GET["idElimZona"])) {
 
-			$datos = $_GET["idZona"];
+			$datos = $_GET["idElimZona"];
 
 			$respuesta = $respuesta = ModeloGeneral::mdlEliminar('zonas', null, $datos);
 

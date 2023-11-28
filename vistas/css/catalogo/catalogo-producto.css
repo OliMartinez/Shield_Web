@@ -60,38 +60,31 @@
 }
 
 .product-image-thumbs {
-    -ms-flex-align: stretch;
-    align-items: stretch;
-    display: -ms-flexbox;
     display: flex;
     margin-top: 2rem;
     position: relative;
     width: 100%;
     padding-right: 7.5px;
     padding-left: 7.5px;
-    -ms-flex: 0 0 100%;
-    flex: 0 0 100%;
     max-width: 100%;
     position: relative;
 }
 
 .product-image-thumb {
-    -ms-flex-align: stretch;
-    align-items: stretch;
-    display: -ms-flexbox;
     display: flex;
     margin-top: 2rem;
     border: 1px solid rgba(0, 0, 0, .125);
+    margin-left: 1%;
+    margin-right: 1%;
 }
 
 .product-image-thumb img {
-    box-sizing: border-box;
-    max-width: 100%;
-    height: auto;
+    width: 10vw;
     -ms-flex-item-align: center;
     align-self: center;
-    vertical-align: middle;
-    border-style: none;
-    overflow-clip-margin: content-box;
     overflow: clip;
+}
+
+.product-image-thumb:hover {
+    opacity: .5;
 }

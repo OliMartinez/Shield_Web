@@ -29,7 +29,7 @@
 
  		<!-- Botón de navegación -->
 
- 		<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" style="background-color: #222d32;">
+ 		<a class="sidebar-toggle" data-toggle="push-menu" role="button" style="background-color: #222d32;">
 
  			<span class="sr-only">Toggle navigation</span>
 
