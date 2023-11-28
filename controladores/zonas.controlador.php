@@ -13,13 +13,13 @@ class ControladorZonas
 				"ID" => $_POST["Nombre"],
 
 			);
-		}
-		$tipo = $_POST["tipoguardar"];
-		$respuesta = ModeloZonas::mdlGuardarZona($datos, $tipo);
 
-		if ($respuesta == "ok") {
+			$tipo = $_POST["tipoguardar"];
+			$respuesta = ""/*ModeloGeneral::($datos, $tipo)*/;
 
-			echo '<script>
+			if ($respuesta == "ok") {
+
+				echo '<script>
 
 				swal({
 						type: "success",
@@ -35,6 +35,7 @@ class ControladorZonas
 							})
 
 				</script>';
+			}
 		}
 	}
 	/*=============================================

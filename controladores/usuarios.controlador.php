@@ -694,7 +694,7 @@ class ControladorUsuarios
 				"comp_dom" => $datosdist["comp_dom"],
 			);
 
-			$creardist = ModeloUsuarios::mdlGuardarUsuario($tabla, $tabla2, $datos, "crear");
+			$creardist = ModeloUsuarios::mdlGuardarUsuario($tabla2, $datos, "crear");
 
 
 			if ($eliminarsolic == "ok" && $datosdist == "ok" && $creardist == "ok") {
