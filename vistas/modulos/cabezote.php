@@ -35,7 +35,7 @@
 
  		</a>
  		<?php
-			if ((isset($_GET["ruta"]) && $_GET["ruta"]=="catalogo") || ($_SESSION["tipo"] == "Distribuidor" && !isset($_GET["ruta"]))) {
+			if ((isset($_GET["ruta"]) && $_GET["ruta"] == "catalogo") || ($_SESSION["tipo"] == "Distribuidor" && !isset($_GET["ruta"]))) {
 				echo '<form class="navbar-nav navbar-form" action="catalogo-busqueda" method="GET" style="margin-left:27%; width:35%">
  				<div class="input-group input-group-sm" style="width:125%">
  					<input type="search" class="form-control form-control-navbar" placeholder="Buscar" name="Buscar" id="Buscar">
@@ -124,11 +124,11 @@
  					<ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
 
- 						<a class="dropdown-item" href="info-cuenta">Información de cuenta</a>
+ 						<a class="dropdown-item" href="info-cuenta" style="color:white; :hover{color:white;}">Información de cuenta</a>
 
  						<div class="dropdown-divider"></div>
 
- 						<a class="dropdown-item" href="salir">Salir</a>
+ 						<a class="dropdown-item" href="salir" style="color:white; :hover{color:white;}">Salir</a>
 
  					</ul>
 
