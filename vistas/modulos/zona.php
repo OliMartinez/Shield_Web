@@ -12,9 +12,7 @@
 
                     <div class="modal-header" style="background:#3c8dbc; color:white">
 
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-                        <h4 class="modal-title">Formulario zona</h4>
+                        <h4 class="modal-title">Formulario Zona</h4>
 
                     </div>
                     <!--=====================================
@@ -72,25 +70,55 @@
                             </div>';
                             } ?>
 
+                            <!-- ENTRADA PARA SELECCIONAR ESTADOS -->
+                            <!--<div class="form-group">
+                                <label>Estados:</label>
+                                <div class="input-group">
+                                    <fieldset required>
+                                        <label class="checkbox-inline">
+                                        <input type="checkbox" class="estado" name="Estado[]" value="">
+                                        </label><br>
+                                    </fieldset>
+                                </div>-->
+
+                            <!-- ENTRADA PARA SELECCIONAR EL ESTADO -->
+                            <!--<div class="form-group">
+                <label id="EstadoLabel">Estado</label>
+                <div class="input-group">
+  
+                  <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+  
+                  <select class="form-control input-lg" name="Estado" id="EstadoSelect">
+  
+                    <option value="" id="Estado"></option>
+  
+                  </select>
+  
+                </div>
+  
+              </div>
+                            -->
                         </div>
 
                     </div>
 
-                    <?php include "includes/guardar.html"; ?>
-
-                    <?php
-
-                    $guardarZona = new ControladorZonas();
-                    $guardarZona->ctrGuardarZona();
-
-                    ?>
-
-                </form>
-
             </div>
 
+            <?php include "includes/guardar.html"; ?>
+
+            <?php
+
+            $guardarZona = new ControladorZonas();
+            $guardarZona->ctrGuardarZona();
+
+            ?>
+
+            </form>
+
         </div>
-    </section>
+
+</div>
+</section>
 </div>
 
 <script src="vistas/js/zonas.js"></script>
