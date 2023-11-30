@@ -82,7 +82,7 @@
                     <td>
                     <ul class="nav">
                     <li>
-                      <a data-toggle="dropdown" style="color:#333;"><i class="fa fa-ellipsis-v"></i></a>
+                      <a data-toggle="dropdown" style="color:#646364;"><i class="fa fa-ellipsis-v"></i></a>
                       <ul class="dropdown-menu">
                         <li class="dropdown-item"><a style="cursor:pointer;" class="btnAsignMayorista" tabla="solicitantes" idUsuario="' . $value["ID"] . '" data-toggle="modal" data-target="#modalAsignar">Asignar Mayorista</a></li>
                         <li class="dropdown-item"><a style="cursor:pointer;" class="btnAsignAgente" tabla="solicitantes" idUsuario="' . $value["ID"] . '" data-toggle="modal" data-target="#modalAsignar">Asignar Agente</a></li>

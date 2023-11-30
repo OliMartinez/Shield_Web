@@ -7,8 +7,8 @@
                 <form role="form" enctype="multipart/form-data" method="post">
 
                     <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
+                    CABEZA DEL MODAL
+                    ======================================-->
 
                     <div class="modal-header" style="background:#3c8dbc; color:white">
 
@@ -16,8 +16,8 @@
 
                     </div>
                     <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
+                    CUERPO DEL MODAL
+                    ======================================-->
 
                     <div class="modal-body">
 
@@ -72,39 +72,37 @@
 
                             <!-- ENTRADA PARA SELECCIONAR ESTADOS -->
                             <!--<div class="form-group">
-                                <label>Estados:</label>
-                                <div class="input-group">
-                                    <fieldset required>
-                                        <label class="checkbox-inline">
-                                        <input type="checkbox" class="estado" name="Estado[]" value="">
-                                        </label><br>
-                                    </fieldset>
-                                </div>-->
+                                                        <label>Estados:</label>
+                                                        <div class="input-group">
+                                                            <fieldset required>
+                                                                <label class="checkbox-inline">
+                                                                <input type="checkbox" class="estado" name="Estado[]" value="">
+                                                                </label><br>
+                                                            </fieldset>
+                                                        </div>-->
 
                             <!-- ENTRADA PARA SELECCIONAR EL ESTADO -->
                             <!--<div class="form-group">
-                <label id="EstadoLabel">Estado</label>
-                <div class="input-group">
-  
-                  <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-  
-                  <select class="form-control input-lg" name="Estado" id="EstadoSelect">
-  
-                    <option value="" id="Estado"></option>
-  
-                  </select>
-  
-                </div>
-  
-              </div>
-                            -->
+                                        <label id="EstadoLabel">Estado</label>
+                                        <div class="input-group">
+                        
+                                        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                        
+                                        <select class="form-control input-lg" name="Estado" id="EstadoSelect">
+                        
+                                            <option value="" id="Estado"></option>
+                        
+                                        </select>
+                        
+                                        </div>-->
+
                         </div>
 
                     </div>
+                    <?php include "includes/guardar.html"; ?>
+                </form>
 
             </div>
-
-            <?php include "includes/guardar.html"; ?>
 
             <?php
 
@@ -113,12 +111,9 @@
 
             ?>
 
-            </form>
-
         </div>
 
-</div>
-</section>
+    </section>
 </div>
 
 <script src="vistas/js/zonas.js"></script>

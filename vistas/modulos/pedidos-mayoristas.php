@@ -72,7 +72,7 @@
                   <td>
                     <ul class="nav">
                       <li>
-                        <a data-toggle="dropdown" style="color:#333;"><i class="fa fa-ellipsis-v"></i></a>
+                        <a data-toggle="dropdown" style="color:#646364;"><i class="fa fa-ellipsis-v"></i></a>
                         <ul class="dropdown-menu">
                           <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalSeguimiento">Seguimiento</a></li>
                           <li class="dropdown-item"><a style="cursor:pointer;" >Comprobante</a></li>

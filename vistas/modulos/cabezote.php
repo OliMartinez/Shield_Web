@@ -124,11 +124,11 @@
  					<ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
 
- 						<a class="dropdown-item" href="info-cuenta" style="color:#333;">Información de cuenta</a>
+ 						<a class="dropdown-item" href="info-cuenta" style="color:#646364;">Información de cuenta</a>
 
  						<div class="dropdown-divider"></div>
 
- 						<a class="dropdown-item" href="salir" style="color:#333;">Salir</a>
+ 						<a class="dropdown-item" href="salir" style="color:#646364;">Salir</a>
 
  					</ul>
 
