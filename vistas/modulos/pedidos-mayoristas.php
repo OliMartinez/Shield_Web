@@ -1,6 +1,6 @@
 <div class="content-wrapper">
 
-<section class="content-header">
+  <section class="content-header">
 
     <h1>
 
@@ -22,15 +22,15 @@
 
     <div class="box">
 
-<div class="box-header with-border">
+      <div class="box-header with-border">
 
-    <button class="btn btn-primary btnAgregar" href="crear-pedido">
+        <button class="btn btn-primary btnAgregar" href="crear-pedido">
 
-        Agregar pedido
+          Agregar pedido
 
-    </button>
+        </button>
 
-</div>
+      </div>
 
       <div class="box-body">
 
@@ -72,7 +72,7 @@
                   <td>
                     <ul class="nav">
                       <li>
-                        <a data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
+                        <a data-toggle="dropdown" style="color:#333;"><i class="fa fa-ellipsis-v"></i></a>
                         <ul class="dropdown-menu">
                           <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalSeguimiento">Seguimiento</a></li>
                           <li class="dropdown-item"><a style="cursor:pointer;" >Comprobante</a></li>
@@ -159,7 +159,7 @@
 
 </div>
 
-<?php 
-include "includes/modalseguimiento.html"; 
-include "includes/modaldepbanc.php"; 
+<?php
+include "includes/modalseguimiento.html";
+include "includes/modaldepbanc.php";
 ?>

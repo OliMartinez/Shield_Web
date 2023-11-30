@@ -68,7 +68,7 @@
               <th>Categoría</th>
               <th>Precio</th>
               <th>Cantidad</th>
-              <th>Precio x Cantidad</th>
+              <th>Importe</th>
               <!--<th>Envío</th>-->
               <!--<th>Total</th>-->
 
@@ -129,7 +129,6 @@
 
               /*<td>$' . $value["envio"] . '</td>
               <td>$' . $value["total"] . '</td>*/
-
             }
 
             ?>
