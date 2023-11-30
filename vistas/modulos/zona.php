@@ -1,3 +1,15 @@
+<?php
+$idZona = '';
+$estados = '';
+$munics = '';
+if (isset($_GET['idZona'])) {
+    $idZona = $_GET['idZona'];
+    $item = 'ID';
+    $zona = ControladorGeneral::ctrMostrarFilas($item, $nombre, "zonas");
+    $estados = $zona['estados'];
+    $ciudades = $zona['munics'];
+}
+?>
 <div class="content-wrapper">
     <section class="content">
         <div class="modal-dialog">
@@ -28,7 +40,7 @@
                                 <label>Nombre de la zona*</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user-o"></i></span>
-                                    <input type="text" class="form-control input-lg" name="ID" id="ID" placeholder="Ingresa el nombre de la zona" required>
+                                    <input type="text" class="form-control input-lg" name="ID" id="ID" placeholder="Ingresa el nombre de la zona" value=<?php echo '"' . $nombre . '"'; ?>required>
                                     <input type="hidden" name="IDant" id="IDant">
                                     <input type="hidden" name="tipoguardar" id="tipoguardar" value="crear">
                                     <input type="hidden" name="tabla" id="tabla" value="zonas">
@@ -72,29 +84,31 @@
 
                             <!-- ENTRADA PARA SELECCIONAR ESTADOS -->
                             <!--<div class="form-group">
-                                                        <label>Estados:</label>
-                                                        <div class="input-group">
-                                                            <fieldset required>
-                                                                <label class="checkbox-inline">
-                                                                <input type="checkbox" class="estado" name="Estado[]" value="">
-                                                                </label><br>
-                                                            </fieldset>
-                                                        </div>-->
+                                    <label>Estados:</label>
+                                    <div class="input-group">
+                                        <fieldset required>
+                                            <label class="checkbox-inline">
+                                            <input type="checkbox" class="estado" name="Estado[]" value="">
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
+                                </div>-->
 
                             <!-- ENTRADA PARA SELECCIONAR EL ESTADO -->
                             <!--<div class="form-group">
                                         <label id="EstadoLabel">Estado</label>
                                         <div class="input-group">
                         
-                                        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                            
+                                            <select class="form-control input-lg" name="Estado" id="EstadoSelect">
+                            
+                                                <option value="" id="Estado"></option>
+                            
+                                            </select>
                         
-                                        <select class="form-control input-lg" name="Estado" id="EstadoSelect">
-                        
-                                            <option value="" id="Estado"></option>
-                        
-                                        </select>
-                        
-                                        </div>-->
+                                        </div>
+                                </div>-->
 
                         </div>
 
