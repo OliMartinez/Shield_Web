@@ -7,7 +7,7 @@ if (isset($_GET['idZona'])) {
     $item = 'ID';
     $zona = ControladorGeneral::ctrMostrarFilas($item, $nombre, "zonas");
     $estados = $zona['estados'];
-    $ciudades = $zona['munics'];
+    $munics = $zona['munics'];
 }
 ?>
 <div class="content-wrapper">
