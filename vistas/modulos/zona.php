@@ -5,50 +5,45 @@ $munics = '';
 if (isset($_GET['idZona'])) {
     $idZona = $_GET['idZona'];
     $item = 'ID';
-    $zona = ControladorGeneral::ctrMostrarFilas($item, $nombre, "zonas");
+    $zona = ControladorGeneral::ctrMostrarFilas($item, $idZona, "zonas");
     $estados = $zona['estados'];
-    $munics = $zona['munics'];
+    $munics = $zona['ciudades'];
 }
 ?>
 <div class="content-wrapper">
-    <section class="content">
-        <div class="modal-dialog">
+    <section class="content-header">
+        <h1>Formulario de Zona</h1>
+    </section>
+    <div class="row">
+        <section class="content">
+            <div class="col-lg-12">
 
-            <div class="modal-content">
+                <div class="box box-succes">
 
-                <form role="form" enctype="multipart/form-data" method="post">
+                    <form role="form" enctype="multipart/form-data" method="post">
 
-                    <!--=====================================
-                    CABEZA DEL MODAL
-                    ======================================-->
-
-                    <div class="modal-header" style="background:#3c8dbc; color:white">
-
-                        <h4 class="modal-title">Formulario Zona</h4>
-
-                    </div>
-                    <!--=====================================
+                        <!--=====================================
                     CUERPO DEL MODAL
                     ======================================-->
-
-                    <div class="modal-body">
-
+                        <div class="box-header with-border"></div>
                         <div class="box-body">
 
-                            <!-- ENTRADA PARA EL NOMBRE DE ZONA-->
-                            <div class="form-group">
-                                <label>Nombre de la zona*</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user-o"></i></span>
-                                    <input type="text" class="form-control input-lg" name="ID" id="ID" placeholder="Ingresa el nombre de la zona" value=<?php echo '"' . $nombre . '"'; ?>required>
-                                    <input type="hidden" name="IDant" id="IDant">
-                                    <input type="hidden" name="tipoguardar" id="tipoguardar" value="crear">
-                                    <input type="hidden" name="tabla" id="tabla" value="zonas">
+                            <div class="box">
+
+                                <!-- ENTRADA PARA EL NOMBRE DE ZONA-->
+                                <div class="form-group">
+                                    <label>Nombre de la zona*</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user-o"></i></span>
+                                        <input type="text" class="form-control input-lg" name="ID" id="ID" placeholder="Ingresa el nombre de la zona" value=<?php echo '"' . $idZona . '"'; ?>required>
+                                        <input type="hidden" name="IDant" id="IDant">
+                                        <input type="hidden" name="tipoguardar" id="tipoguardar" value="crear">
+                                        <input type="hidden" name="tabla" id="tabla" value="zonas">
+                                    </div>
                                 </div>
-                            </div>
-                            <?php
-                            if ($_SESSION["tipo"] == "Administrador") {
-                                echo '
+                                <?php
+                                if ($_SESSION["tipo"] == "Administrador") {
+                                    echo '
                             <!-- ENTRADA PARA SELECCIONAR EL MAYORISTA -->
                             
                             <div class="form-group">
@@ -63,27 +58,27 @@ if (isset($_GET['idZona'])) {
 
                                     <option value="" id="Mayorista"></option>';
 
-                                $item = null;
-                                $valor = null;
-                                $tabla = "mayoristas";
-                                $item1 = "ID";
-                                $Mayoristas = ControladorGeneral::ctrMostrarItems($item, $valor, $tabla, $item1);
+                                    $item = null;
+                                    $valor = null;
+                                    $tabla = "mayoristas";
+                                    $item1 = "ID";
+                                    $Mayoristas = ControladorGeneral::ctrMostrarItems($item, $valor, $tabla, $item1);
 
-                                foreach ($Mayoristas as $key => $value) {
+                                    foreach ($Mayoristas as $key => $value) {
 
-                                    echo '<option value="' . $value["ID"] . '" >' . $value["ID"] . '</option>';
-                                }
+                                        echo '<option value="' . $value["ID"] . '" >' . $value["ID"] . '</option>';
+                                    }
 
-                                echo '
+                                    echo '
                                 </select>
 
                             </div>
 
                             </div>';
-                            } ?>
+                                } ?>
 
-                            <!-- ENTRADA PARA SELECCIONAR ESTADOS -->
-                            <!--<div class="form-group">
+                                <!-- ENTRADA PARA SELECCIONAR ESTADOS -->
+                                <!--<div class="form-group">
                                     <label>Estados:</label>
                                     <div class="input-group">
                                         <fieldset required>
@@ -94,8 +89,8 @@ if (isset($_GET['idZona'])) {
                                     </div>
                                 </div>-->
 
-                            <!-- ENTRADA PARA SELECCIONAR EL ESTADO -->
-                            <!--<div class="form-group">
+                                <!-- ENTRADA PARA SELECCIONAR EL ESTADO -->
+                                <!--<div class="form-group">
                                         <label id="EstadoLabel">Estado</label>
                                         <div class="input-group">
                         
@@ -109,25 +104,24 @@ if (isset($_GET['idZona'])) {
                         
                                         </div>
                                 </div>-->
+                            </div>
 
                         </div>
+                        <?php include "includes/guardar.html"; ?>
+                    </form>
 
-                    </div>
-                    <?php include "includes/guardar.html"; ?>
-                </form>
+                </div>
+
+                <?php
+
+                $guardarZona = new ControladorZonas();
+                $guardarZona->ctrGuardarZona();
+
+                ?>
 
             </div>
 
-            <?php
-
-            $guardarZona = new ControladorZonas();
-            $guardarZona->ctrGuardarZona();
-
-            ?>
-
-        </div>
-
-    </section>
+        </section>
+    </div>
 </div>
-
 <script src="vistas/js/zonas.js"></script>
