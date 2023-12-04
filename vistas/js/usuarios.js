@@ -57,7 +57,7 @@ $(".btnCrearUsuario").on("click", function () {
 			// Crear elemento option child para MayoristaSelect
 			$("#Mayorista").html("Elegir Mayorista");
 
-			$(".formzona:not(#formzona)").remove(); // Eliminar los formzona agregados, excepto el original
+			//$(".formzona:not(#formzona)").remove(); // Eliminar los formzona agregados, excepto el original
 			$("#ZonaName").val(""); // Vaciar el valor de ZonaName
 
 			// Restablecer el contador y el id del formzona original
@@ -532,7 +532,7 @@ $('#EstadoSelect').change(function () {
 })
 
 /*=============================================
-Elegir Zonas del Mayorista
+Desplegar Zonas del Mayorista
 =============================================*/
 var MayoristaSelect = function (MayoristaSelect) {
 	var mayorista = MayoristaSelect;
@@ -554,7 +554,7 @@ var MayoristaSelect = function (MayoristaSelect) {
 		processData: false,
 		dataType: "json",
 		success: function (respuesta) {
-			$('#Zona option:not(:first)').remove();
+			$('#ZonaSelect option:not(:first)').remove();
 			$.each(respuesta, function (key, value) {
 				var option = $("<option></option>").attr("value", value).html(value);
 				select.append(option);
@@ -592,7 +592,7 @@ var ZonaSelect = function () {
 			dataType: "json",
 			success: function (respuesta) {
 				var estados = respuesta['estados'].split(','); // Separar los estados
-				$('#Estado option:not(:first)').remove();
+				$('#EstadoSelect option:not(:first)').remove();
 				// Crear y agregar las nuevas opciones
 				estados.forEach(function (estado) {
 					var option = $('<option>', {
@@ -624,7 +624,7 @@ var ZonaSelect = function () {
 			dataType: "Json",
 			success: function (respuesta) {
 
-				$('#Agente option:not(:first)').remove();
+				$('#AgenteSelect option:not(:first)').remove();
 				$.each(respuesta, function (key, value) {
 					var option = $("<option></option>").attr("value", value.ID).html(value.ID);
 					select.append(option);
