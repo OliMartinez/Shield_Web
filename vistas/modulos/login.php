@@ -71,9 +71,9 @@
 						<input class="input100" type="password" name="pass" required>
 						<span class="focus-input100"></span>
 					</div>
-					<div class="p-t-13 p-b-9">
+					<!--<div class="p-t-13 p-b-9">
 						<div class="g-recaptcha" data-sitekey="6LfDyOskAAAAABg5zkCg2D0BNg2FkzcrPo0sq_Js"></div>
-					</div>
+					</div>-->
 					<?php
 
 					$login = new ControladorUsuarios();

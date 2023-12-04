@@ -116,7 +116,7 @@ Manejar el evento de cambio en el select de estados
 Agregar lista de estados para creación de Zona
 =============================================*/
 /*function EstadosParaZona() {
-    $.getJSON('vistas/js/Municipios.json', function (data) {
+    $.getJSON('vistas/js/estados-munics.json', function (data) {
         $('.ZonaEstados').each(function () {
             var select = $(this); // Selector del elemento select dentro del bucle
             var optgroup = select.find('optgroup'); // Encuentra el elemento optgroup existente
@@ -163,7 +163,7 @@ Agregar Zona
 }
 
 function getMunicipios(estado, selectEstados, multiple) {
-    $.getJSON('vistas/js/Municipios.json', function (data) {
+    $.getJSON('vistas/js/estados-munics.json', function (data) {
         var municipios;
         var estadosArray = Object.values(data); // Obtener los objetos con los estados
 

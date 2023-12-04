@@ -12,7 +12,7 @@ class ControladorUsuarios
 
 		if (isset($_POST["username"])) {
 
-			$ip = $_SERVER["REMOTE_ADDR"];
+			/*$ip = $_SERVER["REMOTE_ADDR"];
 			$captcha = $_POST['g-recaptcha-response'];
 			$secretKey = '6LfDyOskAAAAAOTxW3Rew22w8VPukzDa3PLfOwH7';
 
@@ -22,7 +22,7 @@ class ControladorUsuarios
 
 			if (!$atributos['success']) {
 				echo '<br><div class="alert alert-danger" style="margin: 0 auto;">Verifica el captcha</div>';
-			} else {
+			} else {*/
 
 				$encriptar = crypt($_POST["pass"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
@@ -94,7 +94,7 @@ class ControladorUsuarios
 
 					echo '<br><div class="alert alert-danger" style="margin: 0 auto;">Error al ingresar, vuelve a intentarlo</div>';
 				}
-			}
+			//}
 		}
 	}
 

@@ -1,13 +1,13 @@
 <?php
 $idZona = '';
 $estados = '';
-$munics = '';
+$munics_por_estado = '';
 if (isset($_GET['idZona'])) {
     $idZona = $_GET['idZona'];
     $item = 'ID';
     $zona = ControladorGeneral::ctrMostrarFilas($item, $idZona, "zonas");
-    $estados = $zona['estados'];
-    $munics = $zona['ciudades'];
+    $estados = explode(',', $zona['estados']);
+    $munics_por_estado = explode(',', $zona['ciudades']);
 }
 ?>
 <div class="content-wrapper">
@@ -16,13 +16,13 @@ if (isset($_GET['idZona'])) {
     </section>
     <section class="content">
         <div class="row">
-            <div class="col-lg-12">
+            <form role="form" enctype="multipart/form-data" method="post">
+                <div class="col-lg-12">
 
-                <div class="box box-primary">
-                    <!--=====================================
+                    <div class="box box-primary">
+                        <!--=====================================
                     CUERPO DEL MODAL
                     ======================================-->
-                    <form role="form" enctype="multipart/form-data" method="post">
                         <div class="box-body">
 
                             <!-- ENTRADA PARA EL NOMBRE DE ZONA-->
@@ -73,19 +73,73 @@ if (isset($_GET['idZona'])) {
                             } ?>
 
                         </div>
-                        <?php include "includes/guardar.html"; ?>
-                    </form>
+
+                    </div>
 
                 </div>
-
                 <?php
+                foreach ($estados as $key => $estado) {
+                    echo '
+                <div class="col-lg-12">
 
-                $guardarZona = new ControladorZonas();
-                $guardarZona->ctrGuardarZona();
+                    <div class="box box-info">
+                        <!--=====================================
+                        CUERPO DEL MODAL
+                        ======================================-->
+                        <div class="box-body">
+                            <!-- ENTRADA PARA SELECCIONAR EL ESTADO -->
+                            <div class="form-group">
+                                <label class="EstadoLabel">Estado</label>
+                                <div class="input-group">
+                
+                                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                    
+                                    <select class="form-control input-lg EstadoSelect" name="Estado" id="">
+                    
+                                        <option value="' . $estado . '" class="Estado">' . $estado . '</option>
+                    
+                                    </select>
+                
+                                </div>
+                
+                            </div>
+                            <div class="form-group">
+                                <label class="CiudadesLabel">Ciudades</label>
+                                <div style="height: 300px;
+                                border: 1px solid rgba(0, 0, 0, .125);
+                                border-radius: 0.25rem;
+                                min-width: 20%;
+                                width: 100%;">
+                                <div style="height: 84%;
+                                overflow: auto;
+                                padding: 0.75rem;">
+                                <fieldset required>';
+                                $munics = explode('-', $munics_por_estado[$key]);
+                                foreach($munics as $key => $munic){
+                                    echo '<label class="checkbox-inline"><input type="checkbox" value="'.$munic.'" checked>'.$munic.'</label><br>';
+                                };
+                                echo'</fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+                }
+                echo'
+                <div class="col-lg-12">
+                    <div class="box">';
+                    include "includes/guardar.html"; 
+                echo'
+                    </div>
+                </div>';?>
+                
+            </form>
+            <?php
 
-                ?>
+            $guardarZona = new ControladorZonas();
+            $guardarZona->ctrGuardarZona();
 
-            </div>
+            ?>
         </div>
     </section>
 </div>

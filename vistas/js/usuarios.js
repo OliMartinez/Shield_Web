@@ -340,67 +340,67 @@ VALIDAR QUE NO EXISTA DETERMINADO ELEMENTO
 function validarElemento($elemento, elementoAnterior, item, tabla) {
 	const valor = $elemento.val();
 	const valorAnterior = elementoAnterior.val();
-  
+
 	if (valorAnterior !== "" && valor !== valorAnterior) {
-	  const datos = new FormData();
-	  datos.append("validar", valor);
-	  datos.append("tabla", tabla);
-	  datos.append("item_validar", item);
-  
-	  $.ajax({
-		url: "ajax/general.ajax.php",
-		method: "POST",
-		data: datos,
-		cache: false,
-		contentType: false,
-		processData: false,
-		dataType: "json",
-		success: function (respuesta) {
-		  const alerta = $elemento.next(".alerta");
-  
-		  if (alerta.length > 0) {
-			alerta.remove();
-		  }
-		  if (respuesta) {
-			$elemento.css('border-color', 'red');
-			$elemento.after('<span class="alerta" style="color: red;"><i class="fa fa-times"></i>Este valor ya existe en el sistema</span>');
-		  } else {
-			if ($elemento.css('border-color') === 'rgb(255, 0, 0)') {
-			  $elemento.css('border-color', '');
+		const datos = new FormData();
+		datos.append("validar", valor);
+		datos.append("tabla", tabla);
+		datos.append("item_validar", item);
+
+		$.ajax({
+			url: "ajax/general.ajax.php",
+			method: "POST",
+			data: datos,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: "json",
+			success: function (respuesta) {
+				const alerta = $elemento.next(".alerta");
+
+				if (alerta.length > 0) {
+					alerta.remove();
+				}
+				if (respuesta) {
+					$elemento.css('border-color', 'red');
+					$elemento.after('<span class="alerta" style="color: red;"><i class="fa fa-times"></i>Este valor ya existe en el sistema</span>');
+				} else {
+					if ($elemento.css('border-color') === 'rgb(255, 0, 0)') {
+						$elemento.css('border-color', '');
+					}
+				}
 			}
-		  }
-		}
-	  });
+		});
 	}
-  }
-  
-  $("#ID").change(function () {
+}
+
+$("#ID").change(function () {
 	var sPath = window.location.pathname;
 	var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
 	if (sPage == "formulario-solicitantes") {
-	  validarElemento($(this), $("#IDant"), "ID", "usuarios");
+		validarElemento($(this), $("#IDant"), "ID", "usuarios");
 	}
-  });
-  
-  $("#Email").change(function () {
-	  checkEmail($(this).val());
-	  validarElemento($(this), $("#Emailant"), "email", "usuarios");
-  });
-  
-  $("#Tel").change(function () {
-	  checkTel($(this).val());
-	  validarElemento($(this), $("#Telant"), "tel", "usuarios");
-  });
-  
-  $(".domicilio").change(function () {
+});
+
+$("#Email").change(function () {
+	checkEmail($(this).val());
+	validarElemento($(this), $("#Emailant"), "email", "usuarios");
+});
+
+$("#Tel").change(function () {
+	checkTel($(this).val());
+	validarElemento($(this), $("#Telant"), "tel", "usuarios");
+});
+
+$(".domicilio").change(function () {
 	validarElemento($(this), $("#Domicilioant"), "domicilio", $("#tabla").val());
-  });
+});
 
 /*=============================================
-Elegir Estados
+Elegir Estado o Agente
 =============================================*/
 $('#ZonaSelect').change(function () {
-	if ($("#tabla").val() = "agentes") {
+	if ($("#tabla").val() == "agentes") {
 		$("#Estado").html('Elegir Estado');
 		$("#Estado").val('Elegir Estado');
 		ZonaSelect();
@@ -432,25 +432,31 @@ var AgenteSelect = function (AgenteSelect) {
 		success: function (respuesta) {
 			var estado = 'EstadoSelect';
 			var select = $('#' + estado);
-			$.getJSON('vistas/js/Municipios.json', function (json) {
-				for (var key in json[0]) {
-					if (key == respuesta['zona']) {
-						var child = select[0].lastElementChild;
-						while (child.getAttribute("id") != "Estado") {
-							select[0].removeChild(child);
-							child = select[0].lastElementChild;
-						}
-						for (var key1 in json[0][key]) {
-							var option = $('<option>', {
-								value: json[0][key][key1],
-								text: json[0][key][key1]
-							});
-							select.append(option);
-						}
-						break;
-					}
+			var datos1 = new FormData();
+			datos1.append("ID", respuesta['zona']);
+			datos1.append("tabla", 'zonas');
+			// Realizar la segunda llamada AJAX
+			$.ajax({
+				url: "ajax/general.ajax.php", // Cambiar por la URL de tu servidor
+				method: "POST",
+				data: datos1,
+				cache: false,
+				contentType: false,
+				processData: false,
+				dataType: "json",
+				success: function (respuestaZonas) {
+					var estados = respuestaZonas['estados'].split(','); // Separar los estados
+					$('#Estado option:not(:first)').remove();
+					// Crear y agregar las nuevas opciones
+					estados.forEach(function (estado) {
+						var option = $('<option>', {
+							value: estado,
+							text: estado
+						});
+						select.append(option);
+					});
 				}
-			})
+			});
 			EstadoSelect();
 		}
 	})
@@ -471,21 +477,23 @@ Desplegar todos los Estados
 var TodosEstados = function () {
 	var estado = 'EstadoSelect';
 	var select = $('#' + estado);
-	$.getJSON('vistas/js/Municipios.json', function (json) {
+	$.getJSON('vistas/js/estados-munics.json', function (json) {
 		var child = select.children().last();
 		while (child.attr('id') != 'Estado') {
 			child.remove();
 			child = select.children().last();
 		}
-		keys = Object.keys(json[0]);
-		for (var i = 0; i < keys.length; i++) {
-			var option = $('<option>', {
-				'value': keys[i],
-				'text': keys[i]
+
+		json.forEach(item => {
+			Object.keys(item).forEach(key => {
+				var option = $('<option>', {
+					'value': key,
+					'text': key
+				});
+				select.append(option);
 			});
-			select.append(option);
-		}
-	})
+		});
+	});
 };
 
 /*=============================================
@@ -494,7 +502,7 @@ Elegir Municipios
 var EstadoSelect = function () {
 	var Estado = $('#EstadoSelect').val();
 	var select = $('#CiudadSelect');
-	$.getJSON('vistas/js/Municipios.json')
+	$.getJSON('vistas/js/estados-munics.json')
 		.done(function (json) {
 			for (var key in json[0]) {
 				if (key == Estado) {
@@ -527,15 +535,18 @@ $('#EstadoSelect').change(function () {
 Elegir Zonas del Mayorista
 =============================================*/
 var MayoristaSelect = function (MayoristaSelect) {
-	var idUsuario = MayoristaSelect;
-	var tabla = "mayoristas";
+	var mayorista = MayoristaSelect;
+	var tabla = "zonas";
 	var zona = 'ZonaSelect';
 	var select = $("#" + zona);
 	var datos = new FormData();
-	datos.append("idUsuario", idUsuario);
+	datos.append("item_enc", "ID");
+	datos.append("item_cond", "mayorista");
+	datos.append("valor_item_cond", mayorista);
 	datos.append("tabla", tabla);
+
 	$.ajax({
-		url: "ajax/usuarios.ajax.php",
+		url: "ajax/general.ajax.php",
 		method: "POST",
 		data: datos,
 		cache: false,
@@ -543,10 +554,8 @@ var MayoristaSelect = function (MayoristaSelect) {
 		processData: false,
 		dataType: "json",
 		success: function (respuesta) {
-			var zonas = respuesta["zonas"];
-			var vectorzonas = zonas.split(",");
 			$('#Zona option:not(:first)').remove();
-			$.each(vectorzonas, function (key, value) {
+			$.each(respuesta, function (key, value) {
 				var option = $("<option></option>").attr("value", value).html(value);
 				select.append(option);
 			});
@@ -564,56 +573,67 @@ $('#MayoristaSelect').change(function () {
 Elegir Agentes o Estados
 =============================================*/
 var ZonaSelect = function () {
-	var Zona = $('#Zona').val();/*
+	var Zona = $('#Zona').val();
 
 	if ($('#tabla').val() == "agentes") {
 		var estado = 'EstadoSelect';
-		var select = $("#" + estado);
-		$.getJSON('vistas/js/Municipios.json', function (json) {
-			$.each(json[0], function (key, value) {
-				if (key == Zona) {
-					$('#Estado option:not(:first)').remove();
-					$.each(value, function (key1, value1) {
-						var option = $("<option></option>").attr("value", value1).html(value1);
-						select.append(option);
+		var select = $('#' + estado);
+		var datos1 = new FormData();
+		datos1.append("ID", Zona);
+		datos1.append("tabla", 'zonas');
+		// Realizar la segunda llamada AJAX
+		$.ajax({
+			url: "ajax/general.ajax.php", // Cambiar por la URL de tu servidor
+			method: "POST",
+			data: datos1,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: "json",
+			success: function (respuesta) {
+				var estados = respuesta['estados'].split(','); // Separar los estados
+				$('#Estado option:not(:first)').remove();
+				// Crear y agregar las nuevas opciones
+				estados.forEach(function (estado) {
+					var option = $('<option>', {
+						value: estado,
+						text: estado
 					});
-					return false;
-				}
-			});
-			EstadoSelect();
-		}).fail(function (jqXHR, textStatus, errorThrown) {
-			console.error(textStatus + " : " + errorThrown);
+					select.append(option);
+				});
+			}
 		});
-	} else {*/
-	var tabla = "agentes";
-	var agente = 'AgenteSelect';
-	var select = $("#" + agente);
+		EstadoSelect();
+	} else {
+		var tabla = "agentes";
+		var agente = 'AgenteSelect';
+		var select = $("#" + agente);
 
-	var datos = new FormData();
-	datos.append("item_enc", "ID");
-	datos.append("item_cond", "zona");
-	datos.append("valor_item_cond", Zona);
-	datos.append("tabla", tabla);
-	$.ajax({
-		url: "ajax/general.ajax.php",
-		method: "POST",
-		data: datos,
-		cache: false,
-		contentType: false,
-		processData: false,
-		dataType: "Json",
-		success: function (respuesta) {
+		var datos = new FormData();
+		datos.append("item_enc", "ID");
+		datos.append("item_cond", "zona");
+		datos.append("valor_item_cond", Zona);
+		datos.append("tabla", tabla);
+		$.ajax({
+			url: "ajax/general.ajax.php",
+			method: "POST",
+			data: datos,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: "Json",
+			success: function (respuesta) {
 
-			$('#Agente option:not(:first)').remove();
-			$.each(respuesta, function (key, value) {
-				var option = $("<option></option>").attr("value", value.ID).html(value.ID);
-				select.append(option);
-			});
-		}
-	})
-	AgenteSelect(select.val());
-	/*}
-*/}
+				$('#Agente option:not(:first)').remove();
+				$.each(respuesta, function (key, value) {
+					var option = $("<option></option>").attr("value", value.ID).html(value.ID);
+					select.append(option);
+				});
+			}
+		})
+		AgenteSelect(select.val());
+	}
+}
 
 /* =============================================
 Agregar Miniatura

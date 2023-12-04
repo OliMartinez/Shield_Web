@@ -196,7 +196,7 @@ MODAL  AGENTE
                 <input type="hidden" name="tabla" id="tabla" value="agentes">
               </div>
             </div>
-            <?php 
+            <?php
             include "includes/datosprincipales.html";
             include "includes/emailtelefono.html";
 
@@ -247,7 +247,20 @@ MODAL  AGENTE
                 <select class="form-control input-lg" name="Zona" id="ZonaSelect" required>
 
                   <option value="" id="Zona"></option>
+                  <?php
+                  if ($_SESSION["tipo"] == "Mayorista") {
+                    $item = "mayorista";
+                    $valor = $_SESSION["ID"];
+                    $tabla = "zonas";
+                    $item1 = "ID";
+                    $Zonas = ControladorGeneral::ctrMostrarItems($item, $valor, $tabla, $item1);
 
+                    foreach ($Zonas as $key => $value) {
+
+                      echo '<option value="' . $value["ID"] . '" >' . $value["ID"] . '</option>';
+                    }
+                  }
+                  ?>
                 </select>
 
               </div>

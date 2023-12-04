@@ -22,9 +22,9 @@
             $Categorias = ControladorGeneral::ctrMostrarItems($item, $valor, $tabla, $item1);
 
             foreach ($Categorias as $key => $value) {
-              echo '<label class="checkbox-inline">';
-              echo '<input type="checkbox" class="categoria" name="Categoria[]" value="' . $value["ID"] . '"> ' . $value["ID"];
-              echo '</label><br>';
+              echo '<label class="checkbox-inline">
+              <input type="checkbox" class="categoria" name="Categoria[]" value="' . $value["ID"] . '"> ' . $value["ID"].
+              '</label><br>';
             }
             ?>
          </fieldset>

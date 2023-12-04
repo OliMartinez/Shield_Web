@@ -79,7 +79,7 @@
                                             <div class="estado">
                                                 <h4>' . $estado . '</h4>
                                             </div>
-                                            <div class="card-body municipios">';
+                                            <div class="municipios">';
                                     $municipios = explode('-', $muncipios_por_estado[$key_estado]);
                                     foreach ($municipios as $key_munc => $munc) {
                                         echo '
