@@ -166,13 +166,13 @@
                 }
                 echo '<td>' . $value["productos"] . '</td>
 
-                  <td>$' . number_format($value["precio"], 2) . '</td>';
+                  <td>$' . number_format($value["precio"], 2) . '</td>
+                  
+                  <td>$' . number_format($value["envio"], 2) . '</td>
 
-                /*<td>$' . number_format($value["envio"], 2) . '</td>
+                  <td>$' . number_format($value["total"], 2) . '</td>
 
-                  <td>$' . number_format($value["total"], 2) . '</td>*/
-
-                echo '<td>' . $value["domicilio"] . '</td>
+                  <td>' . $value["domicilio"] . '</td>
 
                   <td>' . $value["tipo"] . '</td>
 

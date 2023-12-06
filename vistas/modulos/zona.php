@@ -113,26 +113,26 @@ if (isset($_GET['idZona'])) {
                                 <div style="height: 84%;
                                 overflow: auto;
                                 padding: 0.75rem;">
-                                <fieldset required>';
-                                $munics = explode('-', $munics_por_estado[$key]);
-                                foreach($munics as $key => $munic){
-                                    echo '<label class="checkbox-inline"><input type="checkbox" value="'.$munic.'" checked>'.$munic.'</label><br>';
-                                };
-                                echo'</fieldset>
+                                <fieldset class = "Ciudades" required>';
+                    $munics = explode('-', $munics_por_estado[$key]);
+                    foreach ($munics as $key => $munic) {
+                        echo '<label class="checkbox-inline"><input type="checkbox" value="' . $munic . '" checked>' . $munic . '</label><br>';
+                    };
+                    echo '</fieldset>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>';
                 }
-                echo'
+                echo '
                 <div class="col-lg-12">
                     <div class="box">';
-                    include "includes/guardar.html"; 
-                echo'
+                include "includes/guardar.html";
+                echo '
                     </div>
-                </div>';?>
-                
+                </div>'; ?>
+
             </form>
             <?php
 

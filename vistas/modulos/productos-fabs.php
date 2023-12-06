@@ -39,7 +39,7 @@
 
             <tr>
               <?php include "includes/columnsprods.html";
-              include "includes/columnsprods1.html";?>
+              include "includes/columnsprods1.html"; ?>
             </tr>
 
           </thead>
@@ -74,7 +74,7 @@
                 foreach ($imagenes as $imagen) {
                   echo '<img src="' . $imagen . '" class="img-thumbnail imgclick" width="40px" style="cursor:pointer;" data-toggle="modal" data-target="#modalFoto"><br>';
                 }
-                } else {
+              } else {
 
                 echo '<img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail imgclick" width="40px" style="cursor:pointer;" data-toggle="modal" data-target="#modalFoto">';
               }
@@ -93,6 +93,8 @@
                     <td>$' . $value["precio_mayorista"] . '</td>
 
                     <td>$' . $value["cantidad_min"] . '</td>
+
+                    <td>$' . $value["envio"] . '</td>
 
                     <td>' . $value["fecha_alta"] . '</td>
 
@@ -157,6 +159,15 @@ MODAL  PRODUCTO
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
                 <input type="number" class="form-control input-lg" id="Cant_min" name="Cant_min" min="0" required>
+              </div>
+            </div>
+
+            <!-- ENTRADA PARA ENVÍO-->
+            <div class="form-group">
+              <label for="Envío">Precio de envío:</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+                <input type="number" class="form-control input-lg" id="Envio" name="Envio" min="0" required>
               </div>
             </div>
 
