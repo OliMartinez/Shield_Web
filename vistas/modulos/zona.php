@@ -113,7 +113,7 @@ if (isset($_GET['idZona'])) {
                                 <div style="height: 84%;
                                 overflow: auto;
                                 padding: 0.75rem;">
-                                <fieldset required>';
+                                <fieldset class = "Ciudades" required>';
                     $munics = explode('-', $munics_por_estado[$key]);
                     foreach ($munics as $key => $munic) {
                         echo '<label class="checkbox-inline"><input type="checkbox" value="' . $munic . '" checked>' . $munic . '</label><br>';
