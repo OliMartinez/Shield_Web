@@ -10,7 +10,7 @@ $(document).ready(function () {
 })
 
 $("#AgregarEstado").on("click", function () {
-    var Estado = '<div class="col-lg-12">' +
+    var EstadoBox = '<div class="col-lg-12 EstadoBox">' +
         '<div class="box box-info">' +
         '<!--=====================================' +
         'CUERPO DEL MODAL' +
@@ -22,7 +22,7 @@ $("#AgregarEstado").on("click", function () {
         '<div class="input-group">' +
         '<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>' +
         '<select class="form-control input-lg EstadoSelect" name="Estado">' +
-        '<option class="Estado"></option>' +
+        '<option class="Estado">Elegir Estado</option>' +
         '</select>' +
         '</div>' +
         '</div>' +
@@ -42,9 +42,10 @@ $("#AgregarEstado").on("click", function () {
         '</div>' +
         '</div>' +
         '</div>' +
+        '</div>' +
         '</div>';
-    $('.EstadoSelect').last().after(Estado);
-    DesplegarEstados(('.EstadoSelect').last());
+    $('.EstadoBox').last().after(EstadoBox);
+    DesplegarEstados($('.EstadoSelect').last());
 })
 
 /* =============================================
@@ -74,27 +75,24 @@ var DesplegarEstados = function (select) {
 /*=============================================
 Casillas de Municipios
 =============================================*/
-var CasillasMunics = function (EstadoSelect, primero) {
+var CasillasMunics = function (EstadoSelect) {
     Estado = EstadoSelect.val();
     var fieldset = $('.Ciudades').first();
     $.getJSON('vistas/js/estados-munics.json')
         .done(function (json) {
             for (var key in json[0]) {
+                while (child.length > 0) {
+                    child.remove();
+                    child = fieldset.children().last();
+                }
                 if (key == Estado) {
-                    var child = fieldset.children().last();
-                    if (!primero) {
-                        while (child.length > 0) {
-                            child.remove();
-                            child = fieldset.children().last();
-                        }
-                    }
                     for (var key1 in json[0][key]) {
                         var casilla = $('<input type="checkbox">');
                         casilla.val(json[0][key][key1]);
-                        casilla.text(json[0][key][key1]);
                         label = $('<label class="checkbox-inline">');
-                        label.append(casilla);
+                        label.append(casilla).append(json[0][key][key1]);
                         fieldset.append(label);
+                        fieldset.append('<br>');
                     }
                     break;
                 }
@@ -105,14 +103,8 @@ var CasillasMunics = function (EstadoSelect, primero) {
         });
 }
 
-$(document).ready(function () {
-    if ($('.EstadoSelect').length == 1) {
-        CasillasMunics($('.EstadoSelect').first(), True);
-    }
-})
-
 $('.EstadoSelect').change(function () {
     $(".Ciudad").html('Elegir Ciudad');
     $(".Ciudad").val('Elegir Ciudad');
-    CasillasMunics(this, False);
+    CasillasMunics(this);
 })

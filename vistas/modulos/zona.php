@@ -80,7 +80,7 @@ if (isset($_GET['idZona'])) {
                 <?php
                 foreach ($estados as $key => $estado) {
                     echo '
-                <div class="col-lg-12">
+                <div class="col-lg-12 EstadoBox">
 
                     <div class="box box-info">
                         <!--=====================================
@@ -94,7 +94,7 @@ if (isset($_GET['idZona'])) {
                 
                                     <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                     
-                                    <select class="form-control input-lg EstadoSelect" name="Estado" id="">
+                                    <select class="form-control input-lg EstadoSelect" name="Estado">
                     
                                         <option value="' . $estado . '" class="Estado">' . $estado . '</option>
                     
@@ -113,19 +113,27 @@ if (isset($_GET['idZona'])) {
                                 <div style="height: 84%;
                                 overflow: auto;
                                 padding: 0.75rem;">
-                                <fieldset class = "Ciudades" required>';
+                                    <fieldset class = "Ciudades" required>';
+                    $json = json_decode(file_get_contents('vistas/js/estados-munics.json'), true);
                     $munics = explode('-', $munics_por_estado[$key]);
-                    foreach ($munics as $key => $munic) {
-                        echo '<label class="checkbox-inline"><input type="checkbox" value="' . $munic . '" checked>' . $munic . '</label><br>';
-                    };
-                    echo '</fieldset>
+                    if (array_key_exists($estado, $json[0])) {
+                        foreach ($json[0][$estado] as $key1 => $munic) {
+                            echo '<label class="checkbox-inline"><input type="checkbox" value="' . $munic . '"';
+                            if (in_array($munic, $munics)) {
+                                echo 'checked';
+                            };
+                            echo '>' . $munic . '</label><br>';
+                        }
+                    }
+                    echo '          </fieldset>
                                 </div>
                             </div>
                         </div>
                     </div>
+                   </div>
                 </div>';
                 } ?>
-                <button class="btn btn-primary col-lg-12" id="AgregarEstado">Agregar estado</button>
+                <button type="button" class="btn btn-primary col-lg-12" id="AgregarEstado">Agregar estado</button>
                 <br><br><br>
                 <div class="col-lg-12">
                     <div class="box">
