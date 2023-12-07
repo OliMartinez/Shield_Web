@@ -77,15 +77,17 @@ Casillas de Municipios
 =============================================*/
 var CasillasMunics = function (EstadoSelect) {
     Estado = EstadoSelect.val();
-    var fieldset = $('.Ciudades').first();
+    var fieldset = EstadoSelect.closest('.box-body').children().last().children().eq(1).children().first();
+    console.log(EstadoSelect.closest('.box-body').children().last().children().eq(1));
     $.getJSON('vistas/js/estados-munics.json')
         .done(function (json) {
             for (var key in json[0]) {
-                while (child.length > 0) {
-                    child.remove();
-                    child = fieldset.children().last();
-                }
                 if (key == Estado) {
+                    var child = fieldset.children().last();
+                    while (child.length > 0) {
+                        child.remove();
+                        child = fieldset.children().last();
+                    }
                     for (var key1 in json[0][key]) {
                         var casilla = $('<input type="checkbox">');
                         casilla.val(json[0][key][key1]);
@@ -104,7 +106,5 @@ var CasillasMunics = function (EstadoSelect) {
 }
 
 $('.EstadoSelect').change(function () {
-    $(".Ciudad").html('Elegir Ciudad');
-    $(".Ciudad").val('Elegir Ciudad');
-    CasillasMunics(this);
+    CasillasMunics($(this));
 })

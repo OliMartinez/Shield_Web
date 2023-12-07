@@ -109,11 +109,11 @@ if (isset($_GET['idZona'])) {
                                 border: 1px solid rgba(0, 0, 0, .125);
                                 border-radius: 0.25rem;
                                 min-width: 20%;
-                                width: 100%;">
-                                <div style="height: 84%;
+                                width: 100%;
                                 overflow: auto;
                                 padding: 0.75rem;">
-                                    <fieldset class = "Ciudades" required>';
+                                    <fieldset class="Ciudades" required>';
+
                     $json = json_decode(file_get_contents('vistas/js/estados-munics.json'), true);
                     $munics = explode('-', $munics_por_estado[$key]);
                     if (array_key_exists($estado, $json[0])) {
@@ -125,11 +125,11 @@ if (isset($_GET['idZona'])) {
                             echo '>' . $munic . '</label><br>';
                         }
                     }
+
                     echo '          </fieldset>
                                 </div>
                             </div>
                         </div>
-                    </div>
                    </div>
                 </div>';
                 } ?>
