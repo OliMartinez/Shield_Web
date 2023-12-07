@@ -32,13 +32,11 @@ $("#AgregarEstado").on("click", function () {
         'border: 1px solid rgba(0, 0, 0, .125);' +
         'border-radius: 0.25rem;' +
         'min-width: 20%;' +
-        'width: 100%;">' +
-        '<div style="height: 84%;' +
+        'width: 100%;' +
         'overflow: auto;' +
         'padding: 0.75rem;">' +
         '<fieldset required>' +
         '</fieldset>' +
-        '</div>' +
         '</div>' +
         '</div>' +
         '</div>' +
@@ -78,7 +76,6 @@ Casillas de Municipios
 var CasillasMunics = function (EstadoSelect) {
     Estado = EstadoSelect.val();
     var fieldset = EstadoSelect.closest('.box-body').children().last().children().eq(1).children().first();
-    console.log(EstadoSelect.closest('.box-body').children().last().children().eq(1));
     $.getJSON('vistas/js/estados-munics.json')
         .done(function (json) {
             for (var key in json[0]) {
