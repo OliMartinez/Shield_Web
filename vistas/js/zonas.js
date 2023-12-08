@@ -42,8 +42,12 @@ $("#AgregarEstado").on("click", function () {
         '</div>' +
         '</div>' +
         '</div>';
-    $('.EstadoBox').last().after(EstadoBox);
+    if ($('.EstadoBox').length > 0) { $('.EstadoBox').last().after(EstadoBox); }
+    else { $('.col-lg-12').first().after(EstadoBox); }
     DesplegarEstados($('.EstadoSelect').last());
+    $('.EstadoSelect').last().change(function () {
+        CasillasMunics($(this));
+    })
 })
 
 /* =============================================

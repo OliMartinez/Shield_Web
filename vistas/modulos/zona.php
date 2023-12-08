@@ -32,7 +32,11 @@ if (isset($_GET['idZona'])) {
                                     <span class="input-group-addon"><i class="fa fa-user-o"></i></span>
                                     <input type="text" class="form-control input-lg" name="ID" id="ID" placeholder="Ingresa el nombre de la zona" value=<?php echo '"' . $idZona . '"'; ?>required>
                                     <input type="hidden" name="IDant" id="IDant">
-                                    <input type="hidden" name="tipoguardar" id="tipoguardar" value="crear">
+                                    <input type="hidden" name="tipoguardar" id="tipoguardar" value="<?php if (isset($_GET['idZona'])) {
+                                                                                                        echo 'editar';
+                                                                                                    } else {
+                                                                                                        echo 'crear';
+                                                                                                    } ?>">
                                     <input type="hidden" name="tabla" id="tabla" value="zonas">
                                 </div>
                             </div>
@@ -78,8 +82,9 @@ if (isset($_GET['idZona'])) {
 
                 </div>
                 <?php
-                foreach ($estados as $key => $estado) {
-                    echo '
+                if ($estados != '') {
+                    foreach ($estados as $key => $estado) {
+                        echo '
                 <div class="col-lg-12 EstadoBox">
 
                     <div class="box box-info">
@@ -114,26 +119,27 @@ if (isset($_GET['idZona'])) {
                                 padding: 0.75rem;">
                                     <fieldset class="Ciudades" required>';
 
-                    $json = json_decode(file_get_contents('vistas/js/estados-munics.json'), true);
-                    $munics = explode('-', $munics_por_estado[$key]);
-                    if (array_key_exists($estado, $json[0])) {
-                        foreach ($json[0][$estado] as $key1 => $munic) {
-                            echo '<label class="checkbox-inline"><input type="checkbox" value="' . $munic . '"';
-                            if (in_array($munic, $munics)) {
-                                echo 'checked';
-                            };
-                            echo '>' . $munic . '</label><br>';
+                        $json = json_decode(file_get_contents('vistas/js/estados-munics.json'), true);
+                        $munics = explode('-', $munics_por_estado[$key]);
+                        if (array_key_exists($estado, $json[0])) {
+                            foreach ($json[0][$estado] as $key1 => $munic) {
+                                echo '<label class="checkbox-inline"><input type="checkbox" name="ciudad[]" value="' . $munic . '"';
+                                if (in_array($munic, $munics)) {
+                                    echo 'checked';
+                                };
+                                echo '>' . $munic . '</label><br>';
+                            }
                         }
-                    }
 
-                    echo '          </fieldset>
+                        echo '          </fieldset>
                                 </div>
                             </div>
                         </div>
                    </div>
                 </div>';
+                    }
                 } ?>
-                <button type="button" class="btn btn-primary col-lg-12" id="AgregarEstado">Agregar estado</button>
+                <button type="button" class="btn btn-primary col-lg-12" id="AgregarEstado">Agregar entidad federativa</button>
                 <br><br><br>
                 <div class="col-lg-12">
                     <div class="box">

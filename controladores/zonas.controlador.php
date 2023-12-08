@@ -9,13 +9,23 @@ class ControladorZonas
 	public static function ctrGuardarZona()
 	{
 		if (isset($_POST["guardar"])) {
+			$mayorista = '';
+			if (isset($_POST["mayorista"])) {
+				$mayorista = $_POST["mayorista"];
+			} else {
+				$mayorista = $_SESSION["ID"];
+			}
+			$estados = '';
+			$ciudades = '';
 			$datos = array(
 				"ID" => $_POST["Nombre"],
-
+				"mayorista" => $mayorista,
+				"estados" => $estados,
+				"ciudades" => $ciudades
 			);
 
 			$tipo = $_POST["tipoguardar"];
-			$respuesta = ""/*ModeloGeneral::($datos, $tipo)*/;
+			$respuesta = ModeloZonas::mdlGuardarZona($datos, $tipo);
 
 			if ($respuesta == "ok") {
 
