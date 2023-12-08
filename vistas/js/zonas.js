@@ -21,7 +21,7 @@ $("#AgregarEstado").on("click", function () {
         '<label class="EstadoLabel">Estado</label>' +
         '<div class="input-group">' +
         '<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>' +
-        '<select class="form-control input-lg EstadoSelect" name="Estado">' +
+        '<select class="form-control input-lg EstadoSelect" name="Estado[]">' +
         '<option class="Estado">Elegir Estado</option>' +
         '</select>' +
         '</div>' +
@@ -90,7 +90,7 @@ var CasillasMunics = function (EstadoSelect) {
                         child = fieldset.children().last();
                     }
                     for (var key1 in json[0][key]) {
-                        var casilla = $('<input type="checkbox">');
+                        var casilla = $('<input type="checkbox" name="Ciudad[]">');
                         casilla.val(json[0][key][key1]);
                         label = $('<label class="checkbox-inline">');
                         label.append(casilla).append(json[0][key][key1]);
