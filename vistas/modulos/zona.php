@@ -99,7 +99,7 @@ if (isset($_GET['idZona'])) {
                 
                                     <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                     
-                                    <select class="form-control input-lg EstadoSelect" name="Estado">
+                                    <select class="form-control input-lg EstadoSelect" name="Estado[]">
                     
                                         <option value="' . $estado . '" class="Estado">' . $estado . '</option>
                     
@@ -123,7 +123,7 @@ if (isset($_GET['idZona'])) {
                         $munics = explode('-', $munics_por_estado[$key]);
                         if (array_key_exists($estado, $json[0])) {
                             foreach ($json[0][$estado] as $key1 => $munic) {
-                                echo '<label class="checkbox-inline"><input type="checkbox" name="ciudad[]" value="' . $munic . '"';
+                                echo '<label class="checkbox-inline"><input type="checkbox" name="Ciudad'.$key.'[]" value="' . $munic . '"';
                                 if (in_array($munic, $munics)) {
                                     echo 'checked';
                                 };

@@ -16,7 +16,21 @@ class ControladorZonas
 				$mayorista = $_SESSION["ID"];
 			}
 			$estados = '';
+			$n_estados = '';
+			if(isset($_POST['Estado'])){
+				$estados_array = $_POST['Estado'];
+				$n_estados = sizeof($estados_array);
+				// Unir los domicilios en una cadena separada por "<br>"
+				$estados = implode(",", $estados_array);
+			}
 			$ciudades = '';
+			for($i=0; $i<$n_estados; $i++){
+					$ciudades_array = $_POST['Ciudad'.$i];
+
+					// Unir los domicilios en una cadena separada por "<br>"
+					$ciudades .= implode('-', $ciudades_array).',';
+
+			}				
 			$datos = array(
 				"ID" => $_POST["Nombre"],
 				"mayorista" => $mayorista,
