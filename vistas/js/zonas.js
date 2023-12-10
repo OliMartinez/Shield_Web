@@ -12,6 +12,16 @@ $(document).ready(function () {
 $("#AgregarEstado").on("click", function () {
     var EstadoBox = '<div class="col-lg-12 EstadoBox">' +
         '<div class="box box-info">' +
+        '<div class="box-tools pull-right">' +
+        '<button type="button" class="btn btn-box-tool" data-widget="remove">' +
+        '<i class="fa fa-times"></i>' +
+        '</button>' +
+        '</div>' +
+        '<div class="box-tools pull-right">' +
+        '<button type="button" class="btn btn-box-tool" data-widget="collapse">' +
+        '<i class="fa fa-minus"></i>' +
+        '</button>' +
+        '</div>' +
         '<!--=====================================' +
         'CUERPO DEL MODAL' +
         '======================================-->' +
@@ -35,7 +45,7 @@ $("#AgregarEstado").on("click", function () {
         'width: 100%;' +
         'overflow: auto;' +
         'padding: 0.75rem;">' +
-        '<fieldset required>' +
+        '<fieldset class="Ciudades" required>' +
         '</fieldset>' +
         '</div>' +
         '</div>' +
@@ -90,7 +100,7 @@ var CasillasMunics = function (EstadoSelect) {
                         child = fieldset.children().last();
                     }
                     for (var key1 in json[0][key]) {
-                        var casilla = $('<input type="checkbox" name="Ciudad[]">');
+                        var casilla = $('<input type="checkbox" name="Ciudad' + EstadoSelect.index(".EstadoSelect") + '[]">');
                         casilla.val(json[0][key][key1]);
                         label = $('<label class="checkbox-inline">');
                         label.append(casilla).append(json[0][key][key1]);

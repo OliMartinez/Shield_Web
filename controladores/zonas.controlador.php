@@ -52,6 +52,7 @@ class ControladorZonas
 			);
 
 			$tipo = $_POST["tipoguardar"];
+
 			$respuesta = ModeloZonas::mdlGuardarZona($datos, $tipo);
 
 			if ($respuesta == "ok") {
@@ -60,13 +61,13 @@ class ControladorZonas
 
 				swal({
 						type: "success",
-						title: "La zona ha sido guardada correctamente'..'",
+						title: "La zona ha sido guardada correctamente",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result){
 								if (result.value) {
 
-								window.location = "' . $_SERVER["REQUEST_URI"] . '";
+								window.location = "index.php?ruta=zona&idZona='.$_POST["ID"].'";
 
 								}
 							})

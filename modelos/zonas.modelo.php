@@ -12,14 +12,13 @@ class ModeloZonas
         } else {
             $stmt = Conexion::conectar()->prepare("UPDATE `zonas` SET ID = :ID, mayorista = :mayorista, estados = :estados, ciudades = :ciudades WHERE ID = :IDant");
         }
-        $stmt->bindParam(":ID", $datos["ID"], PDO::PARAM_INT);
-        $stmt->bindParam(":IDant", $datos["IDant"], PDO::PARAM_INT);
-        $stmt->bindParam(":mayorista", $datos["mayorista"], PDO::PARAM_INT);
+        $stmt->bindParam(":ID", $datos["ID"], PDO::PARAM_STR);
+        $stmt->bindParam(":IDant", $datos["IDant"], PDO::PARAM_STR);
+        $stmt->bindParam(":mayorista", $datos["mayorista"], PDO::PARAM_STR);
         $stmt->bindParam(":estados", $datos["estados"], PDO::PARAM_STR);
         $stmt->bindParam(":ciudades", $datos["ciudades"], PDO::PARAM_STR);
 
         if ($stmt->execute()) {
-
             return "ok";
         } else {
             echo "\nPDO::errorInfo():\n";

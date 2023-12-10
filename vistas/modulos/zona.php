@@ -31,7 +31,7 @@ if (isset($_GET['idZona'])) {
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user-o"></i></span>
                                     <input type="text" class="form-control input-lg" name="ID" id="ID" placeholder="Ingresa el nombre de la zona" value=<?php echo '"' . $idZona . '"'; ?>required>
-                                    <input type="hidden" name="IDant" id="IDant">
+                                    <input type="hidden" name="IDant" id="IDant" value = "<?php echo $idZona?>">
                                     <input type="hidden" name="tipoguardar" id="tipoguardar" value="<?php if (isset($_GET['idZona'])) {
                                                                                                         echo 'editar';
                                                                                                     } else {
@@ -86,8 +86,26 @@ if (isset($_GET['idZona'])) {
                     foreach ($estados as $key => $estado) {
                         echo '
                 <div class="col-lg-12 EstadoBox">
-
                     <div class="box box-info">
+                        <div class="box-tools pull-right">
+
+                            <button type="button" class="btn btn-box-tool" data-widget="remove">
+                        
+                                <i class="fa fa-times"></i>
+                        
+                            </button>
+                            
+                        </div>
+                        <div class="box-tools pull-right">
+
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    
+                                <i class="fa fa-minus"></i>
+                    
+                            </button>
+                    
+                        </div>
+
                         <!--=====================================
                         CUERPO DEL MODAL
                         ======================================-->
@@ -139,8 +157,8 @@ if (isset($_GET['idZona'])) {
                 </div>';
                     }
                 } ?>
-                <button type="button" class="btn btn-primary col-lg-12" id="AgregarEstado">Agregar entidad federativa</button>
-                <br><br><br>
+                <div style="text-align:center;"><button type="button" class="btn btn-primary" id="AgregarEstado">Agregar entidad federativa</button></div>
+                <br>
                 <div class="col-lg-12">
                     <div class="box">
                         <?php include "includes/guardar.html"; ?>
