@@ -79,10 +79,8 @@
                             <!-- ENTRADA PARA LA DIRECCIÓN FISCAL -->
                             <div class="form-group">
                                 <label>Dirección Fiscal*</label>
-                                <div class="input-group">
-                                    <input type="text" name="Dir_Fiscal" id="Dir_Fiscal" class="form-control input-lg" placeholder="Ingresa la dirección fiscal" required>
-                                    <input type="hidden" id="Dir_Fiscalant">
-                                </div>
+                                <input type="text" name="Dir_Fiscal" id="Dir_Fiscal" class="form-control" placeholder="Ingresa la dirección fiscal" required>
+                                <input type="hidden" id="Dir_Fiscalant">
                             </div>
                             <!-- ENTRADA PARA DOMICILIO ADICIONAL-->
                             <div class="form-group">
@@ -90,7 +88,7 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control input-lg domicilio" name="Domicilios[]" placeholder="Ingresa el domicilio">
                                     <!--<input type="hidden" class="domicilioant">-->
-                                    <span class="input-group-addon" style="padding: 0px 0px"><button type="button" class="btn btn-info" id="btnAgregarNuevoDomicilio" style="height: 45px; width: 45px"><i class="fa fa-plus"></i></button></span>
+                                    <span class="input-group-addon" style="padding: 0px 0px; border-radius: 3px;"><button type="button" class="btn btn-info" id="btnAgregarNuevoDomicilio" style="height: 45px; width: 45px"><i class="fa fa-plus"></i></button></span>
                                 </div>
                             </div>
                             <!-- ENTRADA PARA LA HISTORIA -->

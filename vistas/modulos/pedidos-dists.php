@@ -138,7 +138,7 @@
                 if ($_SESSION["tipo"] != "Distribuidor") {
                   echo '<li class="dropdown-item"><a style="cursor:pointer;">Marcar como entregado</a></li>
                   <li class="dropdown-item"><a style="cursor:pointer;">Ver comprobante de pago</a></li>
-                  <li class="dropdown-item"><a style="cursor:pointer;">Confirmar pago</a></li>>';
+                  <li class="dropdown-item"><a style="cursor:pointer;">Confirmar pago</a></li>';
                 }
                 echo ' 
                               <li class="dropdown-item"><a style="cursor:pointer;">Cancelar</a></li>

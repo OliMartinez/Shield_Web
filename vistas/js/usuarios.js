@@ -883,7 +883,7 @@ $("#btnAgregarNuevoDomicilio").on("click", function () {
 	var newButton = $('<button type="button" class="btn btn-danger btnQuitarDomicilio" style="height: 45px; width: 45px"><i class="fa fa-times"></i></button>');
 
 	// Crear nuevo span y adjuntar el botón
-	var newSpan = $('<span class="input-group-addon" style="padding: 0px 0px"></span>').append(newButton);
+	var newSpan = $('<span class="input-group-addon" style="padding: 0px 0px; border-radius: 3px;"></span>').append(newButton);
 
 	// Reemplazar el span antiguo con el nuevo span
 	nuevoDiv.find('.input-group span').last().replaceWith(newSpan);

@@ -41,7 +41,6 @@
             <tr>
 
               <th style="width:10px"></th>
-              <th>Acciones</th>
               <?php include "includes/columnsclientes.html";
               if ($_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Fabricante") {
                 echo '<th>Mayorista revisor</th>';
@@ -49,7 +48,7 @@
               if ($_SESSION["tipo"] != "Agente") {
                 echo '<th>Agente revisor</th>';
               }
-              include "includes/columnsclientes.html"; ?>
+              include "includes/columnsclientes1.html"; ?>
               <th>Historia/Descripción de la empresa/negocio</th>
               <th>Propuesta de Ventas Mensuales</th>
               <?php include "includes/columnsclientes2.html"; ?>
