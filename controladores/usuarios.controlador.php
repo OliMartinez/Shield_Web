@@ -12,7 +12,7 @@ class ControladorUsuarios
 
 		if (isset($_POST["username"])) {
 
-			$ip = $_SERVER["REMOTE_ADDR"];
+			/*$ip = $_SERVER["REMOTE_ADDR"];
 			$captcha = $_POST['g-recaptcha-response'];
 			$secretKey = '6LfDyOskAAAAAOTxW3Rew22w8VPukzDa3PLfOwH7';
 
@@ -22,79 +22,79 @@ class ControladorUsuarios
 
 			if (!$atributos['success']) {
 				echo '<br><div class="alert alert-danger" style="margin: 0 auto;">Verifica el captcha</div>';
-			} else {
+			} else {*/
 
-				$encriptar = crypt($_POST["pass"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+			$encriptar = crypt($_POST["pass"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-				$tabla = "usuarios";
+			$tabla = "usuarios";
 
-				$item = "ID";
-				$valor = $_POST["username"];
+			$item = "ID";
+			$valor = $_POST["username"];
 
-				$respuesta = ModeloUsuarios::MdlMostrarUsuarios(null, $item, $valor);
+			$respuesta = ModeloUsuarios::MdlMostrarUsuarios(null, $item, $valor);
 
-				if (is_array($respuesta) && $respuesta["ID"] == $_POST["username"] && $respuesta["contrasena"] == $encriptar) {
+			if (is_array($respuesta) && $respuesta["ID"] == $_POST["username"] && $respuesta["contrasena"] == $encriptar) {
 
-					if ($respuesta["estatus"] == 1) {
+				if ($respuesta["estatus"] == 1) {
 
-						$_SESSION["iniciarSesion"] = "ok";
-						$_SESSION["ID"] = $respuesta["ID"];
-						$_SESSION["foto"] = $respuesta["foto"];
-						$_SESSION["tipo"] = $respuesta["tipo"];
+					$_SESSION["iniciarSesion"] = "ok";
+					$_SESSION["ID"] = $respuesta["ID"];
+					$_SESSION["foto"] = $respuesta["foto"];
+					$_SESSION["tipo"] = $respuesta["tipo"];
 
-						date_default_timezone_set('America/Mexico_City');
+					date_default_timezone_set('America/Mexico_City');
 
-						$fecha = date('Y-m-d');
-						$hora = date('H:i:s');
+					$fecha = date('Y-m-d');
+					$hora = date('H:i:s');
 
-						$fechaActual = $fecha . ' ' . $hora;
+					$fechaActual = $fecha . ' ' . $hora;
 
-						$item1 = "ultimo_login";
-						$valor1 = $fechaActual;
+					$item1 = "ultimo_login";
+					$valor1 = $fechaActual;
 
-						$item2 = "ID";
-						$valor2 = $respuesta["ID"];
+					$item2 = "ID";
+					$valor2 = $respuesta["ID"];
 
-						$ultimoLogin = ModeloGeneral::mdlActualizar($tabla, $item1, $valor1, $item2, $valor2);
+					$ultimoLogin = ModeloGeneral::mdlActualizar($tabla, $item1, $valor1, $item2, $valor2);
 
-						if ($ultimoLogin == "ok") {
+					if ($ultimoLogin == "ok") {
 
-							if ($_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Fabricante" || $_SESSION["tipo"] == "Mayorista") {
-								echo '<script>
+						if ($_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Fabricante" || $_SESSION["tipo"] == "Mayorista") {
+							echo '<script>
 
 								window.location = "inicio";
 
 							</script>';
-							} else if ($_SESSION["tipo"] == "Solicitante") {
-								echo '<script>
+						} else if ($_SESSION["tipo"] == "Solicitante") {
+							echo '<script>
 
 								window.location = "info-cuenta";
 
 							</script>';
-							} else if ($_SESSION["tipo"] == "Agente") {
-								echo '<script>
+						} else if ($_SESSION["tipo"] == "Agente") {
+							echo '<script>
 
 								window.location = "solicitantes";
 
 							</script>';
-							} else if ($_SESSION["tipo"] == "Distribuidor") {
-								echo '<script>
+						} else if ($_SESSION["tipo"] == "Distribuidor") {
+							echo '<script>
 
 								window.location = "catalogo";
 
 							</script>';
-							}
 						}
-					} else {
-
-						echo '<br>
-							<div class="alert alert-danger" style="margin: 0 auto;">El usuario aún no está activado</div>';
 					}
 				} else {
 
-					echo '<br><div class="alert alert-danger" style="margin: 0 auto;">Error al ingresar, vuelve a intentarlo</div>';
+					echo '<br>
+							<div class="alert alert-danger" style="margin: 0 auto;">El usuario aún no está activado</div>';
 				}
+			} else {
+
+				echo '<br><div class="alert alert-danger" style="margin: 0 auto;">Error al ingresar, vuelve a intentarlo</div>';
 			}
+			//}
 		}
 	}
 

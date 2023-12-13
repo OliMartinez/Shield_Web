@@ -260,36 +260,12 @@ MODAL  MAYORISTA
 
             <!-- ENTRADA PARA ZONAS -->
             <label>Zonas</label>
+            <div class="form-group" id="containerzonas">
 
-            <div class="form-group formzona">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-
-                <input type="text" class="form-control input-lg inputzona" name="ZonaName[]" required placeholder="Ingresa el nombre de la Zona">
-
-                <span class="input-group-addon" style="padding: 0px 0px"><button type="button" class="btn btn-info" id="btnAgregarNuevaZona" style="height: 45px; width: 45px"><i class="fa fa-plus"></i></button></span>
-
-              </div>
-
-              <!--<br>
-
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-                <select class="form-control input-lg ZonaEstados" name="ZonaEstados[][]" multiple>
-                  <optgroup label="Elige los estados de la Zona">
-                  </optgroup>
-                </select>
-              </div>
-              <br>-->
-              <!--<div class="input-group">
-                <select class="form-control input-lg" multiple>
-                <optgroup id="LabelEstadoMunicipios" label="Elige los municipios del Estado de ">
-                </optgroup>
-                </select>
-              </div>-->
-
+              <button id="btnAgregarNuevaZona" class="btn btn-info">
+                <a href="zona" style="color:white; :hover{color:white;}">
+                  Agregar zona
+                </a></button>
             </div>
             <br>
 

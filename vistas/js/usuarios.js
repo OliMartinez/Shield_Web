@@ -535,15 +535,13 @@ $('#EstadoSelect').change(function () {
 Desplegar Zonas del Mayorista
 =============================================*/
 var MayoristaSelect = function (MayoristaSelect) {
-	var mayorista = MayoristaSelect;
-	var tabla = "zonas";
 	var zona = 'ZonaSelect';
 	var select = $("#" + zona);
 	var datos = new FormData();
 	datos.append("item_enc", "ID");
 	datos.append("item_cond", "mayorista");
-	datos.append("valor_item_cond", mayorista);
-	datos.append("tabla", tabla);
+	datos.append("valor_item_cond", MayoristaSelect);
+	datos.append("tabla", "zonas");
 
 	$.ajax({
 		url: "ajax/general.ajax.php",
