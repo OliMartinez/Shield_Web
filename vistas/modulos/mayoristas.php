@@ -259,13 +259,15 @@ MODAL  MAYORISTA
             ?>
 
             <!-- ENTRADA PARA ZONAS -->
-            <label>Zonas</label>
-            <div class="form-group" id="containerzonas">
-
-              <button id="btnAgregarNuevaZona" class="btn btn-info">
-                <a href="zona" style="color:white; :hover{color:white;}">
-                  Agregar zona
-                </a></button>
+            <div class="form-group">
+              <label>Zonas</label>
+              <div id="containerzonas" class='input-group col-md-12'>
+                <button id="btnAgregarNuevaZona" class="btn btn-info" style='margin: 5px;'>
+                  <a href="zona" style="color:white; :hover{color:white;}">
+                    Agregar zona
+                  </a>
+                </button>
+              </div>
             </div>
             <br>
 
