@@ -5,6 +5,7 @@ CREAR MAYORISTA
 =============================================*/
 $(".btnCrearUsuario").on("click", function () {
     TodosEstados();
+    $('#containerzonas').;
 })
 
 /*=============================================
