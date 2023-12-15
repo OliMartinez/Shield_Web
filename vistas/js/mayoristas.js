@@ -1,17 +1,17 @@
 var contadorZona = 1;
-
 /*=============================================
 CREAR MAYORISTA
 =============================================*/
 $(".btnCrearUsuario").on("click", function () {
+    $('.buttonzona').remove();
     TodosEstados();
-    $('#containerzonas').;
 })
 
 /*=============================================
 EDITAR MAYORISTA
 =============================================*/
 $(".tablas").on("click", ".btnEditarUsuario", function () {
+    $('.buttonzona').remove();
     var idUsuario = $(this).attr("idUsuario");
     var datos = new FormData();
     datos.append('item_cond', 'mayorista');
@@ -34,15 +34,14 @@ $(".tablas").on("click", ".btnEditarUsuario", function () {
             }
         }
     });
+    TodosEstados();
 });
 
 function crearBotones(datos) {
     var botones = '';
     datos.forEach(function (dato) {
-        botones += '<button type="button" class="btn btn-success buttonzona" style="margin: 5px;">'
-            + '<a href="index.php?ruta=zona&idZona=' + dato.ID + '" style="color:white; :hover{color:white;}">'
-            + dato.ID + '</a>'
-            + '</button>';
+        botones += '<a class="btn btn-success buttonzona" href="index.php?ruta=zona&idZona=' + dato.ID + '" style="color:white; :hover{color:white;}; margin: 5px;">'
+            + dato.ID + '</a>';
     });
     return botones;
 }

@@ -1,4 +1,13 @@
 /*=============================================
+ESTADO Y CIUDAD SON REQUERIDOS PARA NO ADMINS Y NO FABRICANTES
+=============================================*/
+if ($("#tabla").val() != "") {
+	$("#EstadoLabel").append("*");
+	$("#CiudadLabel").append("*");
+	$("#EstadoSelect").attr("required", "required");
+	$("#CiudadSelect").attr("required", "required");
+}
+/*=============================================
 CREAR USUARIO
 =============================================*/
 $(".btnCrearUsuario").on("click", function () {
@@ -123,6 +132,7 @@ $(".tablas").on("click", ".btnEditarUsuario", function () {
 			if ($("#tabla").val() != "") {
 				$("#Estado").html(respuesta["estado"]);
 				$("#Estado").val(respuesta["estado"]);
+				$("#EstadoSelect").val($("#Estado"));
 				$("#Ciudad").html(respuesta["ciudad"]);
 				$("#Ciudad").val(respuesta["ciudad"]);
 			}
@@ -218,22 +228,12 @@ $(".tablas").on("click", ".btnEditarUsuario", function () {
 
 	});
 
-	if ($("#tabla").val() != "") {
-		EstadoSelect()
+	if ($("#tabla").val() != "" && $("#tabla").val() != "mayoristas") {
+		EstadoSelect();
 	};
 	$("#tipoguardar").attr("value", "editar");
 
 })
-
-/*=============================================
-ESTADO Y CIUDAD SON REQUERIDOS PARA NO ADMINS Y NO FABRICANTES
-=============================================*/
-if ($("#tabla").val() != "") {
-	$("#EstadoLabel").append("*");
-	$("#CiudadLabel").append("*");
-	$("#EstadoSelect").attr("required", "required");
-	$("#CiudadSelect").attr("required", "required");
-}
 
 /*=============================================
 ACTIVAR USUARIO
