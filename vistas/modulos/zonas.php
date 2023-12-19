@@ -28,11 +28,9 @@
 
                 <div class="box-header with-border">
 
-                    <button class="btn btn-primary btnAgregar">
-                        <a href="zona" style="color:white; :hover{color:white;}">
-                            Agregar zona
-                        </a>
-                    </button>
+                    <a class="btn btn-primary btnAgregar" href="zona" style="color:white; :hover{color:white;}">
+                        Agregar zona
+                    </a>
 
                 </div>
 

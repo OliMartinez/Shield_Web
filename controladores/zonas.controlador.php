@@ -45,14 +45,14 @@ class ControladorZonas
 			}
 			$datos = array(
 				"ID" => $_POST["ID"],
-				"IDant" => $_POST["IDant"],
 				"mayorista" => $mayorista,
 				"estados" => $estados,
 				"ciudades" => $ciudades
 			);
-
 			$tipo = $_POST["tipoguardar"];
-
+			if ($tipo == 'editar') {
+				$datos['IDant'] = $_POST["IDant"];
+			}
 			$respuesta = ModeloZonas::mdlGuardarZona($datos, $tipo);
 
 			if ($respuesta == "ok") {
@@ -67,7 +67,7 @@ class ControladorZonas
 						}).then(function(result){
 								if (result.value) {
 
-								window.location = "index.php?ruta=zona&idZona='.$_POST["ID"].'";
+								window.location = "index.php?ruta=zona&idZona=' . $_POST["ID"] . '";
 
 								}
 							})
