@@ -17,7 +17,8 @@
 					</a>
 
 				</li>';
-			} if($_SESSION["tipo"] == "Solicitante") {
+			}
+			if ($_SESSION["tipo"] == "Solicitante") {
 				echo ' 
 				<li class="active">
 
@@ -398,7 +399,7 @@
 					<a href="agentes">
 				
 						<i class="fa fa-user"></i>
-						<span>Agentes y Comisiones</span>
+						<span>Agentes</span>
 				
 					</a>
 				
@@ -408,7 +409,7 @@
 					<a href="dists">
 				
 						<i class="fa fa-user-o"></i>
-						<span>Distribuidores y Crédito</span>
+						<span>Distribuidores</span>
 				
 					</a>
 				
@@ -496,7 +497,7 @@
 				
 						<i class="fa fa-truck"></i>
 				
-						<span>Pedidos y comisiones</span>
+						<span>Pedidos</span>
 				
 					</a>
 				

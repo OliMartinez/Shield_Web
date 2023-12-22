@@ -31,9 +31,10 @@ $(".btnEditarUsuario").on("click", function () {
 		success: function (respuesta) {
 			$("#Mayorista").html(respuesta["mayorista"]);
 			$("#Mayorista").val(respuesta["mayorista"]);
+			if ($("#Mayorista").length > 0) { MayoristaSelect(respuesta["mayorista"]); }
 			$("#Zona").html(respuesta["zona"]);
 			$("#Zona").val(respuesta["zona"]);
-			if ($("#Mayorista").length > 0) { MayoristaSelect(respuesta["mayorista"]); }
+			ZonaSelect(respuesta["zona"]);
 		}
 
 	});
