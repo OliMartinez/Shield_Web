@@ -68,12 +68,12 @@
                   </div>
 
                   <h3 class="my-3"><b>Precio: </b><span>
-                        <span id="precio">
+                      <span id="precio">
                         <?php
                         if ($tabla == "productos_fab") {
-                          echo '$'.$producto["precio_mayorista"];
+                          echo '$' . $producto["precio_mayorista"];
                         } else {
-                          echo '$'.$producto["precio_dist"];
+                          echo '$' . $producto["precio_dist"];
                         }
                         ?>
                       </span>
@@ -88,9 +88,9 @@
                       <span id="precioxcantidad">
                         <?php
                         if ($tabla == "productos_fab") {
-                          echo '$'.$producto["precio_mayorista"] * $producto["cantidad_min"];
+                          echo '$' . $producto["precio_mayorista"] * $producto["cantidad_min"];
                         } else {
-                          echo '$'.$producto["precio_dist"] * $producto["cantidad_min"];
+                          echo '$' . $producto["precio_dist"] * $producto["cantidad_min"];
                         }
                         ?>
                       </span>
@@ -120,10 +120,10 @@
                       Agregar al carrito
                     </button>
 
-                    <div class="btn btn-lg btncomprar">
+                    <button name='comprar' class="btn btn-lg btncomprar">
                       <i class="fa fa-money fa-lg mr-2"></i>
                       Comprar ahora
-                    </div>
+                    </button>
                   </div>
                 </form>
                 <?php
