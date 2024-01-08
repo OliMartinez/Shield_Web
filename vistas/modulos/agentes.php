@@ -56,8 +56,8 @@
 
               <th>Total de Comisiones</th>
               <th>Última comisión</th>
-              <th>Estado</th>
-              <th>Ciudad</th>
+              <th>Estado de Residencia</th>
+              <th>Ciudad de Residencia</th>
               <th>Último Login</th>
               <th>Ingreso al sistema</th>
 
