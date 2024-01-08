@@ -384,23 +384,21 @@ $(".domicilio").change(function () {
 Elegir Estado o Agente
 =============================================*/
 $('#ZonaSelect').change(function () {
-	if ($("#tabla").val() == "agentes") {
-		$("#Estado").html('Elegir Estado').val('Elegir Estado');
-		ZonaSelect($('#ZonaSelect').val());
-	}
-	else {
+	if ($("#tabla").val() != "agentes") {
 		$("#Agente").html('Elegir Agente').val('Elegir Agente');
-		AgenteSelect($('#AgenteSelect'));
 	}
+	$("#Estado").html('Elegir Estado').val('Elegir Estado');
+	$("#Ciudad").html('Elegir Ciudad').val('Elegir Ciudad');
+	ZonaSelect($('#ZonaSelect').val());
 });
 
 /*=============================================
 Desplegar Estado del Agente
 =============================================*/
-var AgenteSelect = function (AgenteSelect) {
+var AgenteSelect = function (Agente) {
 	var tabla = "agentes";
 	var datos = new FormData();
-	datos.append("idUsuario", AgenteSelect.val());
+	datos.append("idUsuario", Agente);
 	datos.append("tabla", tabla);
 	$.ajax({
 		url: "ajax/usuarios.ajax.php",
@@ -448,7 +446,7 @@ Elegir Estados
 $('#AgenteSelect').change(function () {
 	$("#Estado").html('Elegir Estado');
 	$("#Estado").val('Elegir Estado');
-	AgenteSelect($('#AgenteSelect'));
+	AgenteSelect($('#AgenteSelect').val());
 });
 
 /* =============================================
@@ -539,8 +537,10 @@ var MayoristaSelect = function (MayoristaSelect) {
 	});
 };
 $('#MayoristaSelect').change(function () {
-	$("#Zona").html('Elegir Zona');
-	$("#Zona").val('Elegir Zona');
+	$("#Zona").html('Elegir Zona').val('Elegir Zona');
+	$("#Agente").html('Elegir Agente').val('Elegir Agente');
+	$("#Estado").html('Elegir Estado').val('Elegir Estado');
+	$("#Ciudad").html('Elegir Ciudad').val('Elegir Ciudad');
 	MayoristaSelect($('#MayoristaSelect').val());
 })
 
@@ -548,7 +548,6 @@ $('#MayoristaSelect').change(function () {
 Desplegar Agentes o Estados de acuerdo a la Zona
 =============================================*/
 var ZonaSelect = function (Zona) {
-	debugger
 	if ($('#tabla').val() == "agentes") {
 		var select = $('#EstadoSelect');
 		var datos1 = new FormData();
@@ -576,7 +575,6 @@ var ZonaSelect = function (Zona) {
 				});
 			}
 		});
-		//EstadoSelect($('#EstadoSelect').val());
 	} else {
 		var tabla = 'agentes';
 		var select = $('#AgenteSelect');
