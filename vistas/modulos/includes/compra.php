@@ -30,6 +30,8 @@ MODAL COMPRA
 
           <div class="box-body">
 
+            <input type="hidden" name="tabla" id="tabla">
+
             <input type="hidden" name="Productos" id="Productos">
 
             <input type="hidden" name="A_pagar" id="A_pagar">

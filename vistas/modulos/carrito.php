@@ -23,8 +23,13 @@
     <div class="box">
 
       <div class="box-header with-border">
-
-        <button class="btn btn-success" style="margin-right:7px" data-toggle="modal" data-target="#modalCompra" id="CrearPedido">
+        <?php $tabla = null;
+        if ($_SESSION["tipo"] == "Mayorista") {
+          $tabla = "carritos_mayoristas";
+        } else {
+          $tabla = "carritos_dists";
+        } ?>
+        <button class="btn btn-success" style="margin-right:7px" data-toggle="modal" data-target="#modalCompra" id="CrearPedido" tabla="<?php echo $tabla; ?>">
 
           Realizar Compra
 
@@ -40,12 +45,6 @@
 
         <span style="margin-left: 10px; font-size: 20px;"><b>Total a Pagar: </b>
           <?php
-          $tabla = null;
-          if ($_SESSION["tipo"] == "Mayorista") {
-            $tabla = "carritos_mayoristas";
-          } else {
-            $tabla = "carritos_dists";
-          }
           $totalapagar = ControladorGeneral::ctrSumar($tabla, "precioxcantidad", "ID_user", $_SESSION["ID"]);
           echo '$' . $totalapagar;
           ?>
@@ -81,14 +80,11 @@
 
             $item = "ID_user";
             $valor = $_SESSION["ID"];
-            $tabla = null;
             $tabla1 = null;
 
             if ($_SESSION["tipo"] == "Distribuidor") {
-              $tabla = "carritos_dists";
               $tabla1 = "productos_mayorista";
             } else {
-              $tabla = "carritos_mayoristas";
               $tabla1 = "productos_fab";
             }
             $Productos = ControladorGeneral::ctrMostrarFilas($item, $valor, $tabla);

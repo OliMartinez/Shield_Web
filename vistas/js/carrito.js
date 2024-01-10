@@ -113,6 +113,9 @@ $(".tablas").on("click", ".btnQuitarProducto", function () {
 CREAR PEDIDO
 =============================================*/
 $("#CrearPedido").on("click", function () {
+
+    $('#tabla').val($(this).attr("tabla"));
+
     var a_pagar = 0;
 
     $('.PrecioxCantidad').each(function () {
