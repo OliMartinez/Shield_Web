@@ -31,13 +31,13 @@ $(".tablas").on("click", ".btnEditarProducto", function () {
             else {
                 tabla_productos = "productos_mayorista";
             }
-        
+
             var obtenercategorias = new FormData();
             obtenercategorias.append("item_enc", "categorias");
             obtenercategorias.append("item_cond", "ID");
             obtenercategorias.append("valor_item_cond", respuesta["ID_product"]);
             obtenercategorias.append("tabla", tabla_productos);
-        
+
             $.ajax({
                 url: "ajax/general.ajax.php",
                 method: "POST",
@@ -73,7 +73,7 @@ $(".tablas").on("click", ".btnEditarProducto", function () {
             $("#Precioxcantidad").val(respuesta["precioxcantidad"]);
 
             $("#Precioxcantidad").attr("min", respuesta["cantidad_min"]);
-            
+
         }
 
     })
@@ -130,7 +130,11 @@ $("#CrearPedido").on("click", function () {
 
     $(".Producto").each(function (index) {
         var producto = $(this).text();
-        var categoria = $(".Categoria").eq(index).text();
+        var sPath = window.location.pathname;
+        var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+        var categoria = ''
+        if (sPage = 'carrito') { categoria = $(".Categoria").eq(index).text(); }
+        else { categoria = $("#Categoria").val(); }
         var cantidad = $(".Cantidad").eq(index).text();
         var precioCantidad = $(".PrecioxCantidad").eq(index).text().replace('$', '');
 

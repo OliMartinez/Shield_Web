@@ -46,13 +46,13 @@
 
                 <form role="form" enctype="multipart/form-data" method="post">
 
-                  <h3 class="my-3"><b id="nombre"><?php echo $producto["nombre"] ?></b></h3>
+                  <h3 class="my-3"><b class="producto" id="nombre"><?php echo $producto["nombre"] ?></b></h3>
                   <input type="hidden" name="ID" value="<?php echo $producto["ID"] ?>">
 
                   <h3 class="my-3"><b>Colección: </b><?php echo $producto["coleccion"] ?></h3>
 
                   <div style="margin-top: 20px;"><span class="my-3" style="font-size: 23px; margin-right: 5px;"><b>Categoría: </b></span>
-                    <select name="categoria" style="border: 2px solid gray;border-radius: 15px;cursor: pointer;width: 20%;height: 30px; font-size: 18px; text-align: center;">
+                    <select name="categoria" id='categoria' style="border: 2px solid gray;border-radius: 15px;cursor: pointer;width: 20%;height: 30px; font-size: 18px; text-align: center;">
                       <?php
                       $item = "ID";
                       $valor = $producto["ID"];
@@ -81,11 +81,11 @@
                   </h3>
 
                   <div style="margin-top: 20px"><span class="my-3" style="font-size: 23px; margin-right: 5px;"><b>Cantidad: </b></span>
-                    <input type="number" style="width: 12%;height: 30px;border-radius: 15px;border: 2px solid gray; font-size: 18px; text-align: center;" name="cantidad" id="cantidad" value="<?php echo $producto["cantidad_min"]; ?>" min="<?php echo $producto["cantidad_min"]; ?>">
+                    <input type="number" class='Cantidad' style="width: 12%;height: 30px;border-radius: 15px;border: 2px solid gray; font-size: 18px; text-align: center;" name="cantidad" id="cantidad" value="<?php echo $producto["cantidad_min"]; ?>" min="<?php echo $producto["cantidad_min"]; ?>">
                   </div>
 
                   <h3 class="my-3"><b>Precio x Cantidad: </b><span>
-                      <span id="precioxcantidad">
+                      <span class='PrecioxCantidad' id="precioxcantidad">
                         <?php
                         if ($tabla == "productos_fab") {
                           echo '$' . $producto["precio_mayorista"] * $producto["cantidad_min"];
@@ -120,7 +120,7 @@
                       Agregar al carrito
                     </button>
 
-                    <button name='comprar' class="btn btn-lg btncomprar">
+                    <button class="btn btn-lg" data-toggle="modal" data-target="#modalCompra" id="CrearPedido">
                       <i class="fa fa-money fa-lg mr-2"></i>
                       Comprar ahora
                     </button>
@@ -146,4 +146,7 @@
       </section>
     </div>
   </div>
+
+  <?php include "includes/compra.php"; ?>
+
 </body>
