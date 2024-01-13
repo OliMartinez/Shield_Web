@@ -177,7 +177,7 @@ class ModeloGeneral
 	{
 		$condicion = "";
 		if ($item != null) {
-			$condicion = "where " . $item . "=" . "'".$valor."'";
+			$condicion = "where " . $item . "=" . "'" . $valor . "'";
 		}
 		$stmt = null;
 		$stmt = Conexion::conectar()->prepare("SELECT COUNT(*) FROM $tabla $condicion");
@@ -198,11 +198,12 @@ class ModeloGeneral
 	SUMAR VALORES DE COLUMNA
 	=============================================*/
 
-	public static function mdlSumar($tabla, $columna, $item, $valor){
+	public static function mdlSumar($tabla, $columna, $item, $valor)
+	{
 
 		$condicion = "";
 		if ($item != null) {
-			$condicion = "where " . $item . "=" . "'".$valor."'";
+			$condicion = "where " . $item . "=" . "'" . $valor . "'";
 		}
 
 		$stmt = null;
@@ -211,7 +212,6 @@ class ModeloGeneral
 		if ($stmt->execute()) {
 
 			return $stmt->fetchColumn();
-
 		} else {
 			echo "\nPDO::errorInfo():\n";
 			print_r(Conexion::conectar()->errorInfo());
@@ -219,13 +219,12 @@ class ModeloGeneral
 			return "error";
 		}
 		$stmt->close();
-
 	}
 
 	/*=============================================
 	OBTENER VALOR MÁS GRANDE DE UNA COLUMNA
 	=============================================*/
-/*	public static function mdlValorMasGrande($tabla, $columna)
+	/*	public static function mdlValorMasGrande($tabla, $columna)
 	{
 		$stmt = null;
 		$stmt = Conexion::conectar()->prepare("SELECT MAX($columna) FROM $tabla");

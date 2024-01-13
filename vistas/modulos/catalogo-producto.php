@@ -120,7 +120,7 @@
                       Agregar al carrito
                     </button>
 
-                    <button class="btn btn-lg" data-toggle="modal" data-target="#modalCompra" id="CrearPedido">
+                    <button type='button' class="btn btn-lg btncomprar" data-toggle="modal" data-target="#modalCompra" id="CrearPedido">
                       <i class="fa fa-money fa-lg mr-2"></i>
                       Comprar ahora
                     </button>
@@ -148,5 +148,5 @@
   </div>
 
   <?php include "includes/compra.php"; ?>
-
+  <script src="vistas/js/carrito.js"></script>
 </body>

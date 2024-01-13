@@ -30,8 +30,6 @@ MODAL COMPRA
 
           <div class="box-body">
 
-            <input type="hidden" name="tabla" id="tabla">
-
             <input type="hidden" name="Productos" id="Productos">
 
             <input type="hidden" name="A_pagar" id="A_pagar">
@@ -92,10 +90,12 @@ MODAL COMPRA
                   } else {
                     $tabla = "dists";
                   }
-                  $item1 = "domicilios";
-                  $domicilios = ControladorGeneral::ctrMostrarItems($item, $valor, $tabla, $item1);
+                  $dir_fis = ControladorGeneral::ctrMostrarItems($item, $valor, $tabla, "dir_fiscal");
+                  $domicilios = ControladorGeneral::ctrMostrarItems($item, $valor, $tabla, "domicilios");
 
-                  $arrayDoms = explode("<br>", $domicilios1);
+                  echo '<option value="' . $dir_fis . '">' . $dir_fis . '</option>';
+
+                  $arrayDoms = explode("<br>", $domicilios);
 
                   for ($i = 0; $i < count($arrayDoms); $i++) {
                     echo '<option value="' . $arrayDoms[$i] . '">' . $arrayDoms[$i] . '</option>';
@@ -125,8 +125,8 @@ MODAL COMPRA
         $CrearPedido = new ControladorPedidos();
         $CrearPedido->ctrGuardarPedido();
 
-        $EliminarCarrito = new ControladorCarrito();
-        $EliminarCarrito->ctrEliminarCarrito();
+        /*$EliminarCarrito = new ControladorCarrito();
+        $EliminarCarrito->ctrEliminarCarrito();*/
         ?>
 
       </form>
