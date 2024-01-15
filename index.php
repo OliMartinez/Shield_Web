@@ -20,7 +20,7 @@ require_once "modelos/cuenta-deposito.modelo.php";
 require_once "modelos/general.modelo.php";
 require_once "modelos/catalogo.modelo.php";
 require_once "modelos/zonas.modelo.php";
+require_once "modelos/carrito.modelo.php";
 
 $plantilla = new ControladorPlantilla();
-$plantilla -> ctrPlantilla();
-?>
+$plantilla->ctrPlantilla();

@@ -122,11 +122,10 @@ MODAL COMPRA
         </div>
 
         <?php
+        $EliminarCarrito = new ControladorCarrito();
+        $EliminarCarrito->ctrEliminarCarrito();
         $CrearPedido = new ControladorPedidos();
         $CrearPedido->ctrGuardarPedido();
-
-        /*$EliminarCarrito = new ControladorCarrito();
-        $EliminarCarrito->ctrEliminarCarrito();*/
         ?>
 
       </form>

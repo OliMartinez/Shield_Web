@@ -26,7 +26,7 @@ class ModeloPedidos
 		$tipo_user = array_keys($datos)[1];
 
 		$stmt = null;
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(ID, $tipo_user, tipo, productos, precio, motivo_pago, domicilio) VALUES(:ID, :$tipo_user, :tipo, :productos, :precio, :motivo_pago, :domicilio)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(ID, $tipo_user, tipo, productos, precio, total, motivo_pago, domicilio) VALUES(:ID, :$tipo_user, :tipo, :productos, :precio, :precio, :motivo_pago, :domicilio)");
 
 		$stmt->bindParam(":ID", $datos["ID"], PDO::PARAM_STR);
 		$stmt->bindParam(":" . $tipo_user, $datos[$tipo_user], PDO::PARAM_STR);

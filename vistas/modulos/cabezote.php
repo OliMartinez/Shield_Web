@@ -88,10 +88,12 @@
 								
 							<a href="carrito" class="nav-link" title="Carrito">
 
-								<span class="fa fa-shopping-cart" role="button"></span>
-								<span class="badge badge-warning navbar-badge">' . $totalproductos . '</span>
+								<span class="fa fa-shopping-cart" role="button"></span>';
+						if ($totalproductos > 0) {
+							echo '<span class="badge badge-warning navbar-badge">' . $totalproductos . '</span>';
+						}
 
-							</a>
+						echo '</a>
 						</li>';
 					}
 
