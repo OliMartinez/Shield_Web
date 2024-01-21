@@ -3,8 +3,11 @@
   <section class="content-header">
 
     <h1>
-
-      Administrar pedidos de distribuidores
+      <?php if ($_SESSION['tipo'] != 'Distribuidor') {
+        echo 'Administrar pedidos de distribuidores';
+      } else {
+        echo 'Mis pedidos';
+      } ?>
 
     </h1>
 
@@ -12,7 +15,13 @@
 
       <li><a href="inicio"><i class="fa fa-dashboard"></i>Inicio</a></li>
 
-      <li class="active">Administrar pedidos de distribuidores</li>
+      <li class="active">
+        <?php if ($_SESSION['tipo'] != 'Distribuidor') {
+          echo 'Administrar pedidos de distribuidores';
+        } else {
+          echo 'Mis pedidos';
+        } ?>
+      </li>
 
     </ol>
 
@@ -22,7 +31,7 @@
 
     <div class="box">
 
-      <div class="box-header with-border">
+      <!--<div class="box-header with-border">
 
         <button class="btn btn-primary btnAgregar" href="crear-pedido">
 
@@ -30,7 +39,7 @@
 
         </button>
 
-      </div>
+      </div>-->
 
       <div class="box-body">
 

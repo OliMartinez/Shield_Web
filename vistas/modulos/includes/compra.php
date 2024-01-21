@@ -122,8 +122,11 @@ MODAL COMPRA
         </div>
 
         <?php
-        $EliminarCarrito = new ControladorCarrito();
-        $EliminarCarrito->ctrEliminarCarrito();
+        echo '<script>alert("' . $_SERVER["REQUEST_URI"] . '")</script>';
+        if ($_SERVER["REQUEST_URI"] == 'carrito') {
+          $EliminarCarrito = new ControladorCarrito();
+          $EliminarCarrito->ctrEliminarCarrito();
+        }
         $CrearPedido = new ControladorPedidos();
         $CrearPedido->ctrGuardarPedido();
         ?>

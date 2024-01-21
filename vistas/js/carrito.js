@@ -130,20 +130,27 @@ $("#CrearPedido").on("click", function () {
     var productosText = "";
 
     $(".Producto").each(function (index) {
+        debugger
         var producto = $(this).text();
-        var sPath = window.location.pathname;
+        var sPath = window.location.url;
         var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-        var categoria = ''
-        if (sPage = 'carrito') { categoria = $(".Categoria").eq(index).text(); }
-        else { categoria = $("#Categoria").val(); }
-        var cantidad = $(".Cantidad").eq(index).text();
+        var categoria = '';
+        var cantidad = '';
+        if (sPage = 'carrito') {
+            categoria = $(".Categoria").eq(index).text();
+            cantidad = $(".Cantidad").eq(index).text();
+        }
+        else {
+            categoria = $("#categoria").val();
+            cantidad = $(".Cantidad").eq(0).val();
+        }
         var precioCantidad = $(".PrecioxCantidad").eq(index).text().replace('$', '');
 
         var productoText = producto + " " + categoria + " x" + cantidad + " " + precioCantidad;
         productosText += productoText + "<br>";
     });
 
-    productosText = productosText.slice(0, -2); // Elimina la última coma y espacio
+    productosText = productosText.slice(0, -4); // Elimina el último br
 
     $("#Productos").val(productosText);
 

@@ -20,11 +20,13 @@ class ControladorPedidos
 			$motivo = "Pedido " . $nuevoid . " " . $_SESSION["ID"];
 
 			$datos = array(
-				"ID" => $nuevoid,
+				"ID" => $nuevoid + 1,
 				$tipo_usuario => $_SESSION["ID"],
 				"tipo" => "En espera de pago",
 				"productos" => $_POST["Productos"],
 				"precio" => $_POST["A_pagar"],
+				//"envio" => $_POST['Envio'],
+				"total" => $_POST["A_pagar"],
 				"motivo_pago" => $motivo,
 				"domicilio" => $_POST["Domicilio"]
 			);
@@ -43,7 +45,7 @@ class ControladorPedidos
 					}).then(function(result) {
 							if (result.value) {
 	
-								window.location ="pedidos-mayoristas";
+								window.location =' . $tabla . '";
 	
 							}
 						})
@@ -60,7 +62,7 @@ class ControladorPedidos
 					}).then(function(result) {
 							if (result.value) {
 	
-								window.location ="pedidos-mayoristas";
+								window.location ="' . $_SERVER["REQUEST_URI"] . '";
 	
 							}
 						})

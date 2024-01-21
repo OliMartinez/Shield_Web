@@ -1,4 +1,40 @@
 
+/*=============================================
+Ver imagen de producto
+=============================================*/
+$('.product-image-thumb').on('click', function () {
+  var $image_element = $(this).find('img')
+  $('.product-image').prop('src', $image_element.attr('src'))
+  $('.product-image-thumb.active').removeClass('active')
+  $(this).addClass('active')
+})
+
+/*=============================================
+Agregar el evento change al input de cantidad
+=============================================*/
+$("#cantidad").on("change", function () {
+  // Obtener el precio de una sola pieza al cargar la página
+  var precioUnaPieza = parseFloat($("#precio").text());
+  var cantidad = parseInt($("#cantidad").val());
+  var nuevoPrecio = precioUnaPieza * cantidad;
+
+  // Actualizar el contenido del elemento con el nuevo precio
+  $("#precioxcantidad").text(nuevoPrecio.toFixed(0));
+  $('input[name="precioxcantidad"]').val(nuevoPrecio.toFixed(0));
+  //$("#total").text((nuevoPrecio + 100).toFixed(0));
+});
+
+/*=============================================
+Ver información de producto seleccionado
+=============================================*/
+$(".producto-catalogo").on("click", function () {
+
+  var idProducto = $(this).attr("idProducto");
+
+  window.location = "index.php?ruta=catalogo-producto&idProducto=" + idProducto;
+
+})
+
 /*jssor_1_slider_init = function () {
 
   var jssor_1_SlideshowTransitions = [
@@ -53,38 +89,3 @@
   $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
   /*#endregion responsive code end
 };*/
-/*=============================================
-Ver imagen de producto
-=============================================*/
-$('.product-image-thumb').on('click', function() {
-  var $image_element = $(this).find('img')
-  $('.product-image').prop('src', $image_element.attr('src'))
-  $('.product-image-thumb.active').removeClass('active')
-  $(this).addClass('active')
-})
-
-/*=============================================
-Agregar el evento change al input de cantidad
-=============================================*/
-$("#cantidad").on("change", function() {
-  // Obtener el precio de una sola pieza al cargar la página
-  var precioUnaPieza = parseFloat($("#precio").text());
-  var cantidad = parseInt($("#cantidad").val());
-  var nuevoPrecio = precioUnaPieza * cantidad;
-
-  // Actualizar el contenido del elemento con el nuevo precio
-  $("#precioxcantidad").text(nuevoPrecio.toFixed(0));
-  $('input[name="precioxcantidad"]').val(nuevoPrecio.toFixed(0));
-  //$("#total").text((nuevoPrecio + 100).toFixed(0));
-});
-
-/*=============================================
-Ver información de producto seleccionado
-=============================================*/
-$(".producto-catalogo").on("click", function() {
-
-  var idProducto = $(this).attr("idProducto");
-
-  window.location = "index.php?ruta=catalogo-producto&idProducto=" + idProducto;
-
-})

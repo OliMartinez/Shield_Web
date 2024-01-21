@@ -46,7 +46,7 @@
 
                 <form role="form" enctype="multipart/form-data" method="post">
 
-                  <h3 class="my-3"><b class="producto" id="nombre"><?php echo $producto["nombre"] ?></b></h3>
+                  <h3 class="my-3"><b class="Producto" id="nombre"><?php echo $producto["nombre"] ?></b></h3>
                   <input type="hidden" name="ID" value="<?php echo $producto["ID"] ?>">
 
                   <h3 class="my-3"><b>Colección: </b><?php echo $producto["coleccion"] ?></h3>
@@ -67,16 +67,14 @@
                     </select>
                   </div>
 
-                  <h3 class="my-3"><b>Precio: </b><span>
-                      <span id="precio">
-                        <?php
-                        if ($tabla == "productos_fab") {
-                          echo '$' . $producto["precio_mayorista"];
-                        } else {
-                          echo '$' . $producto["precio_dist"];
-                        }
-                        ?>
-                      </span>
+                  <h3 class="my-3"><b>Precio: </b><span>$
+                      <span id="precio"><?php
+                                        if ($tabla == "productos_fab") {
+                                          echo $producto["precio_mayorista"];
+                                        } else {
+                                          echo $producto["precio_dist"];
+                                        }
+                                        ?></span>
                     </span>
                   </h3>
 
