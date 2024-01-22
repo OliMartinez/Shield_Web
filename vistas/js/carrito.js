@@ -132,11 +132,11 @@ $("#CrearPedido").on("click", function () {
     $(".Producto").each(function (index) {
         debugger
         var producto = $(this).text();
-        var sPath = window.location.url;
+        var sPath = window.location.pathname;
         var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
         var categoria = '';
         var cantidad = '';
-        if (sPage = 'carrito') {
+        if (sPage == 'carrito') {
             categoria = $(".Categoria").eq(index).text();
             cantidad = $(".Cantidad").eq(index).text();
         }
@@ -146,7 +146,7 @@ $("#CrearPedido").on("click", function () {
         }
         var precioCantidad = $(".PrecioxCantidad").eq(index).text().replace('$', '');
 
-        var productoText = producto + " " + categoria + " x" + cantidad + " " + precioCantidad;
+        var productoText = producto + " " + categoria + " x" + cantidad + " $" + precioCantidad;
         productosText += productoText + "<br>";
     });
 

@@ -34,7 +34,7 @@ class ControladorPedidos
 			$respuesta = ModeloPedidos::mdlCrearPedido($tabla, $datos);
 
 			if ($respuesta == "ok") {
-
+				echo '<script>alert("'.str_replace('_','-',$tabla).'");</script>';
 				echo '<script>
 	
 			swal({
@@ -45,7 +45,7 @@ class ControladorPedidos
 					}).then(function(result) {
 							if (result.value) {
 	
-								window.location =' . $tabla . '";
+								window.location ="' . str_replace('_','-',$tabla) . '";
 	
 							}
 						})

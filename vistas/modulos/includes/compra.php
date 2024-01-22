@@ -122,8 +122,7 @@ MODAL COMPRA
         </div>
 
         <?php
-        echo '<script>alert("' . $_SERVER["REQUEST_URI"] . '")</script>';
-        if ($_SERVER["REQUEST_URI"] == 'carrito') {
+        if ($_GET["ruta"] == 'carrito') {
           $EliminarCarrito = new ControladorCarrito();
           $EliminarCarrito->ctrEliminarCarrito();
         }
