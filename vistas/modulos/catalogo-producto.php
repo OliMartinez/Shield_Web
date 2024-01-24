@@ -82,7 +82,7 @@
                     <input type="number" class='Cantidad' style="width: 12%;height: 30px;border-radius: 15px;border: 2px solid gray; font-size: 18px; text-align: center;" name="cantidad" id="cantidad" value="<?php echo $producto["cantidad_min"]; ?>" min="<?php echo $producto["cantidad_min"]; ?>">
                   </div>
 
-                  <h3 class="my-3"><b>Precio x Cantidad: </b><span>
+                  <h3 class="my-3"><b>Importe: </b><span>
                       <span class='PrecioxCantidad' id="precioxcantidad">
                         <?php
                         if ($tabla == "productos_fab") {

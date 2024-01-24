@@ -134,9 +134,10 @@
                 if ($_SESSION["tipo"] == "Distribuidor") {
                   echo ' 
                               <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalInfoDeposito" class="InfoDeposito" tabla="pedidos_dists" idPedido="' . $value["ID"] . '">Información para Depósito Bancario</a></li>
-                              <li class="dropdown-item"><a style="cursor:pointer;">Confirmar pago(Subir comprobante)</a></li>
+                              <li class="dropdown-item"><a style="cursor:pointer;" id="conf_pago">Subir comprobante de pago (JPG o PDF)</a></li>
+                              <input type="file" id="subir_comp" style="display: none;">
                               <li class="dropdown-item"><a style="cursor:pointer;">Confirmar de recibido</a></li>
-                              <li class="dropdown-item"><a style="cursor:pointer;">Hacer un Reclamo</a></li>
+                          <!--<li class="dropdown-item"><a style="cursor:pointer;">Hacer un Reclamo</a></li>-->
                               <li class="dropdown-item"><a style="cursor:pointer;">Devolución</a></li>
                   ';
                 } else if ($_SESSION["tipo"] == "Administrador") {

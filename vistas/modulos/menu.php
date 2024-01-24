@@ -516,7 +516,7 @@
 
 				</li>
 
-				<li>
+			<!--<li>
 					<a  href="credito">
 
 						<i class="fa fa-credit-card"></i>
@@ -524,7 +524,7 @@
 						
 					</a>
 
-				</li>
+				</li>-->
 			';
 			}
 

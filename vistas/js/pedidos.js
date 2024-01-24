@@ -55,6 +55,23 @@ $(".InfoDeposito").on("click", function () {
 
 })
 
+$('#conf_pago').click(function () {
+  $('#subir_comp').click();
+});
+
+// Manejar el evento de cambio en el input de archivo
+$('#subir_comp').change(function () {
+  var fileName = $(this).val().split('\\').pop(); // Obtener solo el nombre del archivo
+  var fileExtension = fileName.split('.').pop().toLowerCase(); // Obtener la extensión en minúsculas
+  if (fileExtension === 'jpg' || fileExtension === 'pdf') {
+    alert('Se ha confirmado el pago con el comprobante: ' + filename);
+  }
+  else {
+    alert('Por favor, selecciona un archivo JPG o PDF.');
+  }
+});
+
+
 /*=============================================
 IMPRIMIR FACTURA
 =============================================*/
