@@ -569,6 +569,7 @@ class ControladorUsuarios
 							}
 						})';
 				}
+			} else if ($tipoasignar == "zona") {
 			} else {
 				$item1 = "zona";
 				$valor1 = $_POST["Zona1"];

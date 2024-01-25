@@ -83,8 +83,9 @@
                     <li>
                       <a data-toggle="dropdown" style="color:#646364;"><i class="fa fa-ellipsis-v"></i></a>
                       <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a style="cursor:pointer;" class="btnAsignMayorista" tabla="solicitantes" idUsuario="' . $value["ID"] . '" data-toggle="modal" data-target="#modalAsignar">Asignar Mayorista</a></li>
-                        <li class="dropdown-item"><a style="cursor:pointer;" class="btnAsignAgente" tabla="solicitantes" idUsuario="' . $value["ID"] . '" data-toggle="modal" data-target="#modalAsignar">Asignar Agente</a></li>
+                        <li class="dropdown-item"><a style="cursor:pointer;" class="btnAsignMayorista" tabla="solicitantes" idUsuario="' . $value["ID"] . '" data-toggle="modal" data-target="#modalAsignarMayorista">Asignar Mayorista</a></li>
+                        <li class="dropdown-item"><a style="cursor:pointer;" class="btnAsignZona" tabla="solicitantes" idUsuario="' . $value["ID"] . '" data-toggle="modal" data-target="#modalAsignarZona">Asignar Mayorista y Zona</a></li>
+                        <li class="dropdown-item"><a style="cursor:pointer;" class="btnAsignAgente" tabla="solicitantes" idUsuario="' . $value["ID"] . '" data-toggle="modal" data-target="#modalAsignarAgente">Asignar Mayorista, Zona y Agente</a></li>
                         <li class="dropdown-item"><a style="cursor:pointer;" class="btnAceptar" tabla="solicitantes" idUsuario="' . $value["ID"] . '" data-toggle="modal" data-target="#modalObservs">Aceptar</a></li>
                         <li class="dropdown-item"><a style="cursor:pointer;" class="btnRechazar" tabla="solicitantes" idUsuario="' . $value["ID"] . '" data-toggle="modal" data-target="#modalObservs">Rechazar</a></li>
                         <li class="dropdown-item"><a style="cursor:pointer;" class="btnObservs" tabla="solicitantes" idUsuario="' . $value["ID"] . '" data-toggle="modal" data-target="#modalObservs">Hacer observaciones</a></li>
@@ -371,10 +372,10 @@ $eliminarUsuario->ctrEliminarUsuario()
 ?>
 
 <!--=====================================
-MODAL ASIGNAR
+MODAL ASIGNAR MAYORISTA
 ======================================-->
 
-<div id="modalAsignar" class="modal fade" role="dialog">
+<div id="modalAsignarMayorista" class="modal fade" role="dialog">
 
   <div class="modal-dialog">
 
@@ -390,7 +391,243 @@ MODAL ASIGNAR
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Asignar</h4>
+          <h4 class="modal-title">Asignar Mayorista</h4>
+
+        </div>
+
+        <!--=====================================
+        CUERPO DEL MODAL
+        ======================================-->
+
+        <div class="modal-body">
+
+          <div class="box-body">
+            <input type="hidden" name="IDAsign" id="IDAsign">
+            <input type="hidden" name="tipoasignar" id="tipoasignar" value="mayorista">
+            <?php
+            if ($_SESSION["tipo"] == "Administrador") {
+              echo '
+            <!-- ENTRADA PARA SELECCIONAR EL MAYORISTA -->
+
+            <div class="form-group">
+
+              <label>Mayorista</label>
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+
+                <select class="form-control input-lg" name="Mayorista1" id="MayoristaSelect1">
+
+                  <option value="" id="Mayorista1"></option>';
+
+              $item = null;
+              $valor = null;
+              $tabla = "mayoristas";
+              $item1 = "ID";
+              $Mayoristas = ControladorGeneral::ctrMostrarItems($item, $valor, $tabla, $item1);
+
+              foreach ($Mayoristas as $key => $value) {
+
+                echo '<option value="' . $value["ID"] . '" >' . $value["ID"] . '</option>';
+              }
+
+              echo '
+                </select>
+
+              </div>
+
+            </div>';
+            }
+            ?>
+            <!-- ENTRADA PARA SELECCIONAR LA ZONA -->
+
+            <!--<div class="form-group">
+
+              <label>Zona</label>
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+
+                <select class="form-control input-lg" name="Zona1" id="ZonaSelect1">
+
+                  <option value="" id="Zona1"></option>
+
+                </select>
+
+              </div>
+
+            </div> -->
+
+          </div>
+
+        </div>
+
+        <!--=====================================
+        PIE DEL MODAL
+        ======================================-->
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+          <button type="submit" class="btn btn-primary">Asignar</button>
+
+        </div>
+        <?php
+
+        $asignar = new ControladorUsuarios();
+        $asignar->ctrAsignar();
+
+        ?>
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!--=====================================
+MODAL ASIGNAR MAYORISTA Y ZONA
+======================================-->
+
+<div id="modalAsignarZona" class="modal fade" role="dialog">
+
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <form role="form" method="post">
+
+        <!--=====================================
+        CABEZA DEL MODAL
+        ======================================-->
+
+        <div class="modal-header" style="background:#3c8dbc; color:white">
+
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          <h4 class="modal-title">Asignar Mayorista y Zona</h4>
+
+        </div>
+
+        <!--=====================================
+        CUERPO DEL MODAL
+        ======================================-->
+
+        <div class="modal-body">
+
+          <div class="box-body">
+            <input type="hidden" name="IDAsign" id="IDAsign">
+            <input type="hidden" name="tipoasignar" id="tipoasignar" value="zona">
+            <?php
+            if ($_SESSION["tipo"] == "Administrador") {
+              echo '
+            <!-- ENTRADA PARA SELECCIONAR EL MAYORISTA -->
+
+            <div class="form-group">
+
+              <label>Mayorista</label>
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+
+                <select class="form-control input-lg" name="Mayorista1" id="MayoristaSelect1">
+
+                  <option value="" id="Mayorista1"></option>';
+
+              $item = null;
+              $valor = null;
+              $tabla = "mayoristas";
+              $item1 = "ID";
+              $Mayoristas = ControladorGeneral::ctrMostrarItems($item, $valor, $tabla, $item1);
+
+              foreach ($Mayoristas as $key => $value) {
+
+                echo '<option value="' . $value["ID"] . '" >' . $value["ID"] . '</option>';
+              }
+
+              echo '
+                </select>
+
+              </div>
+
+            </div>';
+            }
+            ?>
+            <!-- ENTRADA PARA SELECCIONAR LA ZONA -->
+
+            <div class="form-group">
+
+              <label>Zona</label>
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+
+                <select class="form-control input-lg" name="Zona1" id="ZonaSelect1">
+
+                  <option value="" id="Zona1"></option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!--=====================================
+        PIE DEL MODAL
+        ======================================-->
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+          <button type="submit" class="btn btn-primary">Asignar</button>
+
+        </div>
+        <?php
+
+        $asignar = new ControladorUsuarios();
+        $asignar->ctrAsignar();
+
+        ?>
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!--=====================================
+MODAL ASIGNAR MAYORISTA Y AGENTE
+======================================-->
+
+<div id="modalAsignarAgente" class="modal fade" role="dialog">
+
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <form role="form" method="post">
+
+        <!--=====================================
+        CABEZA DEL MODAL
+        ======================================-->
+
+        <div class="modal-header" style="background:#3c8dbc; color:white">
+
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          <h4 class="modal-title">Asignar Mayorista, Zona y Agente</h4>
 
         </div>
 
