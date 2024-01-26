@@ -570,6 +570,42 @@ class ControladorUsuarios
 						})';
 				}
 			} else if ($tipoasignar == "zona") {
+				$item1 = "zona";
+				$valor1 = $_POST["Zona1"];
+				$item2 = "ID";
+				$valor2 = $_POST["IDAsign"];
+				$resp_zona = ModeloGeneral::mdlActualizar($tabla, $item1, $valor1, $item2, $valor2);
+				if ($resp_mayorista == "ok" && $resp_zona == "ok") {
+					echo '<script>
+
+					swal({
+							type: "success",
+							title: "La zona ha sido asignada correctamente",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+							}).then(function(result) {
+									if (result.value) {
+		
+										window.location ="' . $_SERVER["REQUEST_URI"] . '";
+		
+									}
+								})
+		
+					</script>';
+				} else {
+					echo 'swal({
+						type: "error",
+						title: "¡La zona no se pudo asignar!",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+						}).then(function(result) {
+						if (result.value) {
+
+							window.location ="' . $_SERVER["REQUEST_URI"] . '";
+
+						}
+					})';
+				}
 			} else {
 				$item1 = "zona";
 				$valor1 = $_POST["Zona1"];
