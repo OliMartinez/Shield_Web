@@ -98,7 +98,9 @@ MODAL COMPRA
                   $arrayDoms = explode("<br>", $domicilios);
 
                   for ($i = 0; $i < count($arrayDoms); $i++) {
+                    if($arrayDoms[$i]!=''){
                     echo '<option value="' . $arrayDoms[$i] . '">' . $arrayDoms[$i] . '</option>';
+                    }
                   }
                   ?>
                 </select>

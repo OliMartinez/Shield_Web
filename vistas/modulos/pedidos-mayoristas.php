@@ -103,7 +103,7 @@
               }
               if ($_SESSION["tipo"] != "Mayorista") {
                 echo '<li class="dropdown-item"><a style="cursor:pointer;">Marcar como entregado</a></li>
-                <li class="dropdown-item"><a style="cursor:pointer;">Ver comprobante de pago</a></li>
+                <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalCompPago" idPedido="' . $value["ID"] . '" tabla="pedidos_mayoristas">Ver comprobante de pago</a></li>
                 <li class="dropdown-item"><a style="cursor:pointer;">Confirmar pago</a></li>';
               }
               echo ' 
@@ -173,4 +173,5 @@
 <?php
 include "includes/modalseguimiento.html";
 include "includes/modaldepbanc.php";
+include "includes/modalcomppago.html";
 ?>
