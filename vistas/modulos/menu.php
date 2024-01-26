@@ -304,6 +304,44 @@
 				
 					</a>
 				
+					<li class="treeview">
+				
+					<a>
+		
+						<i class="fa fa-user-circle"></i>
+		
+						<span>Distribuidores</span>
+		
+						<span class="pull-right-container">
+		
+							<i class="fa fa-angle-left pull-right"></i>
+		
+						</span>
+		
+					</a>
+		
+					<ul class="treeview-menu">
+		
+						<li>
+		
+							<a href="dists">
+		
+								<i class="fa fa-circle-o"></i>
+								<span>Administrar</span>
+		
+							</a>
+		
+						</li>
+						<li>
+		
+							<a href="solicitantes">
+		
+								<i class="fa fa-circle-o"></i>
+								<span>Solicitantes</span>
+		
+							</a>
+						</li>
+					</ul>
 				</li>
 				
 				<li>
@@ -317,6 +355,17 @@
 				
 				</li>
 				
+				<li>
+				
+					<a href="solicitantes">
+				
+						<i class="fa fa-user-circle"></i>
+						<span>Aspirantes a Distribuidor Directos</span>
+				
+					</a>
+				
+				</li>
+
 				<li>
 				
 					<a href="agentes">

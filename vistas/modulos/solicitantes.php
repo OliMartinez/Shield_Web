@@ -64,12 +64,16 @@
             $item = null;
             $valor = null;
             $tabla2 = "solicitantes";
+            if ($_SESSION["tipo"] == "Fabricante") {
+              $item = "mayorista";
+              $valor = "FLEXOLAN S.A de C.V";
+            }
             if ($_SESSION["tipo"] == "Mayorista") {
               $item = "mayorista";
               $valor = $_SESSION["ID"];
             } else if ($_SESSION["tipo"] == "Agente") {
               $item = "agente";
-              $valor = $valor = $_SESSION["ID"];
+              $valor = $_SESSION["ID"];
             }
 
             $solics = ControladorUsuarios::ctrMostrarUsuarios($item, $valor, $tabla2);
@@ -440,25 +444,6 @@ MODAL ASIGNAR MAYORISTA
             </div>';
             }
             ?>
-            <!-- ENTRADA PARA SELECCIONAR LA ZONA -->
-
-            <!--<div class="form-group">
-
-              <label>Zona</label>
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-
-                <select class="form-control input-lg" name="Zona1" id="ZonaSelect1">
-
-                  <option value="" id="Zona1"></option>
-
-                </select>
-
-              </div>
-
-            </div> -->
 
           </div>
 

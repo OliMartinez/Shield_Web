@@ -67,6 +67,39 @@ $(".btnAsignMayorista").on("click", function () {
 })
 
 /*=============================================
+ASIGNAR ZONA
+=============================================*/
+$(".btnAsignZona").on("click", function () {
+	// Ocultamos los form-group excepto el primero dentro del modal
+	modal.find(".form-group").not(":first").hide();
+
+	var idUsuario = $(this).attr("idUsuario");
+	var tabla = "solicitantes";
+
+	var datos = new FormData();
+	datos.append("id", idUsuario);
+	datos.append("tabla", tabla);
+
+	$.ajax({
+
+		url: "ajax/general.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function (respuesta) {
+			$("#Mayorista1").html(respuesta["mayorista"]);
+			$("#Mayorista1").val(respuesta["mayorista"]);
+			$("#Zona1").html(respuesta["zona"]);
+			$("#Zona1").val(respuesta["zona"]);
+		}
+
+	});
+})
+
+/*=============================================
 ASIGNAR AGENTE
 =============================================*/
 $(".btnAsignAgente").on("click", function () {
