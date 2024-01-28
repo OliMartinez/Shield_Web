@@ -135,7 +135,11 @@
                   echo ' 
                               <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalInfoDeposito" class="InfoDeposito" tabla="pedidos_dists" idPedido="' . $value["ID"] . '">Información para Depósito Bancario</a></li>
                               <li class="dropdown-item"><a style="cursor:pointer;" id="conf_pago">Subir comprobante de pago (JPG o PDF)</a></li>
-                              <input type="file" id="subir_comp" style="display: none;">
+                              <form role="form" enctype="multipart/form-data" method="post">
+                                <input type="hidden" name="idPedido" style="display: none;" value="'. $value["ID"] .'">
+                                <input type="file" id="subir_comp" name="subir_comp" style="display: none;">
+                                <input type="submit" id="mandar_comp" style="display: none;">
+                              </form>
                               <li class="dropdown-item"><a style="cursor:pointer;">Confirmar de recibido</a></li>
                           <!--<li class="dropdown-item"><a style="cursor:pointer;">Hacer un Reclamo</a></li>-->
                               <li class="dropdown-item"><a style="cursor:pointer;">Devolución</a></li>

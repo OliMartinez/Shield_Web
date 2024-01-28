@@ -34,7 +34,6 @@ class ControladorPedidos
 			$respuesta = ModeloPedidos::mdlCrearPedido($tabla, $datos);
 
 			if ($respuesta == "ok") {
-				echo '<script>alert("'.str_replace('_','-',$tabla).'");</script>';
 				echo '<script>
 	
 			swal({
@@ -57,6 +56,53 @@ class ControladorPedidos
 			swal({
 					type: "error",
 					title: "El pedido no se pudo crear",
+					showConfirmButton: true,
+					confirmButtonText: "Cerrar"
+					}).then(function(result) {
+							if (result.value) {
+	
+								window.location ="' . $_SERVER["REQUEST_URI"] . '";
+	
+							}
+						})
+	
+			</script>';
+			}
+		}
+	}
+
+	public static function ctrSubirComp(){
+		if(isset($_POST["subir_comp"])){
+			if ($_SESSION["tipo"] == "Distribuidor") {
+				$tabla = 'pedidos_dists';
+			} else {
+				$tabla = 'pedidos_mayoristas';
+			}	
+			$respuesta = ModeloGeneral::mdlActualizar($tabla, 'comp_pago', $_POST["subir_comp"], 'ID', $_POST["IdPedido"]);
+			
+			if ($respuesta == "ok") {
+				echo '<script>
+	
+			swal({
+					type: "success",
+					title: "Se ha cargado el comprobante de pago",
+					showConfirmButton: true,
+					confirmButtonText: "Cerrar"
+					}).then(function(result) {
+							if (result.value) {
+	
+								window.location ="' . $_SERVER["REQUEST_URI"] .'";
+	
+							}
+						})
+	
+			</script>';
+			} else {
+				echo '<script>
+	
+			swal({
+					type: "error",
+					title: "No se pudo subir el comprobante de pago",
 					showConfirmButton: true,
 					confirmButtonText: "Cerrar"
 					}).then(function(result) {

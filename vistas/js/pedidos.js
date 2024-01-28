@@ -61,14 +61,15 @@ $('#conf_pago').click(function () {
 
 // Manejar el evento de cambio en el input de archivo
 $('#subir_comp').change(function () {
-  var fileName = $(this).val().split('\\').pop(); // Obtener solo el nombre del archivo
+  $('#subir_comp').click();
+  /*var fileName = $(this).val().split('\\').pop(); // Obtener solo el nombre del archivo
   var fileExtension = fileName.split('.').pop().toLowerCase(); // Obtener la extensión en minúsculas
   if (fileExtension == 'jpg' || fileExtension == 'pdf') {
     alert('Se ha confirmado el pago con el comprobante: ' + fileName);
   }
   else {
     alert('Por favor, selecciona un archivo JPG o PDF.');
-  }
+  }*/
 });
 
 
