@@ -152,12 +152,8 @@ class ModeloGeneral
 
 	public static function mdlActualizar($tabla, $item1, $valor1, $item2, $valor2)
 	{
-
-
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = '$valor1' WHERE $item2 = '$valor2'");
-
 		if ($stmt->execute()) {
-
 			return "ok";
 		} else {
 			// return "error";

@@ -44,7 +44,7 @@ class ControladorPedidos
 					}).then(function(result) {
 							if (result.value) {
 	
-								window.location ="' . str_replace('_','-',$tabla) . '";
+								window.location ="' . str_replace('_', '-', $tabla) . '";
 	
 							}
 						})
@@ -71,49 +71,86 @@ class ControladorPedidos
 		}
 	}
 
-	public static function ctrSubirComp(){
-		if(isset($_POST["subir_comp"])){
-			if ($_SESSION["tipo"] == "Distribuidor") {
-				$tabla = 'pedidos_dists';
-			} else {
-				$tabla = 'pedidos_mayoristas';
-			}	
-			$respuesta = ModeloGeneral::mdlActualizar($tabla, 'comp_pago', $_POST["subir_comp"], 'ID', $_POST["IdPedido"]);
+	public static function ctrSubirComp()
+	{
+		if (isset($_POST["mandar_comp"])) {
+			if ($_FILES["subir_comp"]["type"] == "image/jpeg" || $_FILES["subir_comp"]["type"] == "application/pdf") {
+				$tabla = '';
+				if ($_SESSION["tipo"] == "Distribuidor") {
+					$tabla = 'pedidos_dists';
+				} else {
+					$tabla = 'pedidos_mayoristas';
+				}
+				$dir_comp = "vistas/docs/".$tabla."/".$_SESSION['ID']."/".$_POST['IdPedido']."ComprobantePago";
+
+				// Crea los directorios de forma recursiva
+				mkdir($dir_comp, 0755, true);
+
+				// Eliminar archivos existentes en la carpeta destino
+				$archivos_en_carpeta = glob($dir_comp . "*");
+				foreach ($archivos_en_carpeta as $archivo_existente) {
+					unlink($archivo_existente);
+				}
+
+				$comp = $dir_comp . '/' . $_FILES["subir_comp"]["name"];
+
+				// Mover el archivo a la ubicación deseada
+				move_uploaded_file($_FILES["subir_comp"]["tmp_name"], $comp);
+
+				$respuesta = ModeloGeneral::mdlActualizar($tabla, 'comp_pago', $comp, 'ID', $_POST["idPedido"]);
+
+				if ($respuesta == "ok") {
+					echo '<script>
+	
+					swal({
+							type: "success",
+							title: "Se ha cargado el comprobante de pago:' . $_FILES["subir_comp"]["name"] . ' ",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+							}).then(function(result) {
+									if (result.value) {
 			
-			if ($respuesta == "ok") {
-				echo '<script>
+										window.location ="' . $_SERVER["REQUEST_URI"] . '";
+			
+									}
+								})
+			
+					</script>';
+				} else {
+					echo '<script>
 	
-			swal({
-					type: "success",
-					title: "Se ha cargado el comprobante de pago",
-					showConfirmButton: true,
-					confirmButtonText: "Cerrar"
-					}).then(function(result) {
-							if (result.value) {
-	
-								window.location ="' . $_SERVER["REQUEST_URI"] .'";
-	
-							}
-						})
-	
-			</script>';
+					swal({
+							type: "error",
+							title: "No se pudo subir el comprobante de pago",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+							}).then(function(result) {
+									if (result.value) {
+			
+										window.location ="' . $_SERVER["REQUEST_URI"] . '";
+			
+									}
+								})
+			
+					</script>';
+				}
 			} else {
 				echo '<script>
 	
-			swal({
-					type: "error",
-					title: "No se pudo subir el comprobante de pago",
-					showConfirmButton: true,
-					confirmButtonText: "Cerrar"
-					}).then(function(result) {
-							if (result.value) {
-	
-								window.location ="' . $_SERVER["REQUEST_URI"] . '";
-	
-							}
-						})
-	
-			</script>';
+				swal({
+						type: "error",
+						title: "¡Sólo están permitidos los archivos JPG o PDF!",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+						}).then(function(result) {
+								if (result.value) {
+		
+									window.location ="' . $_SERVER["REQUEST_URI"] . '";
+		
+								}
+							})
+		
+				</script>';
 			}
 		}
 	}

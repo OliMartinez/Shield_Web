@@ -119,8 +119,8 @@
 
             foreach ($respuesta as $key => $value) {
               if ($_SESSION["tipo"] == "Distribuidor" || ($_SESSION["tipo"] == "Agente" and  in_array($value["dist"], $distsarray)) || ($_SESSION["tipo"] == "Mayorista" and in_array($value["dist"], $distsarray)) || ($_SESSION["tipo"] == "Fabricante" and in_array($value["dist"], $distsarray)) || $_SESSION["tipo"] == "Administrador") {
-                echo '<tr data-id="' . $value["ID"] . '">';
-                echo '<td>' . ($key + 1) . '</td>
+                echo '<tr data-id="' . $value["ID"] . '">
+                <td>' . ($key + 1) . '</td>
                   <td>
                     <ul class="nav">
                       <li>
@@ -129,7 +129,7 @@
                             <a data-toggle="dropdown" style="color:#646364;"><i class="fa fa-ellipsis-v"></i></a>
                             <ul class="dropdown-menu">
                               <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalSeguimiento">Seguimiento</a></li>
-                              <li class="dropdown-item"><a style="cursor:pointer;">Comprobante</a></li>
+                              <li class="dropdown-item"><a style="cursor:pointer;">Comprobante de pedido</a></li>
                               <!--<li class="dropdown-item"><a style="cursor:pointer;">Factura</a></li>-->';
                 if ($_SESSION["tipo"] == "Distribuidor") {
                   echo ' 
@@ -138,7 +138,7 @@
                               <form role="form" enctype="multipart/form-data" method="post">
                                 <input type="hidden" name="idPedido" style="display: none;" value="'. $value["ID"] .'">
                                 <input type="file" id="subir_comp" name="subir_comp" style="display: none;">
-                                <input type="submit" id="mandar_comp" style="display: none;">
+                                <button type="submit" id="mandar_comp" name="mandar_comp" style="display: none;"></button>
                               </form>
                               <li class="dropdown-item"><a style="cursor:pointer;">Confirmar de recibido</a></li>
                           <!--<li class="dropdown-item"><a style="cursor:pointer;">Hacer un Reclamo</a></li>-->
@@ -234,6 +234,8 @@
 </div>
 
 <?php
+$subirComprobantePago = new ControladorPedidos();
+$subirComprobantePago->ctrSubirComp();
 include "includes/modalseguimiento.html";
 include "includes/modaldepbanc.php";
 include "includes/modalcomppago.html";

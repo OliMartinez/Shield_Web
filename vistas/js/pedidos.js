@@ -61,7 +61,7 @@ $('#conf_pago').click(function () {
 
 // Manejar el evento de cambio en el input de archivo
 $('#subir_comp').change(function () {
-  $('#subir_comp').click();
+  $('#mandar_comp').click();
   /*var fileName = $(this).val().split('\\').pop(); // Obtener solo el nombre del archivo
   var fileExtension = fileName.split('.').pop().toLowerCase(); // Obtener la extensión en minúsculas
   if (fileExtension == 'jpg' || fileExtension == 'pdf') {
