@@ -90,11 +90,11 @@
               if ($_SESSION["tipo"] == "Mayorista") {
                 echo '    
                           <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalInfoDeposito" class="InfoDeposito" tabla="pedidos_mayoristas" idPedido="' . $value["ID"] . '">Información para Depósito Bancario</a></li>
-                          <li class="dropdown-item"><a style="cursor:pointer;" id="conf_pago">Subir comprobante de pago (JPG o PDF)</a></li>
+                          <li class="dropdown-item"><a style="cursor:pointer;" class="conf_pago">Subir comprobante de pago (JPG o PDF)</a></li>
                           <form role="form" enctype="multipart/form-data" method="post">
                             <input type="hidden" name="idPedido" style="display: none;" value="'. $value["ID"] .'">
-                            <input type="file" id="subir_comp" name="subir_comp" style="display: none;">
-                            <button type="submit" id="mandar_comp" name="mandar_comp" style="display: none;"></button>
+                            <input type="file" class="subir_comp" name="subir_comp" style="display: none;">
+                            <button type="submit" class="mandar_comp" name="mandar_comp" style="display: none;"></button>
                           </form>
                           <li class="dropdown-item"><a style="cursor:pointer;">Confirmar de recibido</a></li>
                       <!--<li class="dropdown-item"><a style="cursor:pointer;">Hacer un Reclamo</a></li>-->
@@ -107,7 +107,7 @@
               }
               if ($_SESSION["tipo"] != "Mayorista") {
                 echo '<li class="dropdown-item"><a style="cursor:pointer;">Marcar como entregado</a></li>
-                <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalCompPago" idPedido="' . $value["ID"] . '" tabla="pedidos_mayoristas">Ver comprobante de pago</a></li>
+                <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalCompPago" idPedido="' . $value["ID"] . '" tabla="pedidos_mayoristas" compdir="' . $value["comp_pago"] . '" class="ver_comp_pago">Ver comprobante de pago</a></li>
                 <li class="dropdown-item"><a style="cursor:pointer;">Confirmar pago</a></li>';
               }
               echo ' 

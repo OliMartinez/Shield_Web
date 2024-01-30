@@ -55,23 +55,68 @@ $(".InfoDeposito").on("click", function () {
 
 })
 
-$('#conf_pago').click(function () {
-  $('#subir_comp').click();
+$('.conf_pago').click(function () {
+  $('.subir_comp').click();
 });
 
 // Manejar el evento de cambio en el input de archivo
-$('#subir_comp').change(function () {
-  $('#mandar_comp').click();
-  /*var fileName = $(this).val().split('\\').pop(); // Obtener solo el nombre del archivo
-  var fileExtension = fileName.split('.').pop().toLowerCase(); // Obtener la extensión en minúsculas
-  if (fileExtension == 'jpg' || fileExtension == 'pdf') {
-    alert('Se ha confirmado el pago con el comprobante: ' + fileName);
-  }
-  else {
-    alert('Por favor, selecciona un archivo JPG o PDF.');
-  }*/
+$('.subir_comp').change(function () {
+  $('.mandar_comp').click();
 });
 
+//Obtener Foto del Comprobante de Pago
+$('.ver_comp_pago').on("click", function () {
+  var compdir = $(this).attr('compdir');
+  var ext = compdir.slice(compdir.lastIndexOf('.') + 1);
+  if(ext.toLowerCase() == 'jpg' || ext.toLowerCase() == 'jpeg'){
+    var $img = $('#FotoComp');
+    var $modal = $("#modalCompPago");
+
+    // Establecer la imagen en el modal
+    $img.attr("src", compdir);
+
+    // Restablecer el tamaño original de la imagen
+    $img.css({ "max-height": "", "max-width": "" });
+
+    // Obtener el tamaño de la ventana del navegador
+    var windowHeight = $(window).height();
+    var windowWidth = $(window).width();
+
+    // Obtener el tamaño de la imagen
+    var imgHeight = $img.height();
+    var imgWidth = $img.width();
+
+    // Calcular la reducción necesaria
+    var reduceHeight = imgHeight - windowHeight + 10;
+    var reduceWidth = imgWidth - windowWidth + 10;
+
+    // Aplicar la reducción si es necesario
+    if (reduceHeight > 0) {
+        $img.css("max-height", imgHeight - reduceHeight + "px");
+    }
+
+    if (reduceWidth > 0) {
+		imgWidth = imgWidth - reduceWidth;
+        $img.css("max-width", imgWidth + "px");
+		
+    }
+
+    // Restablecer el tamaño del modal
+    $modal.find(".modal-dialog").css({"max-width": imgWidth});
+    $modal.find(".modal-content").css({ "width": "auto", "margin": 0 });
+    $modal.find(".modal-body").css({ "padding": 1 });
+    $modal.find(".modal-header").css({ "height": 15, "padding": 2 });
+
+  }
+  else if(ext.toLowerCase() == 'pdf'){
+    // Abrir el PDF en una nueva ventana
+    window.open(compdir, '_blank');
+    // Esperar 2 segundos (2000 milisegundos) antes de realizar la siguiente instrucción
+    setTimeout(function () {
+      $('#cerrar').click();
+    },1)
+  }
+})
 
 /*=============================================
 IMPRIMIR FACTURA
