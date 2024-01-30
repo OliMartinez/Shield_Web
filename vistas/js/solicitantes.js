@@ -167,15 +167,16 @@ $(".btnRechazar").on("click", function () {
 	$("#titleobservs").html("Agregar observaciones (opcional)");
 	$("#sendresol").html("Rechazar Solicitante");
 	$('#observs').attr('name', 'Rechazar');
-	StatusSolic();
+	idSolic = $(this).attr('idUsuario');
+	$('#idSolic').val(idSolic);
+	StatusSolic(idSolic);
 })
 
-var StatusSolic = function () {
-	var idUsuario = $(this).attr("idUsuario");
+var StatusSolic = function (idSolic) {
 	var tabla = "solicitantes";
 
 	var datos = new FormData();
-	datos.append("id", idUsuario);
+	datos.append("id", idSolic);
 	datos.append("tabla", tabla);
 
 	$.ajax({

@@ -68,6 +68,7 @@
               $item = "mayorista";
               $valor = "FLEXOLAN S.A de C.V";
             }
+
             if ($_SESSION["tipo"] == "Mayorista") {
               $item = "mayorista";
               $valor = $_SESSION["ID"];
@@ -460,12 +461,7 @@ MODAL ASIGNAR MAYORISTA
           <button type="submit" class="btn btn-primary">Asignar</button>
 
         </div>
-        <?php
 
-        $asignar = new ControladorUsuarios();
-        $asignar->ctrAsignar();
-
-        ?>
       </form>
 
     </div>
@@ -578,12 +574,7 @@ MODAL ASIGNAR MAYORISTA Y ZONA
           <button type="submit" class="btn btn-primary">Asignar</button>
 
         </div>
-        <?php
 
-        $asignar = new ControladorUsuarios();
-        $asignar->ctrAsignar();
-
-        ?>
       </form>
 
     </div>
@@ -714,12 +705,7 @@ MODAL ASIGNAR MAYORISTA Y AGENTE
           <button type="submit" class="btn btn-primary">Asignar</button>
 
         </div>
-        <?php
 
-        $asignar = new ControladorUsuarios();
-        $asignar->ctrAsignar();
-
-        ?>
       </form>
 
     </div>
@@ -727,6 +713,13 @@ MODAL ASIGNAR MAYORISTA Y AGENTE
   </div>
 
 </div>
+
+<?php
+
+$asignar = new ControladorUsuarios();
+$asignar->ctrAsignar();
+
+?>
 
 <!--=====================================
 MODAL OBSERVACIONES
@@ -765,7 +758,7 @@ MODAL OBSERVACIONES
               <label id="titleobservs"></label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                <input type="hidden" name="IDResol" id="IDResol">
+                <input type="hidden" name="IDSolic" id="IDSolic">
                 <textarea class="form-control input-lg" name="Observs" id="Observs" required rows="5" placeholder="Agrega observaciones"></textarea>
               </div>
             </div>
@@ -783,8 +776,8 @@ MODAL OBSERVACIONES
           </div>
           <?php
 
-          //$guardarUsuario = new ControladorUsuarios();
-          //$guardarUsuario->ctrGuardarUsuario();
+          $resolSolic = new ControladorUsuarios();
+          $resolSolic->ctrResolucion();
 
           ?>
         </div>

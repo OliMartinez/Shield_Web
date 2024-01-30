@@ -657,14 +657,14 @@ class ControladorUsuarios
 			$item1 = "observs";
 			$valor1 = $_POST["Observs"];
 			$item2 = "ID";
-			$valor2 = $_POST["IDResol"];
+			$valor2 = $_POST["IDSolic"];
 			$observs = ModeloGeneral::mdlActualizar($tabla, $item1, $valor1, $item2, $valor2);
 			if ($observs == "ok") {
 				echo '<script>
 
 			swal({
 					type: "success",
-					title: "Se han enviado las obsrvaciones correctamente",
+					title: "Se han enviado las observaciones correctamente",
 					showConfirmButton: true,
 					confirmButtonText: "Cerrar"
 					}).then(function(result) {
@@ -694,7 +694,7 @@ class ControladorUsuarios
 		} else if (isset($_POST["Aceptar"])) {
 			$tabla = "usuarios";
 			$tabla2 = "solicitantes";
-			$valor = $_POST["IDResol"];
+			$valor = $_POST["IDSolic"];
 
 			if ($_GET["fotoUsuario"] != "") {
 
@@ -777,7 +777,7 @@ class ControladorUsuarios
 			$item1 = "observs";
 			$valor1 = $_POST["Observs"];
 			$item2 = "ID";
-			$valor2 = $_POST["IDResol"];
+			$valor2 = $_POST["IDSolic"];
 			$item3 = "rechazo";
 			$valor3 = date('Y-m-d', strtotime(date('Y-m-d') . ' +15 days'));;
 			$observs = ModeloGeneral::mdlActualizar($tabla, $item1, $valor1, $item2, $valor2);
