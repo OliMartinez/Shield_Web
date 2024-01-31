@@ -118,6 +118,11 @@ $('.ver_comp_pago').on("click", function () {
   }
 })
 
+
+$('.confpago').click(function () {
+  $('.mandarconf').click();
+});
+
 /*=============================================
 IMPRIMIR FACTURA
 =============================================*/

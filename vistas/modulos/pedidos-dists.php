@@ -140,9 +140,13 @@
                                 <input type="file" class="subir_comp" name="subir_comp" style="display: none;">
                                 <button type="submit" class="mandar_comp" name="mandar_comp" style="display: none;"></button>
                               </form>
-                              <li class="dropdown-item"><a style="cursor:pointer;">Confirmar de recibido</a></li>
-                          <!--<li class="dropdown-item"><a style="cursor:pointer;">Hacer un Reclamo</a></li>-->
-                              <li class="dropdown-item"><a style="cursor:pointer;">Devolución</a></li>
+                              <li class="dropdown-item"><a style="cursor:pointer;" class="finalizar">Confirmar de recibido</a></li>
+                              <form role="form" enctype="multipart/form-data" method="post">
+                                <input type="hidden" name="idPedido" style="display: none;" value="'. $value["ID"] .'">
+                                <button type="submit" class="FinalizarPedido" name="FinalizarPedido" style="display: none;"></button>
+                              </form>
+                          <!--<li class="dropdown-item"><a style="cursor:pointer;" class="reclamar">Hacer un Reclamo</a></li>-->
+                              <li class="dropdown-item"><a style="cursor:pointer;" class="devolver">Devolución</a></li>
                   ';
                 } else if ($_SESSION["tipo"] == "Administrador") {
                   echo '
@@ -150,12 +154,25 @@
                               <li class="dropdown-item"><a style="cursor:pointer;" class="btnEliminarPedido" idPedido="' . $value["ID"] . '" tabla="pedidos_dists">Eliminar</a></li>';
                 }
                 if ($_SESSION["tipo"] != "Distribuidor") {
-                  echo '<li class="dropdown-item"><a style="cursor:pointer;">Marcar como entregado</a></li>
-                  <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalCompPago" tabla="pedidos_dists" compdir="' . $value["comp_pago"] . '" class="ver_comp_pago">Ver comprobante de pago</a></li>
-                  <li class="dropdown-item"><a style="cursor:pointer;">Confirmar pago</a></li>';
+                              echo '
+                              <li class="dropdown-item"><a style="cursor:pointer;" class="marcarentrega">Marcar como entregado</a></li>
+                              <form role="form" enctype="multipart/form-data" method="post">
+                                <input type="hidden" name="idPedido" style="display: none;" value="'. $value["ID"] .'">
+                                <button type="submit" class="Entregado" name="Entregado" style="display: none;"></button>
+                              </form>
+                              <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalCompPago" tabla="pedidos_dists" compdir="' . $value["comp_pago"] . '" class="ver_comp_pago">Ver comprobante de pago</a></li>
+                              <li class="dropdown-item"><a style="cursor:pointer;" class="confpago" >Confirmar pago</a></li>
+                              <form role="form" enctype="multipart/form-data" method="post">
+                                <input type="hidden" name="idPedido" style="display: none;" value="'. $value["ID"] .'">
+                                <button type="submit" class="mandarconf" name="mandarconf" style="display: none;"></button>
+                              </form>';
                 }
                 echo ' 
-                              <li class="dropdown-item"><a style="cursor:pointer;">Cancelar</a></li>
+                              <li class="dropdown-item"><a style="cursor:pointer;" class="cancelar">Cancelar</a></li>
+                              <form role="form" enctype="multipart/form-data" method="post">
+                                <input type="hidden" name="idPedido" style="display: none;" value="'. $value["ID"] .'">
+                                <button type="submit" class="CancelarPedido" name="CancelarPedido" style="display: none;"></button>
+                              </form>
                             </ul>
                           </li>
                         </ul>
