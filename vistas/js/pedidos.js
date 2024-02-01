@@ -61,14 +61,16 @@ $('.conf_pago').click(function () {
 
 // Manejar el evento de cambio en el input de archivo
 $('.subir_comp').change(function () {
-  $('.mandar_comp').click();
+  setTimeout(function () {
+    $('.mandar_comp').click();
+  }, 2000)
 });
 
 //Obtener Foto del Comprobante de Pago
 $('.ver_comp_pago').on("click", function () {
   var compdir = $(this).attr('compdir');
   var ext = compdir.slice(compdir.lastIndexOf('.') + 1);
-  if(ext.toLowerCase() == 'jpg' || ext.toLowerCase() == 'jpeg'){
+  if (ext.toLowerCase() == 'jpg' || ext.toLowerCase() == 'jpeg') {
     var $img = $('#FotoComp');
     var $modal = $("#modalCompPago");
 
@@ -92,29 +94,29 @@ $('.ver_comp_pago').on("click", function () {
 
     // Aplicar la reducción si es necesario
     if (reduceHeight > 0) {
-        $img.css("max-height", imgHeight - reduceHeight + "px");
+      $img.css("max-height", imgHeight - reduceHeight + "px");
     }
 
     if (reduceWidth > 0) {
-		imgWidth = imgWidth - reduceWidth;
-        $img.css("max-width", imgWidth + "px");
-		
+      imgWidth = imgWidth - reduceWidth;
+      $img.css("max-width", imgWidth + "px");
+
     }
 
     // Restablecer el tamaño del modal
-    $modal.find(".modal-dialog").css({"max-width": imgWidth});
+    $modal.find(".modal-dialog").css({ "max-width": imgWidth });
     $modal.find(".modal-content").css({ "width": "auto", "margin": 0 });
     $modal.find(".modal-body").css({ "padding": 1 });
     $modal.find(".modal-header").css({ "height": 15, "padding": 2 });
 
   }
-  else if(ext.toLowerCase() == 'pdf'){
+  else if (ext.toLowerCase() == 'pdf') {
     // Abrir el PDF en una nueva ventana
     window.open(compdir, '_blank');
     // Esperar 2 segundos (2000 milisegundos) antes de realizar la siguiente instrucción
     setTimeout(function () {
       $('#cerrar').click();
-    },1)
+    }, 1)
   }
 })
 
