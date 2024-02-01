@@ -61,9 +61,7 @@ $('.conf_pago').click(function () {
 
 // Manejar el evento de cambio en el input de archivo
 $('.subir_comp').change(function () {
-  setTimeout(function () {
-    $('.mandar_comp').click();
-  }, 2000)
+  $('.mandar_comp').click();
 });
 
 //Obtener Foto del Comprobante de Pago

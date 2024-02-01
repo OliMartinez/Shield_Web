@@ -92,15 +92,16 @@
                           <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalInfoDeposito" class="InfoDeposito" tabla="pedidos_mayoristas" idPedido="' . $value["ID"] . '">Información para Depósito Bancario</a></li>
                           <li class="dropdown-item"><a style="cursor:pointer;" class="conf_pago">Subir comprobante de pago (JPG o PDF)</a></li>
                           <form role="form" enctype="multipart/form-data" method="post">
-                            <input type="hidden" name="idPedido" style="display: none;" value="'. $value["ID"] .'">
+                            <input type="hidden" name="idPedido" style="display: none;" value="' . $value["ID"] . '">
                             <input type="file" class="subir_comp" name="subir_comp" style="display: none;">
                             <button type="submit" class="mandar_comp" name="mandar_comp" style="display: none;"></button>
-                            ';$subirComprobantePago = new ControladorPedidos();
-$subirComprobantePago->ctrSubirComp();
-                            echo'</form>
+                            ';
+                $subirComprobantePago = new ControladorPedidos();
+                $subirComprobantePago->ctrSubirComp();
+                echo '</form>
                           <li class="dropdown-item"><a style="cursor:pointer;" class="finalizar">Confirmar de recibido</a></li>
                           <form role="form" enctype="multipart/form-data" method="post">
-                            <input type="hidden" name="idPedido" style="display: none;" value="'. $value["ID"] .'">
+                            <input type="hidden" name="idPedido" style="display: none;" value="' . $value["ID"] . '">
                             <button type="submit" class="FinalizarPedido" name="FinalizarPedido" style="display: none;"></button>
                           </form>                          
                       <!--<li class="dropdown-item"><a style="cursor:pointer;" class="reclamar">Hacer un Reclamo</a></li>-->
@@ -115,16 +116,16 @@ $subirComprobantePago->ctrSubirComp();
                 echo '
                           <li class="dropdown-item"><a style="cursor:pointer;">Marcar como entregado</a></li>
                           <form role="form" enctype="multipart/form-data" method="post">
-                            <input type="hidden" name="idPedido" style="display: none;" value="'. $value["ID"] .'">
+                            <input type="hidden" name="idPedido" style="display: none;" value="' . $value["ID"] . '">
                             <button type="submit" class="Entregado" name="Entregado" style="display: none;"></button>
                           </form>
                           <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalCompPago" idPedido="' . $value["ID"] . '" tabla="pedidos_mayoristas" compdir="' . $value["comp_pago"] . '" class="ver_comp_pago">Ver comprobante de pago</a></li>
                           <li class="dropdown-item"><a style="cursor:pointer;" class="confpago" >Confirmar pago</a></li>
                           <form role="form" enctype="multipart/form-data" method="post">
-                            <input type="hidden" name="idPedido" style="display: none;" value="'. $value["ID"] .'">
+                            <input type="hidden" name="idPedido" style="display: none;" value="' . $value["ID"] . '">
                             <button type="submit" class="mandarconf" name="mandarconf" style="display: none;"></button>
                           </form>';
-  }
+              }
               echo ' 
                           <li class="dropdown-item"><a style="cursor:pointer;">Cancelar</a></li>
                       </ul>

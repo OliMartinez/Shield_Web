@@ -73,7 +73,7 @@ class ControladorPedidos
 
 	public static function ctrSubirComp()
 	{
-		if (isset($_POST["mandar_comp"])) {
+		if (isset($_POST["mandar_comp"]) && isset($_FILES["subir_comp"])) {
 			if ($_FILES["subir_comp"]["type"] == "image/jpeg" || $_FILES["subir_comp"]["type"] == "application/pdf") {
 				$tabla = '';
 				if ($_SESSION["tipo"] == "Distribuidor") {
@@ -81,7 +81,7 @@ class ControladorPedidos
 				} else {
 					$tabla = 'pedidos_mayoristas';
 				}
-				$dir_comp = "vistas/docs/".$tabla."/".$_SESSION['ID']."/".$_POST['IdPedido']."ComprobantePago";
+				$dir_comp = "vistas/docs/" . $tabla . "/" . $_SESSION['ID'] . "/" . $_POST['IdPedido'] . "ComprobantePago";
 
 				// Crea los directorios de forma recursiva
 				mkdir($dir_comp, 0755, true);
@@ -155,8 +155,9 @@ class ControladorPedidos
 		}
 	}
 
-	public static function ctrConfPago(){
-		if(isset($_POST['mandarconf'])){
+	public static function ctrConfPago()
+	{
+		if (isset($_POST['mandarconf'])) {
 			$tabla = '';
 			if ($_SESSION["tipo"] == "Distribuidor") {
 				$tabla = 'pedidos_dists';
@@ -203,8 +204,9 @@ class ControladorPedidos
 		}
 	}
 
-	public static function ctrMarcarEntrega(){
-		if(isset($_POST['Entregado'])){
+	public static function ctrMarcarEntrega()
+	{
+		if (isset($_POST['Entregado'])) {
 			$tabla = '';
 			if ($_SESSION["tipo"] == "Distribuidor") {
 				$tabla = 'pedidos_dists';
@@ -251,8 +253,9 @@ class ControladorPedidos
 		}
 	}
 
-	public static function ctrFinalizarPedido(){
-		if(isset($_POST['FinalizarPedido'])){
+	public static function ctrFinalizarPedido()
+	{
+		if (isset($_POST['FinalizarPedido'])) {
 			$tabla = '';
 			if ($_SESSION["tipo"] == "Distribuidor") {
 				$tabla = 'pedidos_dists';
@@ -298,8 +301,9 @@ class ControladorPedidos
 		}
 	}
 
-	public static function ctrCancelar(){
-		if(isset($_POST['CancelarPedido'])){
+	public static function ctrCancelar()
+	{
+		if (isset($_POST['CancelarPedido'])) {
 			$tabla = '';
 			if ($_SESSION["tipo"] == "Distribuidor") {
 				$tabla = 'pedidos_dists';
@@ -344,5 +348,4 @@ class ControladorPedidos
 			}
 		}
 	}
-
 }
