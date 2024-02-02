@@ -120,10 +120,24 @@ $('.ver_comp_pago').on("click", function () {
   }
 })
 
-
 $('.confpago').click(function () {
   var index = $(this).index()
   $('.mandarconf').eq(index).click();
+});
+
+$('.finalizar').click(function () {
+  var index = $(this).index()
+  $('.FinalizarPedido').eq(index).click();
+});
+
+$('.marcarentrega').click(function () {
+  var index = $(this).index()
+  $('.Entregado').eq(index).click();
+});
+
+$('.cancelar').click(function () {
+  var index = $(this).index()
+  $('.CancelarPedido').eq(index).click();
 });
 
 /*=============================================

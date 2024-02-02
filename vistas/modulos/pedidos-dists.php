@@ -251,8 +251,16 @@
 </div>
 
 <?php
-$subirComprobantePago = new ControladorPedidos();
-$subirComprobantePago->ctrSubirComp();
+$ctrSubirComp = new ControladorPedidos();
+$ctrSubirComp->ctrSubirComp();
+$ctrConfPago = new ControladorPedidos();
+$ctrConfPago->ctrConfPago();
+$ctrMarcarEntrega = new ControladorPedidos();
+$ctrMarcarEntrega->ctrMarcarEntrega();
+$ctrFinalizarPedido = new ControladorPedidos();
+$ctrFinalizarPedido->ctrFinalizarPedido();
+$ctrCancelar = new ControladorPedidos();
+$ctrCancelar->ctrCancelar();
 include "includes/modalseguimiento.html";
 include "includes/modaldepbanc.php";
 include "includes/modalcomppago.html";

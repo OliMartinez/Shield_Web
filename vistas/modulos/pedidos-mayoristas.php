@@ -111,7 +111,7 @@
               }
               if ($_SESSION["tipo"] != "Mayorista") {
                 echo '
-                          <li class="dropdown-item"><a style="cursor:pointer;">Marcar como entregado</a></li>
+                          <li class="dropdown-item"><a style="cursor:pointer;" class="marcarentrega">Marcar como entregado</a></li>
                           <form role="form" enctype="multipart/form-data" method="post">
                             <input type="hidden" name="idPedido" style="display: none;" value="' . $value["ID"] . '">
                             <button type="submit" class="Entregado" name="Entregado" style="display: none;"></button>
@@ -124,7 +124,11 @@
                           </form>';
               }
               echo ' 
-                          <li class="dropdown-item"><a style="cursor:pointer;">Cancelar</a></li>
+                          <li class="dropdown-item"><a style="cursor:pointer;" class="cancelar">Cancelar</a></li>
+                          <form role="form" enctype="multipart/form-data" method="post">
+                            <input type="hidden" name="idPedido" style="display: none;" value="' . $value["ID"] . '">
+                            <button type="submit" class="CancelarPedido" name="CancelarPedido" style="display: none;"></button>
+                          </form>
                       </ul>
                   </li>
                 </ul>
@@ -188,8 +192,16 @@
 </div>
 
 <?php
-$subirComprobantePago = new ControladorPedidos();
-$subirComprobantePago->ctrSubirComp();
+$ctrSubirComp = new ControladorPedidos();
+$ctrSubirComp->ctrSubirComp();
+$ctrConfPago = new ControladorPedidos();
+$ctrConfPago->ctrConfPago();
+$ctrMarcarEntrega = new ControladorPedidos();
+$ctrMarcarEntrega->ctrMarcarEntrega();
+$ctrFinalizarPedido = new ControladorPedidos();
+$ctrFinalizarPedido->ctrFinalizarPedido();
+$ctrCancelar = new ControladorPedidos();
+$ctrCancelar->ctrCancelar();
 include "includes/modalseguimiento.html";
 include "includes/modaldepbanc.php";
 include "includes/modalcomppago.html";
