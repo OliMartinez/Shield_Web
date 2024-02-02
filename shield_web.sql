@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2023 a las 13:55:27
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.1.2
+-- Tiempo de generación: 02-02-2024 a las 12:08:11
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `agentes` (
   `ID` varchar(20) NOT NULL,
   `mayorista` varchar(20) DEFAULT NULL,
   `zona` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `agentes`
@@ -54,7 +54,7 @@ CREATE TABLE `carritos_dists` (
   `categoria` varchar(20) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `precioxcantidad` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `carritos_dists`
@@ -64,10 +64,7 @@ INSERT INTO `carritos_dists` (`ID`, `ID_user`, `ID_product`, `categoria`, `canti
 (0, 'Distribuidor', '6', 'Nanoshield', 1, 200),
 (1, 'Distribuidor', '2', 'Nanoshield', 4, 800),
 (2, 'Distribuidor', '5', 'Nanoshield', 3, 600),
-(3, 'BordadosNorte', '6', 'NanoShield', 2, 400),
-(4, 'BordadosNorte', '2', 'NanoShield', 1, 200),
-(5, 'BordadosNorte', '3', 'NanoShield', 3, 600),
-(6, 'BordadosNorte', '9', 'NanoShield', 12, 2520);
+(3, 'BordadosNorte', '5', 'NanoShield', 12, 2400);
 
 -- --------------------------------------------------------
 
@@ -82,14 +79,7 @@ CREATE TABLE `carritos_mayoristas` (
   `categoria` varchar(20) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `precioxcantidad` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `carritos_mayoristas`
---
-
-INSERT INTO `carritos_mayoristas` (`ID`, `ID_user`, `ID_product`, `categoria`, `cantidad`, `precioxcantidad`) VALUES
-(0, 'Pedrito', '3', 'NanoShield', 1, 150);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -101,7 +91,7 @@ CREATE TABLE `categorias` (
   `ID` varchar(20) NOT NULL,
   `imagen` varchar(500) NOT NULL,
   `descripcion` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `categorias`
@@ -125,7 +115,7 @@ CREATE TABLE `colecciones` (
   `ID` varchar(30) NOT NULL,
   `imagen` varchar(500) NOT NULL,
   `descripcion` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `colecciones`
@@ -150,7 +140,7 @@ CREATE TABLE `comisiones` (
   `agente` varchar(20) NOT NULL,
   `ID_pedido` int(11) NOT NULL,
   `comision` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `comisiones`
@@ -175,7 +165,7 @@ CREATE TABLE `credito` (
   `fecha_solicitud` date NOT NULL,
   `fecha_fin` date NOT NULL,
   `interes` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -193,7 +183,7 @@ CREATE TABLE `cuentas_deps` (
   `clabe` varchar(16) DEFAULT NULL,
   `tarjeta` varchar(19) DEFAULT NULL,
   `fecha` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `cuentas_deps`
@@ -224,7 +214,7 @@ CREATE TABLE `dists` (
   `acta_const` varchar(100) DEFAULT NULL,
   `comp_dom` varchar(100) DEFAULT NULL,
   `identificacion` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `dists`
@@ -250,7 +240,7 @@ CREATE TABLE `mayoristas` (
   `acta_const` varchar(500) DEFAULT NULL,
   `identificacion` varchar(500) DEFAULT NULL,
   `comp_dom` varchar(500) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `mayoristas`
@@ -276,18 +266,22 @@ CREATE TABLE `pedidos_dists` (
   `total` float NOT NULL,
   `fecha_solicitud` date DEFAULT current_timestamp(),
   `motivo_pago` text NOT NULL,
+  `comp_pago` varchar(500) DEFAULT NULL,
   `fecha_pago` date NOT NULL,
   `fecha_llegada` date NOT NULL,
   `seguimiento` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `pedidos_dists`
 --
 
-INSERT INTO `pedidos_dists` (`ID`, `dist`, `tipo`, `productos`, `domicilio`, `precio`, `envio`, `total`, `fecha_solicitud`, `motivo_pago`, `fecha_pago`, `fecha_llegada`, `seguimiento`) VALUES
-(2, 'BordadosNorte', 'En espera de pago', 'T09 Shield x1 200<br>G02 Shield x3 600<br>G03 Nanoshield x2 400', 'AVENIDA ORION 219-A COLONIA CONTRY 64850 MONTERREY, NUEVO LEÓN, MÉXICO', 1200, 0, 0, '2023-08-25', 'Pedido 2 BordadosNorte', '0000-00-00', '0000-00-00', ''),
-(3, 'BordadosNorte', 'En espera de pago', 'G03 Nanoshield x3 600<br>M01 Shield x2 400<br>R08-LATERAL Shield x1 200<br>G02 Shield x1 200', 'AVENIDA ORION 219-A COLONIA CONTRY 64850 MONTERREY, NUEVO LEÓN, MÉXICO', 1400, 0, 0, '2023-08-18', 'Pedido 3 BordadosNorte', '0000-00-00', '0000-00-00', '');
+INSERT INTO `pedidos_dists` (`ID`, `dist`, `tipo`, `productos`, `domicilio`, `precio`, `envio`, `total`, `fecha_solicitud`, `motivo_pago`, `comp_pago`, `fecha_pago`, `fecha_llegada`, `seguimiento`) VALUES
+(2, 'BordadosNorte', 'En espera de pago', 'T09 Shield x1 200<br>G02 Shield x3 600<br>G03 Nanoshield x2 400', 'AVENIDA ORION 219-A COLONIA CONTRY 64850 MONTERREY, NUEVO LEÓN, MÉXICO', 1200, 0, 0, '2023-08-25', 'Pedido 2 BordadosNorte', NULL, '0000-00-00', '0000-00-00', ''),
+(3, 'BordadosNorte', 'En espera de pago', 'G03 Nanoshield x3 600<br>M01 Shield x2 400<br>R08-LATERAL Shield x1 200<br>G02 Shield x1 200', 'AVENIDA ORION 219-A COLONIA CONTRY 64850 MONTERREY, NUEVO LEÓN, MÉXICO', 1400, 0, 0, '2023-08-18', 'Pedido 3 BordadosNorte', NULL, '0000-00-00', '0000-00-00', ''),
+(5, 'BordadosNorte', 'En espera de pago', 'G02  x \r\n                        1800                      <b', 'AVENIDA ORION 219-A COLONIA CONTRY 64850 MONTERREY, NUEVO LEÓN, MÉXICO', 1800, 0, 1800, '2024-01-19', 'Pedido 4 BordadosNorte', NULL, '0000-00-00', '0000-00-00', ''),
+(6, 'BordadosNorte', 'En espera de pago', 'R08  x \r\n                        2400                      <b', 'AVENIDA ORION 219-A COLONIA CONTRY 64850 MONTERREY, NUEVO LEÓN, MÉXICO', 2400, 0, 2400, '2024-01-19', 'Pedido 5 BordadosNorte', NULL, '0000-00-00', '0000-00-00', ''),
+(7, 'BordadosNorte', 'En espera de pago', 'M04 NanoShield x12 2400', 'AVENIDA ORION 219-A COLONIA CONTRY 64850 MONTERREY, NUEVO LEÓN, MÉXICO', 2400, 0, 2400, '2024-01-19', 'Pedido 6 BordadosNorte', NULL, '0000-00-00', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -304,19 +298,21 @@ CREATE TABLE `pedidos_mayoristas` (
   `precio` float NOT NULL,
   `envio` float NOT NULL,
   `total` float NOT NULL,
-  `fecha_solicitud` date NOT NULL,
+  `fecha_solicitud` date NOT NULL DEFAULT current_timestamp(),
   `motivo_pago` text NOT NULL,
+  `comp_pago` varchar(500) DEFAULT NULL,
   `fecha_pago` date NOT NULL,
   `fecha_llegada` date NOT NULL,
   `seguimiento` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `pedidos_mayoristas`
 --
 
-INSERT INTO `pedidos_mayoristas` (`ID`, `mayorista`, `tipo`, `productos`, `domicilio`, `precio`, `envio`, `total`, `fecha_solicitud`, `motivo_pago`, `fecha_pago`, `fecha_llegada`, `seguimiento`) VALUES
-(3, 'Pedrito', 'Entregado', 'K02 Shield x1 150', 'Oswaldo Martinoli 109, Villas de San Juan, 37295 León, Gto.', 150, 50, 200, '2022-11-07', 'Pedido 3', '2022-11-07', '2022-11-07', '');
+INSERT INTO `pedidos_mayoristas` (`ID`, `mayorista`, `tipo`, `productos`, `domicilio`, `precio`, `envio`, `total`, `fecha_solicitud`, `motivo_pago`, `comp_pago`, `fecha_pago`, `fecha_llegada`, `seguimiento`) VALUES
+(1, 'Pedrito', 'Entregado', 'K02 Shield x1 150', 'Oswaldo Martinoli 109, Villas de San Juan, 37295 León, Gto.', 150, 50, 200, '2022-11-07', 'Pedido 3', NULL, '2022-11-07', '2022-11-07', ''),
+(2, 'Pedrito', 'En espera de pago', 'G02 NanoShield x12 1800<br>T11 NanoShield x12 1800<b', 'seg calle', 3600, 0, 3600, '2024-01-15', 'Pedido 2 Pedrito', NULL, '0000-00-00', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -334,28 +330,29 @@ CREATE TABLE `productos_fab` (
   `caracteristicas` text NOT NULL,
   `detalles_tecnicos` text DEFAULT NULL,
   `precio_mayorista` int(11) NOT NULL,
+  `envio` float NOT NULL,
   `cantidad_min` int(11) NOT NULL,
   `fecha_alta` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `fecha_modif` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `productos_fab`
 --
 
-INSERT INTO `productos_fab` (`ID`, `nombre`, `imagenes`, `categorias`, `coleccion`, `descripcion`, `caracteristicas`, `detalles_tecnicos`, `precio_mayorista`, `cantidad_min`, `fecha_alta`, `fecha_modif`) VALUES
-('1', 'G02', 'vistas/img/productos/Fabricante/1/400.png<br>vistas/img/productos/Fabricante/1/G02 FRENTE.png<br>vistas/img/productos/Fabricante/1/G02-(-reverso).jpg<br>vistas/img/productos/Fabricante/1/G02-(-frente).jpg', 'NanoShield<br>Shield', 'Guelaguetza', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 12, '2023-10-15 19:19:52', '2023-10-15 19:19:52'),
-('10', 'U08', 'vistas/img/productos/Fabricante/10/U08 LATERAL.png<br>vistas/img/productos/Fabricante/10/U08 FRENTE.png<br>vistas/img/productos/Fabricante/10/U08 (reverso).jpg<br>vistas/img/productos/Fabricante/10/U08 (frente).jpg', 'NanoShield<br>Shield', 'Urban', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
-('11', 'T11', 'vistas/img/productos/Fabricante/11/T11 LATERAL.png<br>vistas/img/productos/Fabricante/11/T11 FRENTE.png<br>vistas/img/productos/Fabricante/11/T11 (frente).jpg<br>vistas/img/productos/Fabricante/11/T11 (reverso).jpg', 'NanoShield<br>Shield', 'Touareg', 'Touareg', 'Touareg', NULL, 150, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
-('12', 'T13', 'vistas/img/productos/Fabricante/12/T13 LATERAL.png<br>vistas/img/productos/Fabricante/12/T13 FRENTE.png<br>vistas/img/productos/Fabricante/12/T13 (frente).jpg<br>vistas/img/productos/Fabricante/12/T13 (reverso).jpg', 'NanoShield<br>Shield', 'Touareg', 'Touareg 13', 'Touareg 13', NULL, 150, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
-('2', 'G03', 'vistas/img/productos/Fabricante/2/401.png<br>vistas/img/productos/Fabricante/2/G03 FRENTE.png<br>vistas/img/productos/Fabricante/2/G03-(-reverso).jpg<br>vistas/img/productos/Fabricante/2/G03-(-frente).jpg', 'NanoShield<br>Shield', 'Guelaguetza', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
-('3', 'M01', 'vistas/img/productos/Fabricante/3/402.png<br>vistas/img/productos/Fabricante/3/M01 FRENTE.png<br>vistas/img/productos/Fabricante/3/M01 (reverso).jpg<br>vistas/img/productos/Fabricante/3/M01 (frente).jpg', 'NanoShield<br>Shield', 'Mar de Cortés', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
-('4', 'M03', 'vistas/img/productos/Fabricante/4/403.png<br>vistas/img/productos/Fabricante/4/M03 FRENTE.png<br>vistas/img/productos/Fabricante/4/M03 (reverso).jpg<br>vistas/img/productos/Fabricante/4/M03 (frente).jpg', 'NanoShield<br>Shield', 'Mar de Cortés', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
-('5', 'M04', 'vistas/img/productos/Fabricante/5/404.png<br>vistas/img/productos/Fabricante/5/M04 FRENTE.png<br>vistas/img/productos/Fabricante/5/M04-(reverso).jpg<br>vistas/img/productos/Fabricante/5/M04 (frente).jpg', 'NanoShield<br>Shield', 'Mar de Cortés', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
-('6', 'M05', 'vistas/img/productos/Fabricante/6/405.png<br>vistas/img/productos/Fabricante/6/M05 FRENTE.png<br>vistas/img/productos/Fabricante/6/M05 (frente).jpg<br>vistas/img/productos/Fabricante/6/M05-(reverso).jpg', 'NanoShield<br>Shield', 'Mar de Cortés', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
-('7', 'MILITAR 4', 'vistas/img/productos/Fabricante/7/406.png', 'NanoShield<br>Shield', 'Urban', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
-('8', 'R08', 'vistas/img/productos/Fabricante/8/407.png', 'NanoShield<br>Shield', 'Rarámuri', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
-('9', 'YOUNG 7', 'vistas/img/productos/Fabricante/9/YOUNG 7.png', 'NanoShield<br>Shield', 'Urban', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29');
+INSERT INTO `productos_fab` (`ID`, `nombre`, `imagenes`, `categorias`, `coleccion`, `descripcion`, `caracteristicas`, `detalles_tecnicos`, `precio_mayorista`, `envio`, `cantidad_min`, `fecha_alta`, `fecha_modif`) VALUES
+('1', 'G02', 'vistas/img/productos/Fabricante/1/400.png<br>vistas/img/productos/Fabricante/1/G02 FRENTE.png<br>vistas/img/productos/Fabricante/1/G02-(-reverso).jpg<br>vistas/img/productos/Fabricante/1/G02-(-frente).jpg', 'NanoShield<br>Shield', 'Guelaguetza', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 0, 12, '2023-10-15 19:19:52', '2023-10-15 19:19:52'),
+('10', 'U08', 'vistas/img/productos/Fabricante/10/U08 LATERAL.png<br>vistas/img/productos/Fabricante/10/U08 FRENTE.png<br>vistas/img/productos/Fabricante/10/U08 (reverso).jpg<br>vistas/img/productos/Fabricante/10/U08 (frente).jpg', 'NanoShield<br>Shield', 'Urban', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 0, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
+('11', 'T11', 'vistas/img/productos/Fabricante/11/T11 LATERAL.png<br>vistas/img/productos/Fabricante/11/T11 FRENTE.png<br>vistas/img/productos/Fabricante/11/T11 (frente).jpg<br>vistas/img/productos/Fabricante/11/T11 (reverso).jpg', 'NanoShield<br>Shield', 'Touareg', 'Touareg', 'Touareg', NULL, 150, 0, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
+('12', 'T13', 'vistas/img/productos/Fabricante/12/T13 LATERAL.png<br>vistas/img/productos/Fabricante/12/T13 FRENTE.png<br>vistas/img/productos/Fabricante/12/T13 (frente).jpg<br>vistas/img/productos/Fabricante/12/T13 (reverso).jpg', 'NanoShield<br>Shield', 'Touareg', 'Touareg 13', 'Touareg 13', NULL, 150, 0, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
+('2', 'G03', 'vistas/img/productos/Fabricante/2/401.png<br>vistas/img/productos/Fabricante/2/G03 FRENTE.png<br>vistas/img/productos/Fabricante/2/G03-(-reverso).jpg<br>vistas/img/productos/Fabricante/2/G03-(-frente).jpg', 'NanoShield<br>Shield', 'Guelaguetza', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 0, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
+('3', 'M01', 'vistas/img/productos/Fabricante/3/402.png<br>vistas/img/productos/Fabricante/3/M01 FRENTE.png<br>vistas/img/productos/Fabricante/3/M01 (reverso).jpg<br>vistas/img/productos/Fabricante/3/M01 (frente).jpg', 'NanoShield<br>Shield', 'Mar de Cortés', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 0, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
+('4', 'M03', 'vistas/img/productos/Fabricante/4/403.png<br>vistas/img/productos/Fabricante/4/M03 FRENTE.png<br>vistas/img/productos/Fabricante/4/M03 (reverso).jpg<br>vistas/img/productos/Fabricante/4/M03 (frente).jpg', 'NanoShield<br>Shield', 'Mar de Cortés', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 0, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
+('5', 'M04', 'vistas/img/productos/Fabricante/5/404.png<br>vistas/img/productos/Fabricante/5/M04 FRENTE.png<br>vistas/img/productos/Fabricante/5/M04-(reverso).jpg<br>vistas/img/productos/Fabricante/5/M04 (frente).jpg', 'NanoShield<br>Shield', 'Mar de Cortés', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 0, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
+('6', 'M05', 'vistas/img/productos/Fabricante/6/405.png<br>vistas/img/productos/Fabricante/6/M05 FRENTE.png<br>vistas/img/productos/Fabricante/6/M05 (frente).jpg<br>vistas/img/productos/Fabricante/6/M05-(reverso).jpg', 'NanoShield<br>Shield', 'Mar de Cortés', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 0, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
+('7', 'MILITAR 4', 'vistas/img/productos/Fabricante/7/406.png', 'NanoShield<br>Shield', 'Urban', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 0, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
+('8', 'R08', 'vistas/img/productos/Fabricante/8/407.png', 'NanoShield<br>Shield', 'Rarámuri', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 0, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29'),
+('9', 'YOUNG 7', 'vistas/img/productos/Fabricante/9/YOUNG 7.png', 'NanoShield<br>Shield', 'Urban', 'Te presentamos nuestras Nanoshields ideales para utilizar en transporte público, aviones, lugares concurridos o cualquier lugar contaminado.Cada banda tubular ha sido diseñada para brindar la mayor comodidad  y la más alta calidad.', '-Utiliza una membrana de nanofibras RESPILON que captura el 99% de todas las partículas y microorganismos.<br>- Protección contra los rayos UV ( UPF 50 ).<br>- BI-STRETCH.<br>- Clip Nasal ajustable- Transpirable.<br>- Suave y acogedor.<br>- Lavable y reutilizable.<br>- Hasta 50 ciclos de lavado.<br>- Comodidad para uso diario por más de 12 horas', NULL, 150, 0, 12, '2023-10-15 19:18:29', '2023-10-15 19:18:29');
 
 -- --------------------------------------------------------
 
@@ -380,7 +377,7 @@ CREATE TABLE `productos_mayorista` (
   `stock` int(11) NOT NULL,
   `fecha_alta` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `fecha_modif` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `productos_mayorista`
@@ -422,7 +419,7 @@ CREATE TABLE `solicitantes` (
   `identificacion` varchar(500) DEFAULT NULL,
   `comp_dom` varchar(500) DEFAULT NULL,
   `acta_const` varchar(500) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `solicitantes`
@@ -448,7 +445,7 @@ CREATE TABLE `solicitudes_de_credito` (
   `fecha_vencimiento` date NOT NULL,
   `aprobacion` int(11) NOT NULL,
   `interes` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -461,14 +458,14 @@ CREATE TABLE `total_productos_pedidos` (
   `productos_mayorista` int(11) NOT NULL,
   `pedidos_mayoristas` int(11) NOT NULL,
   `pedidos_dists` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `total_productos_pedidos`
 --
 
 INSERT INTO `total_productos_pedidos` (`productos_fab`, `productos_mayorista`, `pedidos_mayoristas`, `pedidos_dists`) VALUES
-(13, 12, 4, 4);
+(13, 12, 3, 7);
 
 -- --------------------------------------------------------
 
@@ -489,23 +486,23 @@ CREATE TABLE `usuarios` (
   `estatus` int(11) NOT NULL DEFAULT 0,
   `ultimo_login` datetime NOT NULL DEFAULT current_timestamp(),
   `ingreso` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`ID`, `nombre_legal_o_rs`, `tipo`, `foto`, `email`, `contrasena`, `tel`, `estado`, `ciudad`, `estatus`, `ultimo_login`, `ingreso`) VALUES
-('Admin', '', 'Administrador', 'vistas/img/usuarios/Admin/405.jpg', 'admin@gmail.com', '$2a$07$asxx54ahjppf45sd87a5au6dvp1FCl12JI0.oJcCFq4Ni1dHoWwjy', '(477) 578-1149', NULL, NULL, 1, '2023-11-12 22:35:11', '2023-02-19 16:19:57'),
+('Admin', '', 'Administrador', 'vistas/img/usuarios/Admin/405.jpg', 'admin@gmail.com', '$2a$07$asxx54ahjppf45sd87a5au6dvp1FCl12JI0.oJcCFq4Ni1dHoWwjy', '(477) 578-1149', NULL, NULL, 1, '2024-01-26 08:21:54', '2023-02-19 16:19:57'),
 ('Agente', 'Agente', 'Agente', 'vistas/img/usuarios/Agente/628.jpg', 'agent@mail.com', '$2a$07$asxx54ahjppf45sd87a5au6dvp1FCl12JI0.oJcCFq4Ni1dHoWwjy', '(222) 222-2222', 'Aguascalientes', 'Jesus Maria', 1, '2023-10-10 20:23:46', '2023-03-29 18:58:41'),
 ('asp', 'aspirante', 'Solicitante', 'vistas/img/usuarios/asp/385.jpg', 'email@email.com', '$2a$07$asxx54ahjppf45sd87a5au6dvp1FCl12JI0.oJcCFq4Ni1dHoWwjy', '(000) 000-0000', 'Guanajuato', 'León', 1, '2023-03-31 20:20:13', '2023-03-03 23:04:39'),
-('BordadosNorte', 'Bordados del Norte', 'Distribuidor', 'vistas/img/usuarios/BordadosNorte/476.png', 'PGUERRA@BORDADOSDELNORTE.COM', '$2a$07$asxx54ahjppf45sd87a5au6dvp1FCl12JI0.oJcCFq4Ni1dHoWwjy', '(811) 044-0376', 'Guanajuato', 'León', 1, '2023-10-29 23:02:21', '2023-02-19 16:17:31'),
+('BordadosNorte', 'Bordados del Norte', 'Distribuidor', 'vistas/img/usuarios/BordadosNorte/476.png', 'PGUERRA@BORDADOSDELNORTE.COM', '$2a$07$asxx54ahjppf45sd87a5au6dvp1FCl12JI0.oJcCFq4Ni1dHoWwjy', '(811) 044-0376', 'Guanajuato', 'León', 1, '2024-01-24 08:22:30', '2023-02-19 16:17:31'),
 ('Distribuidor', 'Distribuidor', 'Distribuidor', 'vistas/img/usuarios/Distribuidor/407.jpg', 'dist@email.com', '$2a$07$asxx54ahjppf45sd87a5auJRR6foEJ7ynpjisKtbiKJbvJsoQ8VPS', '(888) 888-8888', 'Chihuahua', 'Carichi', 1, '2023-10-10 20:24:09', '2023-03-31 01:16:49'),
 ('Juan', 'Juan', 'Solicitante', 'vistas/img/usuarios/Juan/524.jpg', 'juan@email.com', '$2a$07$asxx54ahjppf45sd87a5auJRR6foEJ7ynpjisKtbiKJbvJsoQ8VPS', '(000) 000-0000', 'Campeche', 'Hecelchakan', 1, '2023-03-31 20:28:28', '2023-03-23 01:15:36'),
-('Lic Cecilia', '', 'Fabricante', 'vistas/img/usuarios/Lic Cecilia/238.jpg', 'gestion@comertex.com.mx', '$2a$07$asxx54ahjppf45sd87a5au6dvp1FCl12JI0.oJcCFq4Ni1dHoWwjy', '(111) 111-1111', NULL, NULL, 1, '2023-10-21 09:52:01', '2023-03-29 18:39:32'),
+('Lic Cecilia', '', 'Fabricante', 'vistas/img/usuarios/Lic Cecilia/238.jpg', 'gestion@comertex.com.mx', '$2a$07$asxx54ahjppf45sd87a5au6dvp1FCl12JI0.oJcCFq4Ni1dHoWwjy', '(111) 111-1111', NULL, NULL, 1, '2023-12-11 17:56:11', '2023-03-29 18:39:32'),
 ('newuser', 'newuser', 'Solicitante', 'vistas/img/usuarios/newuser/438.png', 'elcorreo@email.com', '$2a$07$asxx54ahjppf45sd87a5auJRR6foEJ7ynpjisKtbiKJbvJsoQ8VPS', '(999) 999-9999', 'Chihuahua', 'Camargo', 1, '2023-04-27 10:08:05', '2023-04-26 22:14:54'),
 ('Pablito', 'Pablo', 'Agente', 'vistas/img/usuarios/Pablito/706.jpg', 'pablo@email.com', '$2a$07$asxx54ahjppf45sd87a5au6dvp1FCl12JI0.oJcCFq4Ni1dHoWwjy', '(477) 113-1258', 'Guanajuato', 'León', 1, '2023-06-03 21:21:23', '2023-02-19 16:18:46'),
-('Pedrito', 'Pedro', 'Mayorista', 'vistas/img/usuarios/Pedrito/304.png', 'pedrito@email.com', '$2a$07$asxx54ahjppf45sd87a5auJRR6foEJ7ynpjisKtbiKJbvJsoQ8VPS', '(477) 113-1258', 'Guanajuato', 'León', 1, '2023-11-20 19:26:51', '2023-02-19 16:15:55'),
+('Pedrito', 'Pedro', 'Mayorista', 'vistas/img/usuarios/Pedrito/304.png', 'pedrito@email.com', '$2a$07$asxx54ahjppf45sd87a5auJRR6foEJ7ynpjisKtbiKJbvJsoQ8VPS', '(477) 113-1258', 'Guanajuato', 'León', 1, '2024-02-01 08:37:11', '2023-02-19 16:15:55'),
 ('Solic', 'Solicitante', 'Solicitante', 'vistas/img/usuarios/Solicitante/514.jpg', 'solicitante@mail.com', '$2a$07$asxx54ahjppf45sd87a5au6dvp1FCl12JI0.oJcCFq4Ni1dHoWwjy', '(477) 340-8753', 'Guanajuato', 'León', 1, '2023-09-27 23:02:33', '2023-02-19 16:14:35');
 
 -- --------------------------------------------------------
@@ -519,15 +516,16 @@ CREATE TABLE `zonas` (
   `mayorista` varchar(20) NOT NULL,
   `estados` text NOT NULL,
   `ciudades` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `zonas`
 --
 
 INSERT INTO `zonas` (`ID`, `mayorista`, `estados`, `ciudades`) VALUES
-('Bajío', 'Pedrito', 'Guanajuato', 'León'),
-('Zona', 'Pedrito', 'Aguascalientes,San Luis Potosí,Zacatecas', 'Aguascalientes-Asientos-Calvillo,Ahualulco-Alaquines-Aquismon,Apulo-Cuauhtemoc-Huanusco');
+('Bajío', 'Pedrito', 'Guanajuato,Jalisco', 'San Miguel De Allende-Celaya-León,Guadalajara'),
+('Norte', 'Pedrito', 'Nuevo León', 'Abasolo-Agualeguas-Los Aldamas'),
+('Zona', 'Pedrito', 'Aguascalientes,San Luis Potosí,Zacatecas,Hidalgo', 'Aguascalientes-Asientos-Calvillo,Ahualulco-Alaquines-Aquismon,Cuauhtemoc-Huanusco,Acatlan-Acaxochitlan-Actopan');
 
 --
 -- Índices para tablas volcadas
