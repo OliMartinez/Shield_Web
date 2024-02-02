@@ -73,7 +73,7 @@ class ControladorPedidos
 
 	public static function ctrSubirComp()
 	{
-		if (isset($_POST["mandar_comp"]) && isset($_FILES["subir_comp"])) {
+		if (isset($_FILES["subir_comp"]["tmp_name"]) && !empty($_FILES["subir_comp"]["tmp_name"]) && isset($_POST["mandar_comp"])) {
 			if ($_FILES["subir_comp"]["type"] == "image/jpeg" || $_FILES["subir_comp"]["type"] == "application/pdf") {
 				$tabla = '';
 				if ($_SESSION["tipo"] == "Distribuidor") {
@@ -81,7 +81,7 @@ class ControladorPedidos
 				} else {
 					$tabla = 'pedidos_mayoristas';
 				}
-				$dir_comp = "vistas/docs/" . $tabla . "/" . $_SESSION['ID'] . "/" . $_POST['IdPedido'] . "ComprobantePago";
+				$dir_comp = "vistas/docs/" . $tabla . "/" . $_SESSION['ID'] . "/" . $_POST['IdPedido'] . "/ComprobantePago";
 
 				// Crea los directorios de forma recursiva
 				mkdir($dir_comp, 0755, true);
@@ -110,7 +110,7 @@ class ControladorPedidos
 							}).then(function(result) {
 									if (result.value) {
 			
-										window.location ="' . $_SERVER["REQUEST_URI"] . '";
+										//window.location ="' . $_SERVER["REQUEST_URI"] . '";
 			
 									}
 								})
@@ -127,7 +127,7 @@ class ControladorPedidos
 							}).then(function(result) {
 									if (result.value) {
 			
-										window.location ="' . $_SERVER["REQUEST_URI"] . '";
+										//window.location ="' . $_SERVER["REQUEST_URI"] . '";
 			
 									}
 								})

@@ -94,11 +94,8 @@
                           <form role="form" enctype="multipart/form-data" method="post">
                             <input type="hidden" name="idPedido" style="display: none;" value="' . $value["ID"] . '">
                             <input type="file" class="subir_comp" name="subir_comp" style="display: none;">
-                            <button type="submit" class="mandar_comp" name="mandar_comp" style="display: none;"></button>
-                            ';
-                $subirComprobantePago = new ControladorPedidos();
-                $subirComprobantePago->ctrSubirComp();
-                echo '</form>
+                            <button type="submit" class="mandar_comp" name="mandar_comp" style="display: none;"></button>                           
+                          </form>
                           <li class="dropdown-item"><a style="cursor:pointer;" class="finalizar">Confirmar de recibido</a></li>
                           <form role="form" enctype="multipart/form-data" method="post">
                             <input type="hidden" name="idPedido" style="display: none;" value="' . $value["ID"] . '">
@@ -191,6 +188,8 @@
 </div>
 
 <?php
+$subirComprobantePago = new ControladorPedidos();
+$subirComprobantePago->ctrSubirComp();
 include "includes/modalseguimiento.html";
 include "includes/modaldepbanc.php";
 include "includes/modalcomppago.html";

@@ -56,13 +56,15 @@ $(".InfoDeposito").on("click", function () {
 })
 
 $('.conf_pago').click(function () {
-  $('.subir_comp').click();
-});
+  var index = $(this).index()
+  $('.subir_comp').eq(index).click()
+})
 
 // Manejar el evento de cambio en el input de archivo
-/*$('.subir_comp').change(function () {
-  $('.mandar_comp').click();
-});*/
+$('.subir_comp').change(function () {
+  var index = $(this).index()
+  $('.mandar_comp').eq(index).click()
+})
 
 //Obtener Foto del Comprobante de Pago
 $('.ver_comp_pago').on("click", function () {
@@ -120,7 +122,8 @@ $('.ver_comp_pago').on("click", function () {
 
 
 $('.confpago').click(function () {
-  $('.mandarconf').click();
+  var index = $(this).index()
+  $('.mandarconf').eq(index).click();
 });
 
 /*=============================================
