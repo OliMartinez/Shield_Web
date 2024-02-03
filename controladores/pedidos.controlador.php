@@ -316,7 +316,7 @@ class ControladorPedidos
 
 				swal({
 						type: "success",
-						title: "El pedido se ha cancelado",
+						title: "El pedido se ha cancelado ' . $_SERVER["REQUEST_URI"] . '",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result) {
