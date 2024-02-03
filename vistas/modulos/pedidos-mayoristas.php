@@ -70,12 +70,12 @@
 
             <?php
             $item = null;
-            $value = null;
+            $valor = null;
             if ($_SESSION["tipo"] == "Mayorista") {
               $item = "mayorista";
-              $value = $_SESSION["ID"];
+              $valor = $_SESSION["ID"];
             }
-            $respuesta = ControladorGeneral::ctrMostrarFilas($item, $value, "pedidos_mayoristas");
+            $respuesta = ControladorGeneral::ctrMostrarFilas($item, $valor, "pedidos_mayoristas");
             foreach ($respuesta as $key => $value) {
               echo '<tr data-id="' . $value["ID"] . '">
               <td>' . ($key + 1) . '</td>
@@ -106,7 +106,7 @@
                 ';
               } else if ($_SESSION["tipo"] == "Administrador") {
                 echo '
-                          <!--<li class="dropdown-item"><a style="cursor:pointer;" class="btnEditarPedido" tabla="pedidos_mayoristas" idPedido="" data-toggle="modal" data-target="#modalPedido">Editar</a></li>-->
+                          <!--<li class="dropdown-item"><a style="cursor:pointer;" class="btnEditarPedido" tabla="pedidos_mayoristas" idPedido="' . $value["ID"] . '" data-toggle="modal" data-target="#modalPedido">Editar</a></li>-->
                           <li class="dropdown-item"><a style="cursor:pointer;" class="btnEliminarPedido" idPedido="' . $value["ID"] . '" tabla="pedidos_mayoristas">Eliminar</a></li>';
               }
               if ($_SESSION["tipo"] != "Mayorista") {

@@ -159,11 +159,8 @@ class ControladorPedidos
 	{
 		if (isset($_POST['mandarconf'])) {
 			$tabla = '';
-			if ($_SESSION["tipo"] == "Distribuidor") {
-				$tabla = 'pedidos_dists';
-			} else {
-				$tabla = 'pedidos_mayoristas';
-			}
+			$path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+			$tabla = str_replace('-','_', basename($path));
 			$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Pago Confirmado', 'ID', $_POST["idPedido"]);
 			$respuesta1 = ModeloGeneral::mdlActualizar($tabla, 'fecha_pago', date("Y-m-d"), 'ID', $_POST["idPedido"]);
 			if ($respuesta == "ok" && $respuesta1 == "ok") {
@@ -208,11 +205,8 @@ class ControladorPedidos
 	{
 		if (isset($_POST['Entregado'])) {
 			$tabla = '';
-			if ($_SESSION["tipo"] == "Distribuidor") {
-				$tabla = 'pedidos_dists';
-			} else {
-				$tabla = 'pedidos_mayoristas';
-			}
+			$path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+			$tabla = str_replace('-','_', basename($path));
 			$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Entregado', 'ID', $_POST["idPedido"]);
 			$respuesta1 = ModeloGeneral::mdlActualizar($tabla, 'fecha_llegada', date("Y-m-d"), 'ID', $_POST["idPedido"]);
 			if ($respuesta == "ok" && $respuesta1 == "ok") {
@@ -268,7 +262,7 @@ class ControladorPedidos
 
 				swal({
 						type: "success",
-						title: "¡El pedido se ha finalizado!",
+						title: "¡El pedido se ha finalizado! '.$_POST["idPedido"].'",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result) {
@@ -305,18 +299,15 @@ class ControladorPedidos
 	{
 		if (isset($_POST['CancelarPedido'])) {
 			$tabla = '';
-			if ($_SESSION["tipo"] == "Distribuidor") {
-				$tabla = 'pedidos_dists';
-			} else {
-				$tabla = 'pedidos_mayoristas';
-			}
+			$path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+			$tabla = str_replace('-','_', basename($path));
 			$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Cancelado', 'ID', $_POST["idPedido"]);
 			if ($respuesta == "ok") {
 				echo '<script>
 
 				swal({
 						type: "success",
-						title: "El pedido se ha cancelado ' . $_SERVER["REQUEST_URI"] . '",
+						title: "El pedido se ha cancelado '.$_POST["idPedido"].'",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result) {

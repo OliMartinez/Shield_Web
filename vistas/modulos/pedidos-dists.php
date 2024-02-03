@@ -150,7 +150,7 @@
                   ';
                 } else if ($_SESSION["tipo"] == "Administrador") {
                   echo '
-                              <!--<li class="dropdown-item"><a style="cursor:pointer;" class="btnEditarPedido" tabla="pedidos_dists" idPedido="" data-toggle="modal" data-target="#modalPedido">Editar</a></li>-->
+                              <!--<li class="dropdown-item"><a style="cursor:pointer;" class="btnEditarPedido" tabla="pedidos_dists" idPedido="' . $value["ID"] . '" data-toggle="modal" data-target="#modalPedido">Editar</a></li>-->
                               <li class="dropdown-item"><a style="cursor:pointer;" class="btnEliminarPedido" idPedido="' . $value["ID"] . '" tabla="pedidos_dists">Eliminar</a></li>';
                 }
                 if ($_SESSION["tipo"] != "Distribuidor") {
