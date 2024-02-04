@@ -135,44 +135,24 @@
                   echo ' 
                               <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalInfoDeposito" class="InfoDeposito" tabla="pedidos_dists" idPedido="' . $value["ID"] . '">Información para Depósito Bancario</a></li>
                               <li class="dropdown-item"><a style="cursor:pointer;" class="conf_pago">Subir comprobante de pago (JPG o PDF)</a></li>
-                              <form role="form" enctype="multipart/form-data" method="post">
-                                <input type="hidden" name="idPedido" style="display: none;" value="' . $value["ID"] . '">
-                                <input type="file" class="subir_comp" name="subir_comp" style="display: none;">
-                                <button type="submit" class="mandar_comp" name="mandar_comp" style="display: none;"></button>
-                              </form>
-                              <li class="dropdown-item"><a style="cursor:pointer;" class="finalizar">Confirmar de recibido</a></li>
-                              <form role="form" enctype="multipart/form-data" method="post">
-                                <input type="hidden" name="idPedido" style="display: none;" value="' . $value["ID"] . '">
-                                <button type="submit" class="FinalizarPedido" name="FinalizarPedido" style="display: none;"></button>
-                              </form>
+                              <input type="file" class="subir_comp" name="subir_comp" style="display: none;">
+                              <li class="dropdown-item"><a style="cursor:pointer;" class="btnAccionPedido" idPedido="' . $value["ID"] . '" accion = "finalizar">Confirmar de recibido</a></li>  
                           <!--<li class="dropdown-item"><a style="cursor:pointer;" class="reclamar">Hacer un Reclamo</a></li>-->
                               <li class="dropdown-item"><a style="cursor:pointer;" class="devolver">Devolución</a></li>
                   ';
                 } else if ($_SESSION["tipo"] == "Administrador") {
                   echo '
                               <!--<li class="dropdown-item"><a style="cursor:pointer;" class="btnEditarPedido" tabla="pedidos_dists" idPedido="' . $value["ID"] . '" data-toggle="modal" data-target="#modalPedido">Editar</a></li>-->
-                              <li class="dropdown-item"><a style="cursor:pointer;" class="btnEliminarPedido" idPedido="' . $value["ID"] . '" tabla="pedidos_dists">Eliminar</a></li>';
+                              <li class="dropdown-item"><a style="cursor:pointer;" class="btnAccionPedido" idPedido="' . $value["ID"] . '" accion = "eliminar">Eliminar</a></li>';
                 }
                 if ($_SESSION["tipo"] != "Distribuidor") {
                   echo '
-                              <li class="dropdown-item"><a style="cursor:pointer;" class="marcarentrega">Marcar como entregado</a></li>
-                              <form role="form" enctype="multipart/form-data" method="post">
-                                <input type="hidden" name="idPedido" style="display: none;" value="' . $value["ID"] . '">
-                                <button type="submit" class="Entregado" name="Entregado" style="display: none;"></button>
-                              </form>
-                              <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalCompPago" tabla="pedidos_dists" compdir="' . $value["comp_pago"] . '" class="ver_comp_pago">Ver comprobante de pago</a></li>
-                              <li class="dropdown-item"><a style="cursor:pointer;" class="confpago" >Confirmar pago</a></li>
-                              <form role="form" enctype="multipart/form-data" method="post">
-                                <input type="hidden" name="idPedido" style="display: none;" value="' . $value["ID"] . '">
-                                <button type="submit" class="mandarconf" name="mandarconf" style="display: none;"></button>
-                              </form>';
+                              <li class="dropdown-item"><a style="cursor:pointer;" class="btnAccionPedido" idPedido="' . $value["ID"] . '" accion = "marcar como entregado">Marcar como entregado</a></li>
+                              <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalCompPago" idPedido="' . $value["ID"] . '" tabla="pedidos_mayoristas" compdir="' . $value["comp_pago"] . '" class="ver_comp_pago">Ver comprobante de pago</a></li>
+                              <li class="dropdown-item"><a style="cursor:pointer;" class="btnAccionPedido" idPedido="' . $value["ID"] . '" accion = "confirmar como pagado">Confirmar pago</a></li>';
                 }
                 echo ' 
-                              <li class="dropdown-item"><a style="cursor:pointer;" class="cancelar">Cancelar</a></li>
-                              <form role="form" enctype="multipart/form-data" method="post">
-                                <input type="hidden" name="idPedido" style="display: none;" value="' . $value["ID"] . '">
-                                <button type="submit" class="CancelarPedido" name="CancelarPedido" style="display: none;"></button>
-                              </form>
+                              <li class="dropdown-item"><a style="cursor:pointer;" class="btnAccionPedido" idPedido="' . $value["ID"] . '" accion = "cancelar">Cancelar</a></li>
                             </ul>
                           </li>
                         </ul>
@@ -251,16 +231,8 @@
 </div>
 
 <?php
-$ctrSubirComp = new ControladorPedidos();
-$ctrSubirComp->ctrSubirComp();
-$ctrConfPago = new ControladorPedidos();
-$ctrConfPago->ctrConfPago();
-$ctrMarcarEntrega = new ControladorPedidos();
-$ctrMarcarEntrega->ctrMarcarEntrega();
-$ctrFinalizarPedido = new ControladorPedidos();
-$ctrFinalizarPedido->ctrFinalizarPedido();
-$ctrCancelar = new ControladorPedidos();
-$ctrCancelar->ctrCancelar();
+$ctrAccion = new ControladorPedidos();
+$ctrAccion->ctrAccionPedido();
 include "includes/modalseguimiento.html";
 include "includes/modaldepbanc.php";
 include "includes/modalcomppago.html";

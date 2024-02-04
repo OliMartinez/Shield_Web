@@ -155,186 +155,80 @@ class ControladorPedidos
 		}
 	}
 
-	public static function ctrConfPago()
+	/*=============================================
+	ACCION PEDIDO
+	=============================================*/
+
+	public static function ctrAccionPedido()
 	{
-		if (isset($_POST['mandarconf'])) {
-			$tabla = '';
-			$path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
-			$tabla = str_replace('-','_', basename($path));
-			$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Pago Confirmado', 'ID', $_POST["idPedido"]);
-			$respuesta1 = ModeloGeneral::mdlActualizar($tabla, 'fecha_pago', date("Y-m-d"), 'ID', $_POST["idPedido"]);
+		if (isset($_GET["idPedido"])) {
+
+			$pag = $_GET["ruta"];
+			$tabla = str_replace('-', '_', $pag);
+			$datos = $_GET["idPedido"];
+			$accion = $_GET["accion"];
+
+			if($accion == 'confirmar como pagado'){
+				$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Pago Confirmado', 'ID', $datos);
+				$respuesta1 = ModeloGeneral::mdlActualizar($tabla, 'fecha_pago', date("Y-m-d"), 'ID', $datos);
+			}
+			else if($accion == 'marcar como entregado'){
+				$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Entregado', 'ID', $datos);
+				$respuesta1 = ModeloGeneral::mdlActualizar($tabla, 'fecha_llegada', date("Y-m-d"), 'ID', $datos);
+			}			
+			if($accion == 'finalizar'){
+				$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Finalizado', 'ID', $datos);
+				$respuesta1 = 'ok';
+			}
+			else if($accion == 'cancelar'){
+				$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Cancelado', 'ID', $datos);
+				$respuesta1 = 'ok';
+			}
+			else if ($accion == 'eliminar') {
+				/*if ($_GET["comppago"] != "") {
+
+				unlink($_GET["comppago"]);
+				rmdir('vistas/img/usuarios/' . $_GET["comppago"]);
+			}*/
+				$respuesta = $respuesta = ModeloGeneral::mdlEliminar($tabla, null, $datos);
+				$respuesta1 = 'ok';
+			}
+
 			if ($respuesta == "ok" && $respuesta1 == "ok") {
 				echo '<script>
 
 				swal({
-						type: "success",
-						title: "¡Se ha confirmado el pago exitosamente!",
-						showConfirmButton: true,
-						confirmButtonText: "Cerrar"
-						}).then(function(result) {
+					  type: "success",
+					  title: "¡El Pedido se pudo ' . $accion . ' exitosamente!",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar",
+					  closeOnConfirm: false
+					  }).then(function(result) {
 								if (result.value) {
-		
-									window.location ="' . $_SERVER["REQUEST_URI"] . '";
-		
+									
+									window.location = "' . $pag . '";
+
 								}
 							})
-		
+
 				</script>';
 			} else {
 				echo '<script>
 
 				swal({
-						type: "error",
-						title: "No se pudo confirmar el pago",
-						showConfirmButton: true,
-						confirmButtonText: "Cerrar"
-						}).then(function(result) {
+					  type: "error",
+					  title: "¡El Pedido no se pudo ' . $accion . '!",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar",
+					  closeOnConfirm: false
+					  }).then(function(result) {
 								if (result.value) {
-		
-									window.location ="' . $_SERVER["REQUEST_URI"] . '";
-		
+
+									window.location = "' . $pag . '";
+
 								}
 							})
-		
-				</script>';
-			}
-		}
-	}
 
-	public static function ctrMarcarEntrega()
-	{
-		if (isset($_POST['Entregado'])) {
-			$tabla = '';
-			$path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
-			$tabla = str_replace('-','_', basename($path));
-			$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Entregado', 'ID', $_POST["idPedido"]);
-			$respuesta1 = ModeloGeneral::mdlActualizar($tabla, 'fecha_llegada', date("Y-m-d"), 'ID', $_POST["idPedido"]);
-			if ($respuesta == "ok" && $respuesta1 == "ok") {
-				echo '<script>
-
-				swal({
-						type: "success",
-						title: "El pedido se ha marcado como entregado",
-						showConfirmButton: true,
-						confirmButtonText: "Cerrar"
-						}).then(function(result) {
-								if (result.value) {
-		
-									window.location ="' . $_SERVER["REQUEST_URI"] . '";
-		
-								}
-							})
-		
-				</script>';
-			} else {
-				echo '<script>
-
-				swal({
-						type: "error",
-						title: "No se pudo marcar cómo entregado el pedido",
-						showConfirmButton: true,
-						confirmButtonText: "Cerrar"
-						}).then(function(result) {
-								if (result.value) {
-		
-									window.location ="' . $_SERVER["REQUEST_URI"] . '";
-		
-								}
-							})
-		
-				</script>';
-			}
-		}
-	}
-
-	public static function ctrFinalizarPedido()
-	{
-		if (isset($_POST['FinalizarPedido'])) {
-			$tabla = '';
-			if ($_SESSION["tipo"] == "Distribuidor") {
-				$tabla = 'pedidos_dists';
-			} else {
-				$tabla = 'pedidos_mayoristas';
-			}
-			$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Finalizado', 'ID', $_POST["idPedido"]);
-			if ($respuesta == "ok") {
-				echo '<script>
-
-				swal({
-						type: "success",
-						title: "¡El pedido se ha finalizado! '.$_POST["idPedido"].'",
-						showConfirmButton: true,
-						confirmButtonText: "Cerrar"
-						}).then(function(result) {
-								if (result.value) {
-		
-									window.location ="' . $_SERVER["REQUEST_URI"] . '";
-		
-								}
-							})
-		
-				</script>';
-			} else {
-				echo '<script>
-
-				swal({
-						type: "error",
-						title: "No se pudo confirmar la entrega",
-						showConfirmButton: true,
-						confirmButtonText: "Cerrar"
-						}).then(function(result) {
-								if (result.value) {
-		
-									window.location ="' . $_SERVER["REQUEST_URI"] . '";
-		
-								}
-							})
-		
-				</script>';
-			}
-		}
-	}
-
-	public static function ctrCancelar()
-	{
-		if (isset($_POST['CancelarPedido'])) {
-			$tabla = '';
-			$path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
-			$tabla = str_replace('-','_', basename($path));
-			$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Cancelado', 'ID', $_POST["idPedido"]);
-			if ($respuesta == "ok") {
-				echo '<script>
-
-				swal({
-						type: "success",
-						title: "El pedido se ha cancelado '.$_POST["idPedido"].'",
-						showConfirmButton: true,
-						confirmButtonText: "Cerrar"
-						}).then(function(result) {
-								if (result.value) {
-		
-									window.location ="' . $_SERVER["REQUEST_URI"] . '";
-		
-								}
-							})
-		
-				</script>';
-			} else {
-				echo '<script>
-
-				swal({
-						type: "error",
-						title: "No se pudo cancelar el pedido",
-						showConfirmButton: true,
-						confirmButtonText: "Cerrar"
-						}).then(function(result) {
-								if (result.value) {
-		
-									window.location ="' . $_SERVER["REQUEST_URI"] . '";
-		
-								}
-							})
-		
 				</script>';
 			}
 		}

@@ -146,7 +146,7 @@ class ControladorUsuarios
 
 				swal({
 					  type: "success",
-					  title: "El Usuario ha sido borrado correctamente",
+					  title: "El Usuario ha sido eliminado exitosamente",
 					  showConfirmButton: true,
 					  confirmButtonText: "Cerrar",
 					  closeOnConfirm: false

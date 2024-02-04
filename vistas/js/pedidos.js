@@ -1,30 +1,4 @@
 /*=============================================
-ELIMINAR PEDIDO
-=============================================*/
-$(".tablas").on("click", ".btnEliminarPedido", function () {
-
-  var idPedido = $(this).attr("idPedido");
-  var tabla = $(this).attr("tabla");
-
-  swal({
-    title: '¿Está seguro de eliminar el pedido?',
-    text: "¡Si no lo está puede cancelar la accíón!",
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    cancelButtonText: 'Cancelar',
-    confirmButtonText: 'Si, eliminar pedido!'
-  }).then(function (result) {
-    if (result.value) {
-
-    }
-
-  })
-
-})
-
-/*=============================================
 MOSTRAR MOTIVO DE PAGO EN INFORMACIÓN DE DEPÓSITO
 =============================================*/
 $(".InfoDeposito").on("click", function () {
@@ -61,10 +35,8 @@ $('.conf_pago').click(function () {
 })
 
 // Manejar el evento de cambio en el input de archivo
-$('.subir_comp').change(function () {
-  var index = $(this).index()
-  $('.mandar_comp').eq(index).click()
-})
+/*$('.subir_comp').change(function () {
+})*/
 
 //Obtener Foto del Comprobante de Pago
 $('.ver_comp_pago').on("click", function () {
@@ -120,35 +92,45 @@ $('.ver_comp_pago').on("click", function () {
   }
 })
 
-$('.confpago').click(function () {
-  var index = $(this).index()
-  $('.mandarconf').eq(index).click();
-});
-
-$('.finalizar').click(function () {
-  var index = $(this).index()
-  $('.FinalizarPedido').eq(index).click();
-});
-
-$('.marcarentrega').click(function () {
-  var index = $(this).index()
-  $('.Entregado').eq(index).click();
-});
-
-$('.cancelar').click(function () {
-  var index = $(this).index()
-  $('.CancelarPedido').eq(index).click();
-});
-
 /*=============================================
 IMPRIMIR FACTURA
 =============================================*/
 
 /*$(".tablas").on("click", ".btnImprimirFactura", function(){
 
-  var codigoPedido = $(this).attr("codigoPedido");
+  var idPedido = $(this).attr("idPedido");
 
-  window.open("extensiones/tcpdf/pdf/factura.php?codigo="+codigoPedido, "_blank");
+  window.open("extensiones/tcpdf/pdf/factura.php?idPedido="+idPedido, "_blank");
 
 })*/
 
+
+/*=============================================
+ELIMINAR PEDIDO
+=============================================*/
+$(".tablas").on("click", ".btnAccionPedido", function () {
+
+  var idPedido = $(this).attr("idPedido");
+  var accion = $(this).attr("accion");
+
+  swal({
+    title: '¿Está seguro de ' + accion + ' el pedido?',
+    text: "¡Si no lo está puede cancelar la accíón!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    cancelButtonText: 'Cancelar',
+    confirmButtonText: 'Si, ' + accion + ' el pedido!'
+  }).then(function (result) {
+    if (result.value) {
+
+        var sPath = window.location.pathname;
+        var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+        window.location = 'index.php?ruta=' + sPage + '&idPedido=' + idPedido + '&accion=' + accion;
+
+    }
+
+  })
+
+})
