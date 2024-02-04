@@ -30,13 +30,15 @@ $(".InfoDeposito").on("click", function () {
 })
 
 $('.conf_pago').click(function () {
-  var index = $(this).index()
-  $('.subir_comp').eq(index).click()
+  var idPedido = $(this).attr('idPedido');
+  $('#idPedido').val(idPedido);
+  $('#subir_comp').click();
 })
 
-// Manejar el evento de cambio en el input de archivo
-/*$('.subir_comp').change(function () {
-})*/
+  // Manejar el evento de cambio en el input de archivo
+  $('#subir_comp').change(function () {
+    $('#mandar_comp').click();
+  })
 
 //Obtener Foto del Comprobante de Pago
 $('.ver_comp_pago').on("click", function () {
@@ -125,9 +127,9 @@ $(".tablas").on("click", ".btnAccionPedido", function () {
   }).then(function (result) {
     if (result.value) {
 
-        var sPath = window.location.pathname;
-        var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-        window.location = 'index.php?ruta=' + sPage + '&idPedido=' + idPedido + '&accion=' + accion;
+      var sPath = window.location.pathname;
+      var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+      window.location = 'index.php?ruta=' + sPage + '&idPedido=' + idPedido + '&accion=' + accion;
 
     }
 

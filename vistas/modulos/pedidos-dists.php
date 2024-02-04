@@ -134,8 +134,7 @@
                 if ($_SESSION["tipo"] == "Distribuidor") {
                   echo ' 
                               <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalInfoDeposito" class="InfoDeposito" tabla="pedidos_dists" idPedido="' . $value["ID"] . '">Información para Depósito Bancario</a></li>
-                              <li class="dropdown-item"><a style="cursor:pointer;" class="conf_pago">Subir comprobante de pago (JPG o PDF)</a></li>
-                              <input type="file" class="subir_comp" name="subir_comp" style="display: none;">
+                              <li class="dropdown-item"><a style="cursor:pointer;" class="conf_pago" idPedido="' . $value["ID"] . '">Subir comprobante de pago (JPG o PDF)</a></li>
                               <li class="dropdown-item"><a style="cursor:pointer;" class="btnAccionPedido" idPedido="' . $value["ID"] . '" accion = "finalizar">Confirmar de recibido</a></li>  
                           <!--<li class="dropdown-item"><a style="cursor:pointer;" class="reclamar">Hacer un Reclamo</a></li>-->
                               <li class="dropdown-item"><a style="cursor:pointer;" class="devolver">Devolución</a></li>
@@ -236,4 +235,5 @@ $ctrAccion->ctrAccionPedido();
 include "includes/modalseguimiento.html";
 include "includes/modaldepbanc.php";
 include "includes/modalcomppago.html";
+include "includes/subircomppago.html";
 ?>
