@@ -78,7 +78,7 @@ class ControladorPedidos
 				$tabla = '';
 				if ($_SESSION["tipo"] == "Distribuidor") {
 					$tabla = 'pedidos_dists';
-				} else {
+				} else if ($_SESSION["tipo"] == "Mayorista") {
 					$tabla = 'pedidos_mayoristas';
 				}
 				$dir_comp = "vistas/docs/" . $tabla . "/" . $_SESSION['ID'] . "/" . $_POST['idPedido'] . "/ComprobantePago";
@@ -167,24 +167,33 @@ class ControladorPedidos
 			$tabla = str_replace('-', '_', $pag);
 			$datos = $_GET["idPedido"];
 			$accion = $_GET["accion"];
-
-			if($accion == 'confirmar como pagado'){
+			$tipo_user = $_SESSION['tipo'];
+			if (
+				$accion == 'confirmar como pagado' &&
+				($tipo_user == 'Administrador' || $tipo_user == 'Fabricante' || $tipo_user == 'Mayorista' && $tabla == 'pedidos_dists') ||
+				($tipo_user == 'Administrador' || $tipo_user == 'Fabricante' && $tabla == 'pedidos_mayoristas')
+			) {
 				$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Pago Confirmado', 'ID', $datos);
 				$respuesta1 = ModeloGeneral::mdlActualizar($tabla, 'fecha_pago', date("Y-m-d"), 'ID', $datos);
-			}
-			else if($accion == 'marcar como entregado'){
+			} else if (
+				$accion == 'marcar como entregado' &&
+				($tipo_user == 'Administrador' || $tipo_user == 'Fabricante' || $tipo_user == 'Mayorista' && $tabla == 'pedidos_dists') ||
+				($tipo_user == 'Administrador' || $tipo_user == 'Fabricante' && $tabla == 'pedidos_mayoristas')
+			) {
 				$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Entregado', 'ID', $datos);
 				$respuesta1 = ModeloGeneral::mdlActualizar($tabla, 'fecha_llegada', date("Y-m-d"), 'ID', $datos);
-			}			
-			if($accion == 'finalizar'){
+			}
+			if (
+				$accion == 'finalizar'  &&
+				($tipo_user == 'Administrador' || $tipo_user == 'Distribuidor' && $tabla == 'pedidos_dists') ||
+				($tipo_user == 'Administrador' || $tipo_user == 'Mayorista' && $tabla == 'pedidos_mayoristas')
+			) {
 				$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Finalizado', 'ID', $datos);
 				$respuesta1 = 'ok';
-			}
-			else if($accion == 'cancelar'){
+			} else if ($accion == 'cancelar') {
 				$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Cancelado', 'ID', $datos);
 				$respuesta1 = 'ok';
-			}
-			else if ($accion == 'eliminar') {
+			} else if ($accion == 'eliminar' && $tipo_user == 'Administrador') {
 				/*if ($_GET["comppago"] != "") {
 
 				unlink($_GET["comppago"]);
