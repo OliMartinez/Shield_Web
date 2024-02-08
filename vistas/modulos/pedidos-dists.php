@@ -131,7 +131,7 @@
                               <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalSeguimiento">Seguimiento</a></li>
                               <li class="dropdown-item"><a style="cursor:pointer;">Comprobante de pedido</a></li>
                               <!--<li class="dropdown-item"><a style="cursor:pointer;">Factura</a></li>-->';
-                if ($_SESSION["tipo"] == "Distribuidor") {
+                if ($_SESSION["tipo"] == "Distribuidor" || $_SESSION["tipo"] == "Administrador") {
                   echo ' 
                               <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalInfoDeposito" class="InfoDeposito" tabla="pedidos_dists" idPedido="' . $value["ID"] . '">Información para Depósito Bancario</a></li>
                               <li class="dropdown-item"><a style="cursor:pointer;" class="conf_pago" idPedido="' . $value["ID"] . '">Subir comprobante de pago (JPG o PDF)</a></li>
@@ -139,7 +139,8 @@
                           <!--<li class="dropdown-item"><a style="cursor:pointer;" class="reclamar">Hacer un Reclamo</a></li>-->
                               <li class="dropdown-item"><a style="cursor:pointer;" class="devolver">Devolución</a></li>
                   ';
-                } else if ($_SESSION["tipo"] == "Administrador") {
+                }
+                if ($_SESSION["tipo"] == "Administrador") {
                   echo '
                               <!--<li class="dropdown-item"><a style="cursor:pointer;" class="btnEditarPedido" tabla="pedidos_dists" idPedido="' . $value["ID"] . '" data-toggle="modal" data-target="#modalPedido">Editar</a></li>-->
                               <li class="dropdown-item"><a style="cursor:pointer;" class="btnAccionPedido" idPedido="' . $value["ID"] . '" accion = "eliminar">Eliminar</a></li>';
