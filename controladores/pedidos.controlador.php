@@ -76,12 +76,13 @@ class ControladorPedidos
 		if (isset($_POST["mandar_comp"])) {
 			if ($_FILES["subir_comp"]["type"] == "image/jpeg" || $_FILES["subir_comp"]["type"] == "application/pdf") {
 				$tabla = '';
+				$idPedido = $_POST['idPedido'];
 				if ($_SESSION["tipo"] == "Distribuidor") {
 					$tabla = 'pedidos_dists';
 				} else if ($_SESSION["tipo"] == "Mayorista") {
 					$tabla = 'pedidos_mayoristas';
 				}
-				$dir_comp = "vistas/docs/" . $tabla . "/" . $_SESSION['ID'] . "/" . $_POST['idPedido'] . "/ComprobantePago";
+				$dir_comp = "vistas/docs/" . $tabla . "/" . $_SESSION['ID'] . "/" . $idPedido . "/ComprobantePago";
 
 				// Crea los directorios de forma recursiva
 				mkdir($dir_comp, 0755, true);
@@ -97,7 +98,8 @@ class ControladorPedidos
 				// Mover el archivo a la ubicación deseada
 				move_uploaded_file($_FILES["subir_comp"]["tmp_name"], $comp);
 
-				$respuesta = ModeloGeneral::mdlActualizar($tabla, 'comp_pago', $comp, 'ID', $_POST["idPedido"]);
+				$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'En espera de confirmación de pago', 'ID', $idPedido);
+				$respuesta = ModeloGeneral::mdlActualizar($tabla, 'comp_pago', $comp, 'ID', $idPedido);
 
 				if ($respuesta == "ok") {
 					echo '<script>
