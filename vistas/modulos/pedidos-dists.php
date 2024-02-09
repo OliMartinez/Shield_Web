@@ -131,14 +131,14 @@
                               <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalSeguimiento">Seguimiento</a></li>
                               <li class="dropdown-item"><a style="cursor:pointer;">Comprobante de pedido</a></li>
                               <!--<li class="dropdown-item"><a style="cursor:pointer;">Factura</a></li>-->';
-                if ($_SESSION["tipo"] == "Distribuidor" || $_SESSION["tipo"] == "Administrador") {
+                if ($_SESSION["tipo"] == "Administrador" || $_SESSION["tipo"] == "Distribuidor") {
                   echo ' 
                               <li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalInfoDeposito" class="InfoDeposito" tabla="pedidos_dists" idPedido="' . $value["ID"] . '">Información para Depósito Bancario</a></li>
                               ';
-                  if ($value["tipo"] == 'En espera de pago' || $value["tipo"] == 'En espera de confirmación de pago') {
+                  if ($_SESSION["tipo"] == "Administrador" || $value["tipo"] == 'En espera de pago' || $value["tipo"] == 'En espera de confirmación de pago') {
                     echo '<li class="dropdown-item"><a style="cursor:pointer;" class="conf_pago" idPedido="' . $value["ID"] . '">Subir comprobante de pago (JPG o PDF)</a></li>';
                   }
-                  if ($value["tipo"] == 'Entregado' || $value["tipo"] == 'Pago Confirmado') {
+                  if ($_SESSION["tipo"] == "Administrador" || $value["tipo"] == 'Entregado' || $value["tipo"] == 'Pago Confirmado') {
                     echo '<li class="dropdown-item"><a style="cursor:pointer;" class="btnAccionPedido" idPedido="' . $value["ID"] . '" accion = "finalizar">Confirmar de recibido</a></li>';
                   }
                   echo '<!--<li class="dropdown-item"><a style="cursor:pointer;" class="reclamar">Hacer un Reclamo</a></li>-->
@@ -150,18 +150,18 @@
                               <!--<li class="dropdown-item"><a style="cursor:pointer;" class="btnEditarPedido" tabla="pedidos_dists" idPedido="' . $value["ID"] . '" data-toggle="modal" data-target="#modalPedido">Editar</a></li>-->
                               <li class="dropdown-item"><a style="cursor:pointer;" class="btnAccionPedido" idPedido="' . $value["ID"] . '" accion = "eliminar">Eliminar</a></li>';
                 }
-                if ($_SESSION["tipo"] != "Distribuidor") {
-                  if ($value["tipo"] != 'Finalizado') {
+                if ($_SESSION["tipo"] != "Distribuidor" && $_SESSION["tipo"] != "Agente") {
+                  if ($_SESSION["tipo"] == "Administrador" || $value["tipo"] != 'Finalizado') {
                     echo '<li class="dropdown-item"><a style="cursor:pointer;" class="btnAccionPedido" idPedido="' . $value["ID"] . '" accion = "marcar como entregado">Marcar como entregado</a></li>';
                   }
-                  if ($value["tipo"] == 'Finalizado' || $value["tipo"] == 'Entregado' || $value["tipo"] == 'Pago confirmado' || $value["tipo"] == 'En espera de confirmación de pago') {
+                  if ($_SESSION["tipo"] == "Administrador" || $value["tipo"] == 'Finalizado' || $value["tipo"] == 'Entregado' || $value["tipo"] == 'Pago confirmado' || $value["tipo"] == 'En espera de confirmación de pago') {
                     echo '<li class="dropdown-item"><a style="cursor:pointer;" data-toggle="modal" data-target="#modalCompPago" idPedido="' . $value["ID"] . '" tabla="pedidos_mayoristas" compdir="' . $value["comp_pago"] . '" class="ver_comp_pago">Ver comprobante de pago</a></li>';
                   }
-                  if ($value["tipo"] != 'Finalizado' && $value["tipo"] != 'Cancelado') {
+                  if ($_SESSION["tipo"] == "Administrador" || $value["tipo"] != 'Finalizado' && $value["tipo"] != 'Cancelado') {
                     echo '<li class="dropdown-item"><a style="cursor:pointer;" class="btnAccionPedido" idPedido="' . $value["ID"] . '" accion = "confirmar como pagado">Confirmar pago</a></li>';
                   }
                 }
-                if ($value["tipo"] != 'Finalizado' && $value["tipo"] != 'Entregado' && $value["tipo"] != 'Cancelado') {
+                if ($_SESSION["tipo"] == "Administrador" ||  $value["tipo"] != 'Finalizado' && $value["tipo"] != 'Entregado' && $value["tipo"] != 'Cancelado') {
                   echo '<li class="dropdown-item"><a style="cursor:pointer;" class="btnAccionPedido" idPedido="' . $value["ID"] . '" accion = "cancelar">Cancelar</a></li>';
                 }
                 echo '</ul>
