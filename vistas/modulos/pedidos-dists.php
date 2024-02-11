@@ -161,7 +161,7 @@
                     echo '<li class="dropdown-item"><a style="cursor:pointer;" class="btnAccionPedido" idPedido="' . $value["ID"] . '" accion = "confirmar como pagado">Confirmar pago</a></li>';
                   }
                 }
-                if ($_SESSION["tipo"] == "Administrador" ||  $value["tipo"] != 'Finalizado' && $value["tipo"] != 'Entregado' && $value["tipo"] != 'Cancelado') {
+                if ($_SESSION["tipo"] == "Administrador" && $_SESSION["tipo"] == "Administrador" ||  $value["tipo"] != 'Finalizado' && $value["tipo"] != 'Entregado' && $value["tipo"] != 'Cancelado') {
                   echo '<li class="dropdown-item"><a style="cursor:pointer;" class="btnAccionPedido" idPedido="' . $value["ID"] . '" accion = "cancelar">Cancelar</a></li>';
                 }
                 echo '</ul>
