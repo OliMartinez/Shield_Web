@@ -168,27 +168,27 @@ class ControladorPedidos
 			$pag = $_GET["ruta"];
 			$tabla = str_replace('-', '_', $pag);
 			$datos = $_GET["idPedido"];
-			$accion = $_GET["accion"];
+			$accion = str_replace('%20',' ',$_GET["accion"]);
 			$user = $_SESSION['ID'];
 			$tipo_user = $_SESSION['tipo'];
-			if ($tabla = 'pedidos_mayoristas') {
+			if ($tabla == 'pedidos_mayoristas') {
 				$tipo_usuario = 'mayorista';
-			} else if ($tabla = 'pedidos_dists') {
+			} else if ($tabla == 'pedidos_dists') {
 				$tipo_usuario = 'dist';
 			}
 			$usuario = ModeloGeneral::mdlMostrarItems($tabla, 'ID', $datos, $tipo_usuario);
 			if ($tipo_usuario == "dist") {
-				$agente = ModeloGeneral::mdlMostrarItems('dists', 'ID', $usuario, 'agente');
-				$mayorista = ModeloGeneral::mdlMostrarItems('dists', 'ID', $agente, 'mayorista');
+				//$agente = ModeloGeneral::mdlMostrarItems('dists', 'ID', $usuario, 'agente');
+				$mayorista = ModeloGeneral::mdlMostrarItems('dists', 'ID', $usuario, 'mayorista');
 			}
-			if ($accion == 'confirmar como pagado' && $tipo_user == 'Administrador' || (($tipo_user == 'Fabricante' &&
+			if ($accion == 'confirmar como pagado' && ($tipo_user == 'Administrador' || (($tipo_user == 'Fabricante' &&
 				$tipo_usuario == 'Mayorista') || ($tipo_user == 'Fabricante' && $tipo_usuario == 'dist' && $mayorista == 'FLEXOLAN S.A de C.V')
-				|| ($tipo_user == 'Mayorista' && $tipo_usuario == 'dist' && $mayorista == $user))) {
+				|| ($tipo_user == 'Mayorista' && $tipo_usuario == 'dist' && $mayorista == $user)))) {
 				$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Pago Confirmado', 'ID', $datos);
 				$respuesta1 = ModeloGeneral::mdlActualizar($tabla, 'fecha_pago', date("Y-m-d"), 'ID', $datos);
-			} else if ($accion == 'marcar como entregado' && $tipo_user == 'Administrador' || (($tipo_user == 'Fabricante' &&
+			} else if ($accion == 'marcar como entregado' && ($tipo_user == 'Administrador' || (($tipo_user == 'Fabricante' &&
 				$tipo_usuario == 'Mayorista') || ($tipo_user == 'Fabricante' && $tipo_usuario == 'dist' && $mayorista == 'FLEXOLAN S.A de C.V')
-				|| ($tipo_user == 'Mayorista' && $tipo_usuario == 'dist' && $mayorista == $user))) {
+				|| ($tipo_user == 'Mayorista' && $tipo_usuario == 'dist' && $mayorista == $user)))) {
 				$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Entregado', 'ID', $datos);
 				$respuesta1 = ModeloGeneral::mdlActualizar($tabla, 'fecha_llegada', date("Y-m-d"), 'ID', $datos);
 			}
@@ -196,10 +196,10 @@ class ControladorPedidos
 				$tipo_usuario == 'mayorista') || ($tipo_user == 'Distribuidor' && $tipo_usuario == 'dist') && $user == $usuario))) {
 				$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Finalizado', 'ID', $datos);
 				$respuesta1 = 'ok';
-			} else if ($accion == 'cancelar' && $tipo_user == 'Administrador' || ($user == $usuario ||
+			} else if ($accion == 'cancelar' && ($tipo_user == 'Administrador' || ($user == $usuario ||
 				($tipo_user == 'Fabricante' && $tipo_usuario == 'Mayorista')
 				|| ($tipo_user == 'Fabricante' && $tipo_usuario == 'dist' && $mayorista == 'FLEXOLAN S.A de C.V')
-				|| ($tipo_user == 'Mayorista' && $tipo_usuario == 'dist' && $mayorista == $user))) {
+				|| ($tipo_user == 'Mayorista' && $tipo_usuario == 'dist' && $mayorista == $user)))) {
 				$respuesta = ModeloGeneral::mdlActualizar($tabla, 'tipo', 'Cancelado', 'ID', $datos);
 				$respuesta1 = 'ok';
 			} else if ($accion == 'eliminar' && $tipo_user == 'Administrador') {

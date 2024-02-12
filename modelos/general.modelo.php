@@ -152,7 +152,13 @@ class ModeloGeneral
 
 	public static function mdlActualizar($tabla, $item1, $valor1, $item2, $valor2)
 	{
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = '$valor1' WHERE $item2 = :valor2");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :valor1 WHERE $item2 = :valor2");
+		if(gettype($valor1)=='integer'){
+			$stmt->bindParam(":valor1", $valor1, PDO::PARAM_INT);
+		}
+		else {
+			$stmt->bindParam(":valor1", $valor1, PDO::PARAM_STR);
+		}
 		if(gettype($valor2)=='integer'){
 			$stmt->bindParam(":valor2", $valor2, PDO::PARAM_INT);
 		}
