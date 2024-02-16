@@ -74,12 +74,16 @@ class ControladorCatalogo
 	BUSCAR EN EL CATALOGO
 	=============================================*/
 
-	public static function ctrBuscar()
+	public static function ctrBuscar($buscar, $vendedor)
 	{
-		if (isset($_GET["Buscar"])) {
-			$tabla = $_SERVER["REQUEST_URI"];
-			$buscar = $_GET["Buscar"];
-			$respuesta = ModeloCatalogo::mdlBuscar($tabla, $buscar);
-		}
+		$tabla = '';
+			if($_SESSION['tipo']=='Mayorista'){
+				$tabla = 'productos_fab';
+			}
+			else if($_SESSION['tipo']=='Distribuidor'){
+				$tabla = 'productos_mayorista';
+			}
+			$respuesta = ModeloCatalogo::mdlBuscar($tabla, $vendedor, $buscar);
+			return $respuesta;
 	}
 }

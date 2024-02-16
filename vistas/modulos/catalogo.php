@@ -117,10 +117,13 @@
 
                                 $tabla = "productos_fab";
                             }
-
-                            $Productos = ControladorGeneral::ctrMostrarFilas($item, $valor, $tabla); ?>
-
-                            <?php foreach ($Productos as $key => $value) {
+                            if(isset($_GET['Buscar'])){
+                                $Productos = ControladorCatalogo::ctrBuscar($_GET['Buscar'], $valor);
+                            }
+                            else{
+                                $Productos = ControladorGeneral::ctrMostrarFilas($item, $valor, $tabla); 
+                            }
+                            foreach ($Productos as $key => $value) {
                                 echo '<div class="col-md-3 product">
                                         <div style="border-bottom: 1px solid #A9A9A9">
                                             <a class="producto-catalogo" style="cursor:pointer;" idProducto="' . $value["ID"] . '"><img style="width:100%;height:100%;" src=\'' . explode('<br>',$value["imagenes"])[0] . '\' ></a>
