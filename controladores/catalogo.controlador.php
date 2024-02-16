@@ -11,14 +11,14 @@ class ControladorCatalogo
 		if (isset($_POST['submit'])) {
 
 			$tabla = null;
-		
+
 			if ($_SESSION["tipo"] == "Distribuidor") {
 				$tabla = "carritos_dists";
 			} else {
 				$tabla = "carritos_mayoristas";
 			}
 
-			$ID = ModeloGeneral::mdlContFilas($tabla,null,null);
+			$ID = ModeloGeneral::mdlContFilas($tabla, null, null);
 
 			$datos = array(
 				"ID" => $ID,
@@ -68,7 +68,18 @@ class ControladorCatalogo
 			</script>';
 			}
 		}
-		
+	}
+
+	/*=============================================
+	BUSCAR EN EL CATALOGO
+	=============================================*/
+
+	public static function ctrBuscar()
+	{
+		if (isset($_GET["Buscar"])) {
+			$tabla = $_SERVER["REQUEST_URI"];
+			$buscar = $_GET["Buscar"];
+			$respuesta = ModeloCatalogo::mdlBuscar($tabla, $buscar);
+		}
 	}
 }
-?>
