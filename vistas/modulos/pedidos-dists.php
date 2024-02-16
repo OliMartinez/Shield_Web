@@ -151,7 +151,7 @@
                               <li class="dropdown-item"><a style="cursor:pointer;" class="btnAccionPedido" idPedido="' . $value["ID"] . '" accion = "eliminar">Eliminar</a></li>';
                 }
                 if ($_SESSION["tipo"] != "Distribuidor" && $_SESSION["tipo"] != "Agente") {
-                  if ($_SESSION["tipo"] == "Administrador" || $value["tipo"] != 'Finalizado') {
+                  if ($_SESSION["tipo"] == "Administrador" || ($value["tipo"] != 'Finalizado' && $value["tipo"] != 'Entregado' && $value["tipo"] != 'Cancelado')) {
                     echo '<li class="dropdown-item"><a style="cursor:pointer;" class="btnAccionPedido" idPedido="' . $value["ID"] . '" accion = "marcar como entregado">Marcar como entregado</a></li>';
                   }
                   if ($_SESSION["tipo"] == "Administrador" || $value["tipo"] == 'Finalizado' || $value["tipo"] == 'Entregado' || $value["tipo"] == 'Pago confirmado' || $value["tipo"] == 'En espera de confirmación de pago') {

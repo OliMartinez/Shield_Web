@@ -35,7 +35,7 @@
 
  		</a>
  		<?php
-			if ((isset($_GET["ruta"]) && $_GET["ruta"] == "catalogo") || ($_SESSION["tipo"] == "Distribuidor" && !isset($_GET["ruta"]))) {
+			if ((isset($_GET["ruta"]) && str_contains($_GET["ruta"],"catalogo")) || ($_SESSION["tipo"] == "Distribuidor" && !isset($_GET["ruta"]))) {
 				echo '<form class="navbar-nav navbar-form" action="catalogo-busqueda" method="GET" style="margin-left:27%; width:35%">
  				<div class="input-group input-group-sm" style="width:125%">
  					<input type="search" class="form-control form-control-navbar" placeholder="Buscar" name="Buscar" id="Buscar">
