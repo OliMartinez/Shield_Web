@@ -141,8 +141,8 @@
                   if ($_SESSION["tipo"] == "Administrador" || $value["tipo"] == 'Entregado' || $value["tipo"] == 'Pago Confirmado') {
                     echo '<li class="dropdown-item"><a style="cursor:pointer;" class="btnAccionPedido" idPedido="' . $value["ID"] . '" accion = "finalizar">Confirmar de recibido</a></li>';
                   }
-                  echo '<!--<li class="dropdown-item"><a style="cursor:pointer;" class="reclamar">Hacer un Reclamo</a></li>-->
-                              <li class="dropdown-item"><a style="cursor:pointer;" class="devolver">Devolución</a></li>
+                  echo '<!--<li class="dropdown-item"><a style="cursor:pointer;" class="reclamar">Hacer un Reclamo</a></li>
+                              <li class="dropdown-item"><a style="cursor:pointer;" class="devolver">Devolución</a></li>-->
                   ';
                 }
                 if ($_SESSION["tipo"] == "Administrador") {
