@@ -247,7 +247,7 @@ MODAL DISTRIBUIDOR
               <label>Nombre de usuario*</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user-o"></i></span>
-                <input type="text" class="form-control input-lg" name="ID" id="ID" placeholder="Ingresa el nombre de usuario" required>
+                <input type="text" class="form-control input-lg" name="ID" id="ID" placeholder="Ingresa el nombre de usuario" required autocomplete="off">
                 <input type="hidden" name="IDant" id="IDant">
                 <input type="hidden" name="tipoguardar" id="tipoguardar" value="crear">
                 <input type="hidden" name="tabla" id="tabla" value="dists">

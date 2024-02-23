@@ -325,7 +325,7 @@ function validarElemento($elemento, elementoAnterior, item, tabla) {
 	const valor = $elemento.val();
 	const valorAnterior = elementoAnterior.val();
 
-	if (valorAnterior !== "" && valor !== valorAnterior) {
+	if (valor !== "" && valor !== valorAnterior) {
 		const datos = new FormData();
 		datos.append("validar", valor);
 		datos.append("tabla", tabla);
@@ -359,11 +359,7 @@ function validarElemento($elemento, elementoAnterior, item, tabla) {
 }
 
 $("#ID").change(function () {
-	var sPath = window.location.pathname;
-	var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-	if (sPage == "formulario-solicitantes") {
-		validarElemento($(this), $("#IDant"), "ID", "usuarios");
-	}
+	validarElemento($(this), $("#IDant"), "ID", "usuarios");
 });
 
 $("#Email").change(function () {
