@@ -183,13 +183,11 @@ class ControladorUsuarios
 
 	public static function GuardarUsuario()
 	{
-
 		$tabla2 = $_POST["tabla"];
 
 		$tipo = $_POST["tipoguardar"];
 
-		$data = $_POST;
-		$errors = ControladorUsuarios::validateForm($data);
+		$errors = ControladorUsuarios::validateForm();
 
 		if (!empty($errors)) {
 			$errorTypes = implode(', ', $errors);
@@ -844,65 +842,63 @@ class ControladorUsuarios
 
 		return $ruta_archivo_permanente;
 	}
-	public static function validateForm($data)
+	public static function validateForm()
 	{
 		$requiredFields = [];
-		$conditionalFields = ['SF', 'AC', 'IDE', 'CompDom'];
+		$fileFields = ['SF', 'AC', 'IDE', 'CompDom'];
 		$errors = [];
 
-		if (empty($data['tabla'])) {
+		if (empty($_POST['tabla'])) {
 			$requiredFields = ['ID', 'Email', 'Tipo'];
 		} else {
 			$requiredFields = ['ID', 'NomLegal_o_RS', 'Email', 'Tel', 'Estado', 'Ciudad'];
 
-			if ($data['tabla'] == "mayoristas" || $data['tabla'] == "dists" || $data['tabla'] == "solicitantes") {
-				$extraFields = ['CP', 'Domicilio', 'RS'];
-				$requiredFields = array_merge($requiredFields, $extraFields, $conditionalFields);
+			if ($_POST['tabla'] == "mayoristas" || $_POST['tabla'] == "dists" || $_POST['tabla'] == "solicitantes") {
+				$extraFields = ['CP', 'Dir_Fiscal', 'NomLegal_o_RS'];
+				$requiredFields = array_merge($requiredFields, $extraFields, $fileFields);
 				// Para el código postal (asumiendo que es un código postal de 5 dígitos)
-				$cp = $data['CP'];
+				$cp = $_POST['CP'];
 				if (!preg_match('/^\d{5}$/', $cp)) {
 					$errors[] = 'CP';
 				}
 			}
 
-			if ($data['tabla'] == "agentes" || $data['tabla'] == "dists") {
+			if ($_POST['tabla'] == "agentes" || $_POST['tabla'] == "dists") {
 				$requiredFields[] = 'Mayorista';
 				$requiredFields[] = 'Zona';
 			}
 
-			if ($data['tabla'] == "dists") {
+			if ($_POST['tabla'] == "dists") {
 				$requiredFields[] = 'Agente';
 			}
 		}
 
-		if ($data['tipoguardar'] == "crear") {
+		if ($_POST['tipoguardar'] == "crear") {
 			$requiredFields[] = 'Password';
 		}
 
 		foreach ($requiredFields as $field) {
-			if (!isset($data[$field]) || empty($data[$field])) {
-				if (in_array($field, $conditionalFields)) {
-					$actualField = $field . 'Actual';
-					if (!isset($data[$actualField]) || empty($data[$actualField])) {
-						$errors[] = $field;
-					}
-				} else {
+			if ((in_array($field, $fileFields) && (!isset($_FILES[$field]["tmp_name"]) || empty($_FILES[$field]["tmp_name"])))) {
+				$actualField = $field . 'Actual';
+				if (!isset($_POST[$actualField]) || empty($_POST[$actualField])) {
 					$errors[] = $field;
 				}
+			} else if (!in_array($field, $fileFields) && (!isset($_POST[$field]) || empty($_POST[$field]))) {
+				$errors[] = $field;
 			}
 		}
 
-		if (!filter_var($data['Email'], FILTER_VALIDATE_EMAIL)) {
+		if (!filter_var($_POST['Email'], FILTER_VALIDATE_EMAIL)) {
 			$errors[] = 'Email';
 		}
 
 		// Para el teléfono (asumiendo que es un número de 10 dígitos)
-		$tel = $data['Tel'];
+		$tel = $_POST['Tel'];
 		if (!preg_match('/^\(\d{3}\)\s\d{3}-\d{4}$/', $tel)) {
 			$errors[] = 'Tel';
 		}
 
-		if (isset($data["ConfirmPassword"]) && (($data["Password"] != $data["ConfirmPassword"]) || (empty($data["Password"]) && empty($data["ConfirmPassword"])))) {
+		if (isset($_POST["ConfirmPassword"]) && (($_POST["Password"] != $_POST["ConfirmPassword"]) || (empty($_POST["Password"]) && empty($_POST["ConfirmPassword"])))) {
 			$errors[] = 'Password';
 		}
 
