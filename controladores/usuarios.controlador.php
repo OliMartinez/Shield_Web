@@ -383,15 +383,15 @@ class ControladorUsuarios
 					$datos["dir_fiscal"] = $_POST["Dir_Fiscal"];
 					$domicilios = array();
 					$domiciliosSeparados = "";
-					// Asegurarse de que $_POST['Domicilio'] existe y es un arreglo
-					if (isset($_POST['Domicilio']) && is_array($_POST['Domicilio'])) {
-						$domicilios = $_POST['Domicilio'];
+					// Asegurarse de que $_POST['s'] existe y es un arreglo
+					if (isset($_POST['Domicilios']) && is_array($_POST['Domicilios'])) {
+						$domicilios = $_POST['Domicilios'];
 
 						// Unir los domicilios en una cadena separada por "<br>"
 						$domiciliosSeparados = implode("<br>", $domicilios);
 					} else {
-						// Manejar el caso en que $_POST['Domicilio'] no existe o no es un arreglo
-						$domiciliosSeparados = $_POST['Domicilio'];
+						// Manejar el caso en que $_POST['Domicilios'] no existe o no es un arreglo
+						$domiciliosSeparados = $_POST['Domicilios'];
 					}
 					$datos['domicilios'] = $domiciliosSeparados;
 					$campos_comunes = ['cp' => 'CP'];
@@ -880,7 +880,8 @@ class ControladorUsuarios
 		foreach ($requiredFields as $field) {
 			if ((in_array($field, $fileFields) && (!isset($_FILES[$field]["tmp_name"]) || empty($_FILES[$field]["tmp_name"])))) {
 				$actualField = $field . 'Actual';
-				if (!isset($_POST[$actualField]) || empty($_POST[$actualField])) {
+				if ((!isset($_POST[$actualField]) || empty($_POST[$actualField])) 
+				&& (($field!='AC' && $_POST['Tipopersona']=="0") || ($_POST['Tipopersona']=="1"))) {
 					$errors[] = $field;
 				}
 			} else if (!in_array($field, $fileFields) && (!isset($_POST[$field]) || empty($_POST[$field]))) {
