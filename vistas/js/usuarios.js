@@ -805,7 +805,7 @@ function checkTel(tel) {
 /*=============================================
 Checar CP
 =============================================*/
-function checkCP(cp) {
+/*function checkCP(cp) {
 	$("#CP").next(".alerta").remove();
 	var campovalido = true;
 	// Para el código postal (asumiendo que es un código postal de 5 dígitos)
@@ -820,14 +820,14 @@ function checkCP(cp) {
 		campovalido = true;
 	}
 	return campovalido;
-}
+}*/
 
 /*=============================================
 Checar CP
 =============================================*/
-$('#CP').change(function () {
+/*$('#CP').change(function () {
 	checkCP($(this).val());
-});
+});*/
 
 /*=============================================
 Agregar otro Domicilio

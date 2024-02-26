@@ -842,6 +842,7 @@ class ControladorUsuarios
 
 		return $ruta_archivo_permanente;
 	}
+	
 	public static function validateForm()
 	{
 		$requiredFields = [];
