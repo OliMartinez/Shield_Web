@@ -123,12 +123,6 @@ class ControladorUsuarios
 			$tabla2 = $_GET["tabla"];
 			$datos = $_GET["idUsuario"];
 
-			if ($_GET["fotoUsuario"] != "") {
-
-				unlink($_GET["fotoUsuario"]);
-				rmdir('vistas/img/usuarios/' . $_GET["idUsuario"]);
-			}
-
 			$respuesta = $respuesta = ModeloGeneral::mdlEliminar($tabla, $tabla2, $datos);
 
 			$pag = "";
@@ -139,6 +133,28 @@ class ControladorUsuarios
 			}
 
 			if ($respuesta == "ok") {
+				if ($_GET["fotoUsuario"] != "") {
+
+					unlink($_GET["fotoUsuario"]);
+					rmdir('vistas/img/usuarios/' . $_GET["idUsuario"]);
+				}
+				$dir_docs = 'vistas/docs/' . $pag . '/' . $datos;
+
+				// Verifica si el directorio existe
+				if (is_dir($dir_docs)) {
+					// Abre el directorio
+					$archivos = scandir($dir_docs);
+					// Itera sobre los archivos del directorio
+					foreach ($archivos as $archivo) {
+						// Ignora los directorios . y ..
+						if ($archivo != '.' && $archivo != '..') {
+							// Borra el archivo
+							unlink($dir_docs . '/' . $archivo);
+						}
+					}
+					// Borra el directorio
+					rmdir($dir_docs);
+				}
 				if ($_SESSION["ID"] == $datos) {
 					$pag = "salir";
 				}
@@ -842,7 +858,7 @@ class ControladorUsuarios
 
 		return $ruta_archivo_permanente;
 	}
-	
+
 	public static function validateForm()
 	{
 		$requiredFields = [];
@@ -881,8 +897,9 @@ class ControladorUsuarios
 		foreach ($requiredFields as $field) {
 			if ((in_array($field, $fileFields) && (!isset($_FILES[$field]["tmp_name"]) || empty($_FILES[$field]["tmp_name"])))) {
 				$actualField = $field . 'Actual';
-				if ((!isset($_POST[$actualField]) || empty($_POST[$actualField])) 
-				&& (($field!='AC' && $_POST['Tipopersona']=="0") || ($_POST['Tipopersona']=="1"))) {
+				if ((!isset($_POST[$actualField]) || empty($_POST[$actualField]))
+					&& (($field != 'AC' && $_POST['Tipopersona'] == "0") || ($_POST['Tipopersona'] == "1"))
+				) {
 					$errors[] = $field;
 				}
 			} else if (!in_array($field, $fileFields) && (!isset($_POST[$field]) || empty($_POST[$field]))) {
