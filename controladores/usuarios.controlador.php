@@ -304,9 +304,6 @@ class ControladorUsuarios
 				if (!isset($_POST["ConfirmPassword"]) || $_POST["Password"] == $_POST["ConfirmPassword"]) {
 					$encriptar = crypt($_POST["Password"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 				}
-			} else {
-
-				$encriptar = $_POST["PasswordActual"];
 			}
 
 			$sf = "";
@@ -364,29 +361,7 @@ class ControladorUsuarios
 				$tipos = ['mayoristas' => 'Mayorista', 'agentes' => 'Agente', 'dists' => 'Distribuidor', 'solicitantes' => 'Solicitante'];
 				$datos["tipo"] = $tipos[$tabla2];
 
-				if ($tabla2 == "mayoristas") {
-					/*$zonas = "";
-					if (is_array($_POST['ZonaName'])) {  // Verificar si es un array
-						// Es un array, así que unir los valores con comas
-						$zonas = implode("<br>", $_POST['ZonaName']);
-					} else {
-						// No es un array, así que solo guardar el valor
-						$zonas = $_POST['ZonaName'];
-					}
-					$datos["zonas"] = $zonas;
-
-					// Obtener la cantidad de elementos en el arreglo
-					/*$cantidadZonas = count($zonas);
-
-					for ($i = 0; $i < $cantidadZonas; $i++) {
-						$datosZona = array(
-							"ID" => $zonas[$i],
-							"estados" => ,
-							"ciudades" => 
-
-						);
-					}*/
-				} else {
+				if ($tabla2 != "mayoristas") {
 					$datos["zona"] = $_POST["Zona"];
 					$datos["mayorista"] = $_POST["Mayorista"];
 					if ($tabla2 != "agentes") {
@@ -431,6 +406,40 @@ class ControladorUsuarios
 					$datos["observs"] = $_POST["Observs"];
 				}
 			}
+			// Inicializar un string vacío
+			/*$llavesYValores = "";
+
+			// Iterar sobre el arreglo
+			foreach ($datos as $llave => $valor) {
+				// Concatenar la llave y el valor al string
+				$llavesYValores .= "$llave: $valor, ";
+			}
+
+			// Eliminar la última coma y espacio extra
+			$llavesYValores = rtrim($llavesYValores, ", ");
+			// Inicializar un string vacío
+			$llavesYValores = "";
+
+			// Iterar sobre el arreglo
+			foreach ($datos as $llave => $valor) {
+				// Concatenar la llave y el valor al string
+				$llavesYValores .= "$llave: $valor, ";
+			}
+
+			// Eliminar la última coma y espacio extra
+			$llavesYValores = rtrim($llavesYValores, ", ");
+
+			echo '<script>
+
+			swal({
+					type: "success",
+					title: "' .$tabla2. $llavesYValores . '",
+					showConfirmButton: true,
+					confirmButtonText: "Cerrar"
+					}).then(function(result) {
+						})
+
+			</script>';*/
 
 			$respuesta = ModeloUsuarios::mdlGuardarUsuario($tabla2, $datos, $tipo);
 

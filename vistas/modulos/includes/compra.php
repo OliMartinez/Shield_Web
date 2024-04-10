@@ -45,9 +45,10 @@ MODAL COMPRA
                 $mayorista = ControladorGeneral::ctrMostrarItems("ID", $_SESSION["ID"], "dists", "mayorista");
                 $cuentasdeps = ControladorGeneral::ctrMostrarFilas("propietario", $mayorista, "cuentas_deps");
               }
+              echo '<b id="label_a_pagar"></b><br>';
               foreach ($cuentasdeps as $key => $value) {
-                echo '<b>' . $value["tipo"] . '</b>
-                  <br><br><b id="label_a_pagar"></b>';
+                echo '<b>Forma de Depósito '.($key + 1) .'</b><br>
+                <b>' . $value["tipo"] . '</b>';
                 if ($value["tipo"] == "Cuenta Bancaria") {
                   echo '<br><br><b>Beneficiario: </b><span>' . $value['beneficiario'] . '</span>';
                   if ($value['cuenta'] != null) {

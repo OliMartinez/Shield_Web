@@ -1,3 +1,5 @@
+var firstValidateUser = true;
+
 /*=============================================
 ESTADO Y CIUDAD SON REQUERIDOS PARA NO ADMINS Y NO FABRICANTES
 =============================================*/
@@ -15,9 +17,11 @@ $(".btnCrearUsuario").on("click", function () {
 	$("#IDant").val('');
 	$("#NomLegal_o_RS").val('');
 	if (!$("#labelPassword").html().includes("*")) {
-		$("#labelPassword").html($("#labelPassword").html() + "*");
+		$("#labelPassword").html("Contraseña*");
 	}
 	$("#Password").val('');
+	$("#Password").attr('style','');
+	$('#passwordStrength').html('');
 	$("#Email").val('');
 	$("#Emailant").val('');
 	$("#Tel").val('');
@@ -85,7 +89,11 @@ $(".btnCrearUsuario").on("click", function () {
 EDITAR USUARIO
 =============================================*/
 $(".tablas").on("click", ".btnEditarUsuario", function () {
-	$("#labelPassword").html($("#labelPassword").html().replace("*", ""));
+	$("#labelPassword").html("Nueva Contraseña (En caso de querer cambiarla)");
+	$("#Password").val('');
+	$("#Password").attr('style','');
+	$('#passwordStrength').html('');
+
 	var idUsuario = $(this).attr("idUsuario");
 	var tabla = $(this).attr("tabla");
 
@@ -107,7 +115,6 @@ $(".tablas").on("click", ".btnEditarUsuario", function () {
 			$("#ID").val(respuesta["ID"]);
 			$("#IDant").val(respuesta["ID"]);
 			$("#NomLegal_o_RS").val(respuesta["nombre_legal_o_rs"]);
-			$("#PasswordActual").val(respuesta["contrasena"]);
 			$("#Email").val(respuesta["email"]);
 			$("#Emailant").val(respuesta["email"]);
 			$("#Tel").val(respuesta["tel"]);
@@ -169,7 +176,7 @@ $(".tablas").on("click", ".btnEditarUsuario", function () {
 				else {
 					$("#Moral").prop("checked", true);
 					$("#labelAC, #AC, #miniaturaAC, #linkAC, #ACActual").show();
-					if (respuesta["acta_const"] != "") {
+					if (respuesta["acta_const"] != "" && respuesta["acta_const"] != null) {
 						$("#ACActual").val(respuesta["acta_const"]);
 						const fileName = respuesta["acta_const"].split("/").pop();
 						$("#linkAC").attr("href", respuesta["acta_const"]);
@@ -177,10 +184,13 @@ $(".tablas").on("click", ".btnEditarUsuario", function () {
 						$("#linkAC").attr("download", fileName);
 						Miniatura(respuesta["acta_const"], $("#miniaturaAC")[0]);
 					} else {
+						$("#ACActual").val('');
 						$("#linkAC").attr("href", '');
 						$("#linkAC").attr("download", '');
 						$("#linkAC").html('');
 						$("#miniaturaAC").attr("src", "");
+						$("#miniaturaAC").attr("style", "");
+						$("#miniaturaAC").attr("title", "");
 					}
 				}
 
@@ -189,7 +199,7 @@ $(".tablas").on("click", ".btnEditarUsuario", function () {
 
 				for (const prefix of prefixs) {
 					elem = respuesta[elementos[prefixs.indexOf(prefix)]];
-					if (elem != "") {
+					if (elem != "" && elem!=null) {
 						$("#" + prefix + "Actual").val(elem);
 						const fileName = elem.split("/").pop();
 						$("#link" + prefix).attr("href", elem);
@@ -197,10 +207,13 @@ $(".tablas").on("click", ".btnEditarUsuario", function () {
 						$("#link" + prefix).attr("download", fileName);
 						Miniatura(elem, $("#miniatura" + prefix)[0]);
 					} else {
+						$("#" + prefix + "Actual").val('');
 						$("#link" + prefix).attr("href", '');
 						$("#link" + prefix).attr("download", '');
 						$("#link" + prefix).html('');
 						$("#miniatura" + prefix).attr("src", "");
+						$("#miniatura" + prefix).attr("style", "");
+						$("#miniatura" + prefix).attr("title", "");
 					}
 				}
 
@@ -359,7 +372,12 @@ function validarElemento($elemento, elementoAnterior, item, tabla) {
 }
 
 $("#ID").change(function () {
+	if(firstValidateUser){
+	firstValidateUser = false;
+	}
+	else{
 	validarElemento($(this), $("#IDant"), "ID", "usuarios");
+	}
 });
 
 $("#Email").change(function () {

@@ -47,7 +47,7 @@ $(".tablas").on("click", ".btnEditarProducto", function () {
                 processData: false,
                 dataType: "json",
                 success: function (resultado) {
-                    var categs = resultado.split(",");
+                    var categs = resultado.split("<br>");
                     // Recorre el arreglo y crea opciones en el <select>
                     $.each(categs, function (index, valor) {
                         $("#CategoriaSelect").append($("<option>", {

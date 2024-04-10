@@ -116,6 +116,7 @@ class ControladorProductos
 				"categorias" => $categoriasSeparadas,
 				"coleccion" => $_POST["Coleccion"],
 				"cantidad_min" => $_POST["Cant_min"],
+				"envio" => $_POST["Envio"],
 				"imagenes" => $rutas
 			);
 

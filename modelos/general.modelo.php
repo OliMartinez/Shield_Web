@@ -232,10 +232,10 @@ class ModeloGeneral
 	/*=============================================
 	OBTENER VALOR MÁS GRANDE DE UNA COLUMNA
 	=============================================*/
-	/*	public static function mdlValorMasGrande($tabla, $columna)
+		public static function mdlValorMasGrande($tabla, $columna, $item, $cond)
 	{
 		$stmt = null;
-		$stmt = Conexion::conectar()->prepare("SELECT MAX($columna) FROM $tabla");
+		$stmt = Conexion::conectar()->prepare("SELECT MAX($columna) FROM $tabla where $item='$cond'");
 
 		if ($stmt->execute()) {
 
@@ -247,5 +247,5 @@ class ModeloGeneral
 			return "error";
 		}
 		$stmt->close();
-	}*/
+	}
 }

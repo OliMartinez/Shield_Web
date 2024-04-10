@@ -22,7 +22,7 @@ class ModeloUsuarios
 			}
 		} elseif ($item != null) {
 			$partsql = "WHERE usuarios.ID = $tabla2.ID and $tabla2.$item ='$valor'";
-		}else{
+		} else {
 			$partsql = "WHERE usuarios.ID = $tabla2.ID";
 		}
 
@@ -59,33 +59,51 @@ class ModeloUsuarios
 
 	public static function mdlGuardarUsuario($tabla2, $datos, $tipo)
 	{
-
 		$stmt = null;
 		$stmt1 = null;
 
 		if ($tipo == "crear") {
-			$stmt = Conexion::conectar()->prepare("INSERT INTO `usuarios`(ID, nombre_legal_o_rs, contrasena, tipo, email, tel, estado, ciudad, foto) VALUES(:ID, :nombre_legal_o_rs, :contrasena, :tipo, :email, :tel, :estado, :ciudad, :foto)");
+			if ($tabla2 != null) {
+				$stmt = Conexion::conectar()->prepare("INSERT INTO `usuarios`(ID, nombre_legal_o_rs, contrasena, tipo, email, tel, estado, ciudad, foto) VALUES(:ID, :nombre_legal_o_rs, :contrasena, :tipo, :email, :tel, :estado, :ciudad, :foto)");
+				$stmt->bindParam(":estado", $datos["estado"], PDO::PARAM_STR);
+				$stmt->bindParam(":ciudad", $datos["ciudad"], PDO::PARAM_STR);
+			} else {
+				$stmt = Conexion::conectar()->prepare("INSERT INTO `usuarios`(ID, nombre_legal_o_rs, contrasena, tipo, email, tel, foto) VALUES(:ID, :nombre_legal_o_rs, :contrasena, :tipo, :email, :tel, :foto)");
+			}
+			$stmt->bindParam(":contrasena", $datos["contrasena"], PDO::PARAM_STR);
 		} else {
-			$stmt = Conexion::conectar()->prepare("UPDATE `usuarios` SET ID = :ID, nombre_legal_o_rs = :nombre_legal_o_rs, contrasena = :contrasena, tipo = :tipo, email = :email, tel = :tel, estado = :estado, ciudad = :ciudad, foto = :foto WHERE `usuarios`.ID = :IDant");
+			if ($datos["contrasena"] != '' && $datos["contrasena"] != null) {
+				if ($tabla2 != null) {
+					$stmt = Conexion::conectar()->prepare("UPDATE `usuarios` SET ID = :ID, nombre_legal_o_rs = :nombre_legal_o_rs, contrasena = :contrasena, tipo = :tipo, email = :email, tel = :tel, estado = :estado, ciudad = :ciudad, foto = :foto WHERE `usuarios`.ID = :IDant");
+					$stmt->bindParam(":estado", $datos["estado"], PDO::PARAM_STR);
+					$stmt->bindParam(":ciudad", $datos["ciudad"], PDO::PARAM_STR);
+				} else {
+					$stmt = Conexion::conectar()->prepare("UPDATE `usuarios` SET ID = :ID, nombre_legal_o_rs = :nombre_legal_o_rs, contrasena = :contrasena, tipo = :tipo, email = :email, tel = :tel, foto = :foto WHERE `usuarios`.ID = :IDant");
+				}
+				$stmt->bindParam(":contrasena", $datos["contrasena"], PDO::PARAM_STR);
+			} else {
+				if ($tabla2 != null) {
+					$stmt = Conexion::conectar()->prepare("UPDATE `usuarios` SET ID = :ID, nombre_legal_o_rs = :nombre_legal_o_rs, tipo = :tipo, email = :email, tel = :tel, estado = :estado, ciudad = :ciudad, foto = :foto WHERE `usuarios`.ID = :IDant");
+					$stmt->bindParam(":estado", $datos["estado"], PDO::PARAM_STR);
+					$stmt->bindParam(":ciudad", $datos["ciudad"], PDO::PARAM_STR);
+				} else {
+					$stmt = Conexion::conectar()->prepare("UPDATE `usuarios` SET ID = :ID, nombre_legal_o_rs = :nombre_legal_o_rs, tipo = :tipo, email = :email, tel = :tel, estado = :estado, ciudad = :ciudad, foto = :foto WHERE `usuarios`.ID = :IDant");
+				}
+			}
 			$stmt->bindParam(":IDant", $datos["IDant"], PDO::PARAM_STR);
 		}
 		$stmt->bindParam(":ID", $datos["ID"], PDO::PARAM_STR);
 		$stmt->bindParam(":nombre_legal_o_rs", $datos["nombre_legal_o_rs"], PDO::PARAM_STR);
-		$stmt->bindParam(":contrasena", $datos["contrasena"], PDO::PARAM_STR);
 		$stmt->bindParam(":tipo", $datos["tipo"], PDO::PARAM_STR);
 		$stmt->bindParam(":email", $datos["email"], PDO::PARAM_STR);
 		$stmt->bindParam(":tel", $datos["tel"], PDO::PARAM_STR);
-		$stmt->bindParam(":estado", $datos["estado"], PDO::PARAM_STR);
-		$stmt->bindParam(":ciudad", $datos["ciudad"], PDO::PARAM_STR);
 		$stmt->bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
 
 		if ($tabla2 != null) {
 			if ($tabla2 != "agentes") {
-				$campos_unicos = null;
+				$campos_unicos = "";
 				if ($tipo == "crear") {
-					if ($tabla2 == "mayoristas") {
-						//$campos_unicos = ", zonas";
-					} else if ($tabla2 == "dists") {
+					if ($tabla2 == "dists") {
 						$campos_unicos = ", mayorista, zona, agente, historia, propuesta";
 					} else if ($tabla2 == "solicitantes") {
 						$datossolicregistrado = "";
@@ -97,14 +115,12 @@ class ModeloUsuarios
 					$campos_unicos1 = str_replace(", ", ", :", $campos_unicos);
 					$stmt1 = Conexion::conectar()->prepare("INSERT INTO $tabla2(ID, tipo_persona, cp, sit_fiscal, acta_const, identificacion, dir_fiscal, domicilios, comp_dom$campos_unicos) VALUES(:ID, :tipo_persona, :cp, :sit_fiscal, :acta_const, :identificacion, :dir_fiscal, :domicilios, :comp_dom$campos_unicos1)");
 				} else {
-					if ($tabla2 == "mayoristas") {
-						//$campos_unicos = "zonas = :zonas";
-					} else if ($tabla2 == "dists") {
+					if ($tabla2 == "dists") {
 						$campos_unicos = "mayorista = :mayorista, zona = :zona, agente = :agente, historia = :historia, propuesta = :propuesta";
 					} else if ($tabla2 == "solicitantes") {
 						$campos_unicos = "observs = :observs, mayorista = :mayorista, zona = :zona, agente = :agente, historia = :historia, propuesta = :propuesta";
 					}
-					$stmt1 = Conexion::conectar()->prepare("UPDATE $tabla2 SET ID = :ID, tipo_persona = :tipo_persona, dir_fiscal = :dir_fiscal, domicilios = :domicilios, cp = :cp, sit_fiscal = :sit_fiscal, acta_const = :acta_const, identificacion = :identificacion, comp_dom = :comp_dom, $campos_unicos WHERE $tabla2.ID = :IDant");
+					$stmt1 = Conexion::conectar()->prepare("UPDATE `$tabla2` SET ID = :ID, tipo_persona = :tipo_persona, dir_fiscal = :dir_fiscal, domicilios = :domicilios, cp = :cp, sit_fiscal = :sit_fiscal, acta_const = :acta_const, identificacion = :identificacion, comp_dom = :comp_dom$campos_unicos WHERE ID = :IDant");
 					$stmt1->bindParam(":IDant", $datos["IDant"], PDO::PARAM_STR);
 				}
 				$stmt1->bindParam(":ID", $datos["ID"], PDO::PARAM_STR);
@@ -117,19 +133,17 @@ class ModeloUsuarios
 				$stmt1->bindParam(":identificacion", $datos["identificacion"], PDO::PARAM_STR);
 				$stmt1->bindParam(":comp_dom", $datos["comp_dom"], PDO::PARAM_STR);
 
-				if ($tabla2 == "mayoristas") {
-					//$stmt1->bindParam(":zonas", $datos["zonas"], PDO::PARAM_STR);
-				} else {
-					if ($tabla2 == "dists") {
-						$stmt1->bindParam(":zona", $datos["zona"], PDO::PARAM_STR);
-					} else if ($tabla2 == "solicitantes" and isset($datos["observs"])) {
-						$stmt1->bindParam(":observs", $datos["observs"], PDO::PARAM_STR);
-					}
-					if ($tabla2 == "dists" || ($tabla2 == "solicitantes" and isset($datos["observs"]))) {
-						$stmt1->bindParam(":mayorista", $datos["mayorista"], PDO::PARAM_STR);
-						$stmt1->bindParam(":zona", $datos["zona"], PDO::PARAM_STR);
-						$stmt1->bindParam(":agente", $datos["agente"], PDO::PARAM_STR);
-					}
+				if ($tabla2 == "dists") {
+					$stmt1->bindParam(":zona", $datos["zona"], PDO::PARAM_STR);
+				} else if ($tabla2 == "solicitantes" and isset($datos["observs"])) {
+					$stmt1->bindParam(":observs", $datos["observs"], PDO::PARAM_STR);
+				}
+				if ($tabla2 == "dists" || ($tabla2 == "solicitantes" and isset($datos["observs"]))) {
+					$stmt1->bindParam(":mayorista", $datos["mayorista"], PDO::PARAM_STR);
+					$stmt1->bindParam(":zona", $datos["zona"], PDO::PARAM_STR);
+					$stmt1->bindParam(":agente", $datos["agente"], PDO::PARAM_STR);
+				}
+				if ($tabla2 != "mayoristas") {
 					$stmt1->bindParam(":historia", $datos["historia"], PDO::PARAM_STR);
 					$stmt1->bindParam(":propuesta", $datos["propuesta"], PDO::PARAM_STR);
 				}
@@ -149,7 +163,6 @@ class ModeloUsuarios
 
 			return "ok";
 		} else {
-			// return "error";
 			echo "\nPDO::errorInfo():\n";
 			print_r(Conexion::conectar()->errorInfo());
 			return "error";

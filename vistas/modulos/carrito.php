@@ -23,11 +23,15 @@
     <div class="box">
 
       <div class="box-header with-border">
-        <?php $tabla = null;
+        <?php $tabla = null; 
+        $tabla2 = null; 
+        $tipo_vendedor=null;
+        $id_vendedor=null;
         if ($_SESSION["tipo"] == "Mayorista") {
           $tabla = "carritos_mayoristas";
         } else {
           $tabla = "carritos_dists";
+          $tipo_user = "mayorista";
         } ?>
         <button class="btn btn-success" style="margin-right:7px" data-toggle="modal" data-target="#modalCompra" id="CrearPedido" tabla="<?php echo $tabla; ?>">
 
@@ -43,10 +47,11 @@
           </button>
         </a>
 
-        <span style="margin-left: 10px; font-size: 20px;"><b>Total a Pagar: </b>
+        <span style="margin-left: 10px; font-size: 20px;"><b>Importe + Envío: </b>
           <?php
-          $totalapagar = ControladorGeneral::ctrSumar($tabla, "precioxcantidad", "ID_user", $_SESSION["ID"]);
-          echo '$' . $totalapagar;
+          $importe = ControladorGeneral::ctrSumar($tabla, "precioxcantidad", "ID_user", $_SESSION["ID"]);
+          $envio = 100;
+          echo '$' . $importe+$envio;
           ?>
         </span>
 

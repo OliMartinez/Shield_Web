@@ -6,7 +6,7 @@ $(".btnCrearCuentaDep").on("click", function () {
 	$('#tipo').prop('selected', true);
 	$("#ID").val("");
 	if ($("#propietario").length > 0) {
-		$("#propietario").val("");
+		$("#propietario").html("Elegir propietario");
 	}
 	$("#tipo").val("");
 	$("#tipo").html('Elegir tipo de cuenta');
@@ -44,9 +44,8 @@ $(".btnEditarCuentaDep").on("click", function () {
 		success: function (respuesta) {
 			var tipoCuenta;
 			$("#ID").val(respuesta["ID"]);
-			if ($("#propietario").length > 0) {
-				$("#propietario").val(respuesta["propietario"]);
-			}
+			$("#propietario").val(respuesta["propietario"]);
+			$("#propietario").html(respuesta["propietario"]);
 			$('.oculto').hide();
 			if (respuesta["tipo"] == "Cuenta Bancaria") {
 				$("#correo_paypal").val("");

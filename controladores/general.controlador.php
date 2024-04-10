@@ -91,12 +91,12 @@ class ControladorGeneral
 	OBTENER VALOR MÁS GRANDE DE UNA COLUMNA
 	=============================================*/
 
-/*	public static function ctrValorMasGrande($tabla, $columna)
+	public static function ctrValorMasGrande($tabla, $columna, $item, $cond)
 	{
 
-		$respuesta = ModeloGeneral::mdlValorMasGrande($tabla, $columna);
+		$respuesta = ModeloGeneral::mdlValorMasGrande($tabla, $columna, $item, $cond);
 
 		return $respuesta;
-	}*/
+	}
 
 }

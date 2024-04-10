@@ -153,25 +153,7 @@ MODAL  PRODUCTO
               </div>
             </div>
 
-            <!-- CANTIDAD MÍNIMA DE PRODUCTOS A VENDER -->
-            <div class="form-group">
-              <label for="Cant_min">Cantidad mínima de unidades para venta:</label>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
-                <input type="number" class="form-control input-lg" id="Cant_min" name="Cant_min" min="0" required>
-              </div>
-            </div>
-
-            <!-- ENTRADA PARA ENVÍO-->
-            <div class="form-group">
-              <label for="Envío">Precio de envío:</label>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                <input type="number" class="form-control input-lg" id="Envio" name="Envio" min="0" required>
-              </div>
-            </div>
-
-            <?php include "includes/imgprods.html"; ?>
+            <?php include "includes/productos.html"; ?>
 
           </div>
 

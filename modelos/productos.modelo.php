@@ -19,9 +19,9 @@ public static function mdlGuardarProducto($tabla, $datos, $tipo){
     }
 
     if ($tipo == "crear") {
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(ID, categorias, coleccion, nombre, imagenes, descripcion, caracteristicas, precio_mayorista, cantidad_min$mayorista) VALUES (:ID, :categorias, :coleccion, :nombre, :imagenes, :descripcion, :caracteristicas, :precio_mayorista, :cantidad_min$value_mayorista)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(ID, categorias, coleccion, nombre, imagenes, descripcion, caracteristicas, precio_mayorista, cantidad_min, envio$mayorista) VALUES (:ID, :categorias, :coleccion, :nombre, :imagenes, :descripcion, :caracteristicas, :precio_mayorista, :cantidad_min, envio$value_mayorista)");
     } else {
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET categorias = :categorias, coleccion = :coleccion, nombre = :nombre, imagenes = :imagenes, descripcion = :descripcion, caracteristicas = :caracteristicas, precio_mayorista = :precio_mayorista, cantidad_min = :cantidad_min$update_mayorista WHERE ID = :ID");
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET categorias = :categorias, coleccion = :coleccion, nombre = :nombre, imagenes = :imagenes, descripcion = :descripcion, caracteristicas = :caracteristicas, precio_mayorista = :precio_mayorista, cantidad_min = :cantidad_min, envio = :envio$update_mayorista WHERE ID = :ID");
     }
 
     $stmt->bindParam(":ID", $datos["ID"], PDO::PARAM_INT);
@@ -33,6 +33,7 @@ public static function mdlGuardarProducto($tabla, $datos, $tipo){
     $stmt->bindParam(":caracteristicas", $datos["caracteristicas"], PDO::PARAM_STR);
     $stmt->bindParam(":precio_mayorista", $datos["precio_mayorista"], PDO::PARAM_INT);
     $stmt->bindParam(":cantidad_min", $datos["cantidad_min"], PDO::PARAM_INT);
+    $stmt->bindParam(":envio", $datos["envio"], PDO::PARAM_INT);
 
     if ($tabla == "productos_mayorista") {
         $stmt->bindParam(":stock", $datos["stock"], PDO::PARAM_INT);
